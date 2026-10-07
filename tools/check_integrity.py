@@ -13,14 +13,18 @@ def main():
         actual = hashlib.sha256(data).hexdigest()
         if actual != expected:
             raise RuntimeError(f"Snapshot mismatch: {relative}")
-    upstream = json.loads((ROOT / "source_manifest.json").read_text())
-    for entry in upstream["files"]:
-        data = (ROOT / "source" / entry["path"]).read_bytes()
-        header = f"blob {len(data)}\0".encode("ascii")
-        actual = hashlib.sha1(header + data).hexdigest()
-        if actual != entry["git_sha"] or len(data) != entry["size"]:
-            raise RuntimeError(f"Upstream Git blob mismatch: {entry['path']}")
-    print(f"PASS: {len(snapshot)} snapshot files and {len(upstream['files'])} upstream Git blobs.")
+    blob_count = 0
+    for manifest, directory in [("source_manifest.json", "source"),
+                                ("boundary_source_manifest.json", "source_boundary")]:
+        upstream = json.loads((ROOT / manifest).read_text())
+        for entry in upstream["files"]:
+            data = (ROOT / directory / entry["path"]).read_bytes()
+            header = f"blob {len(data)}\0".encode("ascii")
+            actual = hashlib.sha1(header + data).hexdigest()
+            if actual != entry["git_sha"] or len(data) != entry["size"]:
+                raise RuntimeError(f"Upstream Git blob mismatch: {directory}/{entry['path']}")
+            blob_count += 1
+    print(f"PASS: {len(snapshot)} snapshot files and {blob_count} upstream Git blobs.")
 
 
 if __name__ == "__main__":

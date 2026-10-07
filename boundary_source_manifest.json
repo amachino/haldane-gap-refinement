@@ -1,0 +1,28 @@
+{
+  "repository": "https://github.com/openai/math",
+  "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "paper_directory": "preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026",
+  "description": "Selected unmodified analytic source for boundary-paper Proposition 3.4; LICENSE is from the repository root. This is not a complete TeX build.",
+  "files": [
+    {
+      "path": "build/main.tex",
+      "git_sha": "5afea4cdf296744a8c3a168fa76872026ea3d4af",
+      "size": 5566
+    },
+    {
+      "path": "build/sections/periodic.tex",
+      "git_sha": "924237cee4422eef4cfd782674a7d89a285f71b1",
+      "size": 13866
+    },
+    {
+      "path": "build/sections/transfer.tex",
+      "git_sha": "4bec0762b59d516bf53da9b0e84c92b886b6a66c",
+      "size": 8334
+    },
+    {
+      "path": "LICENSE",
+      "git_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357
+    }
+  ]
+}

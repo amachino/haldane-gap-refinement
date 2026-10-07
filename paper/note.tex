@@ -4,7 +4,7 @@
 \usepackage[margin=26mm]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xurl}
-\hypersetup{pdftitle={An exact-arithmetic refinement of the periodic spin-one Haldane-gap bound},
+\hypersetup{pdftitle={Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds},
 pdfauthor={GPT-6 Astra Max (OpenAI)},
 pdfsubject={Conditional gap lower bound with an exact rational certificate},
 pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact arithmetic}}
@@ -13,27 +13,27 @@ pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact ari
 \DeclareMathOperator{\Tr}{Tr}
 \newcommand{\gap}{\gamma}
 \newcommand{\commit}{\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}}
-\title{An exact-arithmetic refinement\\[0.15em]
-of the periodic spin-one Haldane-gap bound}
+\title{Exact-arithmetic refinements\\[0.15em]
+of periodic spin-one Haldane-gap bounds}
 \author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
-\date{7 October 2026 \quad | \quad Version 1.0.0}
+\date{8 October 2026 \quad | \quad Version 1.1.0}
 \begin{document}
 \maketitle
 \begin{abstract}
-We give a quantitative corollary of the purity bootstrap in OpenAI's
-\emph{The periodic spin-one Haldane gap} (24 September 2026).
-Conditional on that manuscript's spatial-moment representation and
-certified initial purity estimates, the gap satisfies
-$\gap_L>47/10000$ for every even $L\ge2304$, with exchange coupling
-$J=1$. This improves the manuscript's stated constant
-$\log(20)/784$ by approximately $23.0\%$, on the same range of lengths.
-The extension consists of five upward-rounded updates, five interval
-estimates, and one uniform tail estimate. A short, standard-library
-Python certificate checks every numerical inequality using rational
-arithmetic. We also document a fresh execution of the upstream finite
-verifier and selected computations reconstructed separately from the
-manuscript. This is a refinement of an existing argument; it is not an
-independent proof of the Haldane conjecture or a claim of an optimal bound.
+We extract an explicit corollary from two already published OpenAI
+manuscripts. The periodic concentration estimates in Proposition 3.4 of
+\emph{A boundary-field gap for the spin-one Heisenberg chain}, combined
+with Proposition 4.3 of \emph{The periodic spin-one Haldane gap}, give
+$\gap_L>\log(125/39)/49>0.02377$ for every even $L\ge120$, with
+exchange coupling $J=1$. Both manuscripts are dated 24 September 2026.
+The bound is conditional on their analytic and finite-input results.
+We give the parameter substitution and an exact rational certificate
+for the relevant scalar comparisons. We also retain the version 1.0
+bound $\gap_L>0.0047$ for even $L\ge2304$ and its certificate.
+The stronger corollary corrects the earlier comparison's scope: the
+version 1.0 bound improves the periodic paper's stated constant, but is
+weaker than a direct consequence of the full published pair of papers.
+Neither priority, optimality, nor an independent Haldane-gap proof is claimed.
 \end{abstract}
 
 \section{Statement and dependencies}
@@ -49,8 +49,92 @@ Set $Z_L(b)=\Tr e^{-b(H_L+aLI)}$, where $a=700741/500000$, and
  S(n,b)=\frac{Z_{2n}(b)}{Z_n(b)^2},\qquad
  T(n,b)=\frac{Z_n(2b)}{Z_n(b)^2}.
 \end{equation}
-The shift cancels from both ratios. The dependencies on \cite{upstream}
-are the following two inputs:
+The shift cancels from both ratios. Throughout, references to both
+OpenAI manuscripts mean the same fixed upstream revision listed below.
+Terminating decimals used in inequalities denote exact rational numbers.
+
+\section{A stronger corollary from the companion paper}
+Despite its boundary-field title, Section 3 of \cite{boundary} uses
+the periodic partition function $Z_n(b)$ of precisely the Hamiltonian
+above, without endpoint fields. Its separate boundary partition
+functions do not enter the following argument.
+
+\begin{theorem}\label{thm:companion}
+Assume the spatial-moment representation of \cite[Proposition 3.1]{upstream}
+and the periodic concentration estimates of
+\cite[Proposition 3.4]{boundary}, including their finite-input premises.
+The periodic chain has a unique ground state and
+\[
+ \boxed{\gap_L>\frac{\log(125/39)}{49}>0.02377
+       \quad\text{for every even }L\ge120.}
+\]
+Consequently
+$\liminf_{L\to\infty,\,L\ {\rm even}}\gap_L\ge\log(125/39)/49$.
+For a positive exchange coupling $J$, multiply these bounds by $J$.
+\end{theorem}
+
+\begin{proof}
+The companion sets $b_j=2^j(49/4)$ and, for $j\ge2$,
+$n_j=120\,2^{j-2}$, $M_j=2n_j$, and $u_2=.052$.
+Its Proposition 3.4 gives
+$1-S(n_j,b_j)\le u_j$ and $1-T(M_j,b_j)\le u_j$.
+In particular, $j=2$ gives
+\begin{equation}\label{eq:companion-seeds}
+ 1-S(120,49)\le\frac{13}{250},\qquad
+ 1-T(240,49)\le\frac{13}{250}.
+\end{equation}
+Apply \cite[Proposition 4.3]{upstream} with the new starting parameters
+\[
+ n_0=120,\qquad \beta_0=49,\qquad u_0=\frac{13}{250},
+ \qquad C=6,\qquad r=Cu_0=\frac{39}{125}.
+\]
+Here $\beta_0$ is the companion's $b_2$, not its $b_0$.
+Writing $G(u)=\tfrac12(\sum_{k=1}^{3}(1-u)^{-k})^2$, exact substitution gives
+\[
+ 0<u_0<\frac16,\qquad
+ G(u_0)=\frac{989224080031250}{177210755074809}<6,\qquad
+ r<1,\qquad C(1-3u_0)=\frac{633}{125}>3.
+\]
+The two seed assumptions and every scalar hypothesis of that proposition
+therefore hold. Its interpolation step covers all even $L\ge n_0$,
+and its conclusion is uniqueness and
+$\gap_L>\log(1/r)/\beta_0=\log(125/39)/49$.
+The strict comparison with $.02377$ follows from the rational Taylor
+upper bound in \eqref{eq:expupper}, which verifies
+$e^{49(2377/100000)}<125/39$.
+\end{proof}
+
+\subsection{Scalar certificate and attribution}
+The script \texttt{verify\_companion\_corollary.py} checks the
+substitution above and the reseeding comparisons in the proof of
+\cite[Proposition 3.4]{boundary}. That proof starts from the finite
+periodic inputs of \cite[Corollary 5.6]{upstream}, including the
+72- and 120-site trial bounds already covered by our recorded finite
+verification. It requires no new boundary-field thermal calculation
+for the periodic seed used here.
+
+In the companion's notation, the checker verifies the rational
+majorants $D(32)<.0442$ and $D(120)<.00000025$, the residual spectral
+ratio bound, and the seeds
+$S(60,49/2)>.9002$ and $T(120,49/2)>.9372$.
+The coupled update then gives defects below $.0502$ and $.0198$,
+both below $.052$ at the scales in \eqref{eq:companion-seeds}.
+Cube-root bounds are checked by cubing positive rational majorants;
+no floating-point root or logarithm determines a pass/fail decision.
+
+The underlying reseeding argument and uniform-gap criterion are both
+OpenAI's published results. Our contribution here is their explicit
+combination, its scalar certificate, and the resulting comparison.
+The value $\log(125/39)/49=0.023770450840258259\ldots$ was extracted
+during our prior-art review; we have not located it explicitly stated
+in the examined sources. This limited observation does not establish
+priority. Version 1.0's comparison omitted this consequence of the
+companion paper; the present version corrects that omission.
+
+\section{The retained version 1.0 refinement}
+The earlier, weaker result remains a separate reproducible extension
+of the periodic paper's final seed pair. Its dependencies on
+\cite{upstream} are the following two inputs:
 \begin{enumerate}
 \item For each $b>0$, a real finite or countable sequence $\lambda_i(b)$
 obeys $\sum_i|\lambda_i(b)|^4<\infty$ and
@@ -65,7 +149,7 @@ $Z_L(b)=\sum_i|\lambda_i(b)|^L$ for every even $L\ge4$
 \end{enumerate}
 All references are to the fixed upstream revision listed at the end.
 
-\begin{theorem}\label{thm:main}
+\begin{theorem}\label{thm:legacy}
 Under these inputs, the ground state is unique and
 \[
  \boxed{\gap_L>\frac{47}{10000}\quad
@@ -215,15 +299,18 @@ These intervals cover every even $L\ge n_5$, proving
 The final strict comparison is certified by
 $E_m((47/10000)25088)<10^{53}/55$, again over the rationals.
 Together with the five finite intervals this proves
-Theorem~\ref{thm:main}. A strict bound for each finite length yields
+Theorem~\ref{thm:legacy}. A strict bound for each finite length yields
 the stated non-strict bound on the liminf.
 
 \section{Reproducibility and scope}
-The quantitative gain comes from retaining the unequal seed bounds and
+The version 1.0 quantitative gain comes from retaining the unequal seed bounds and
 performing a few more coupled updates before using a common envelope.
 The upstream theorem instead rounds both seed defects to $1/100$ and
 uses $C=5$, giving $\log(20)/784$. No new thermal or variational input
-is required for this refinement. We make no priority or optimality claim.
+is required for this refinement. This is a comparison with that paper's
+stated constant, not with every consequence of the published pair of
+papers. Theorem~\ref{thm:companion} is stronger in both constant and
+length range. We make no priority or optimality claim.
 
 The accompanying repository contains the short exact certificate,
 the upstream source and verification material at the fixed commit,
@@ -247,33 +334,45 @@ it does not provide rigorous thermal enclosures.
 \end{itemize}
 The full upstream run took approximately 22 minutes with six requested
 workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
-The new bound certificate itself needs only Python's standard library.
-Run \texttt{python3 verify\_gap\_improvement.py} with assertions enabled.
-Rational comparisons determine every pass/fail decision in that script;
+Both bound certificates need only Python's standard library.
+Run \texttt{make check} with assertions enabled to check both.
+For the stronger result alone, run
+\begin{center}
+\texttt{python3 verify\_companion\_corollary.py}
+\end{center}
+Rational comparisons determine all numerical pass/fail decisions;
 decimal logarithms and floating-point margins are display-only.
+The companion's selected analytic sources are preserved unmodified
+under \path{source_boundary/}, with Git blob identities recorded
+in \path{boundary_source_manifest.json}.
 
 Neither successful execution nor this note is a formal verification of
 the upstream analytic assumptions. No claim is made here about odd
 periodic chains, arbitrary open boundaries, or uniqueness of all
-infinite-volume ground states. The number $0.0047$ is a rigorous
-conditional lower bound, not an estimate of the actual physical gap.
+infinite-volume ground states. Both constants are conditional lower
+bounds, not estimates of the actual physical gap.
 
 \paragraph{Autonomous authorship and human contribution.}
 GPT-6 Astra Max autonomously selected this result for investigation, examined the
 upstream argument, derived the refined bound, implemented and ran the
-checks, and wrote this manuscript. The human user initiated the open-ended
+checks, and wrote this manuscript. During the user-requested prior-art
+review, the agent identified the stronger corollary, verified its
+parameter substitution, and prepared this revision. The human user initiated the open-ended
 investigation, authorized computation and publication, and requested
 attribution and layout revisions; the mathematical extension and its
-verification code were produced by the agent. The model designation GPT-6 Astra Max was supplied by the human user;
+verification code were produced by the agent. The human also requested
+the prior-art review and authorized this update. The model designation GPT-6 Astra Max was supplied by the human user;
 the execution agent was Codex. A backend model snapshot identifier was
 not available in the session. The upstream mathematical
-construction and input certificates are credited to \cite{upstream}.
+construction, reseeding argument, and input certificates are credited
+to \cite{upstream,boundary}.
 This is an unreviewed technical preprint; no independent human expert
 review has been recorded. Publication through the owner's account does
 not make this an official OpenAI publication or endorsement. Corrections
 are welcome through the repository's issue tracker.
 
-\begin{thebibliography}{1}
+\begin{thebibliography}{2}
+\raggedright
 \bibitem{upstream}
 OpenAI, \emph{The periodic spin-one Haldane gap},
 24 September 2026, OpenAI Math Release preprint.
@@ -281,5 +380,12 @@ Repository \url{https://github.com/openai/math}, commit
 \commit. File
 \path{preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf}.
 The companion analytic source and finite verifier are at the same revision.
+\bibitem{boundary}
+OpenAI, \emph{A boundary-field gap for the spin-one Heisenberg chain},
+24 September 2026, OpenAI Math Release preprint.
+Repository \url{https://github.com/openai/math}, commit \commit. File
+\path{preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026/paper.pdf}.
+Section 2 fixes the periodic normalization; Proposition 3.4 supplies
+the periodic concentration estimates used here.
 \end{thebibliography}
 \end{document}

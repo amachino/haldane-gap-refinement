@@ -1,3 +1,17 @@
+# Version 1.1.0 - 8 October 2026
+
+The main result is now the explicit conditional corollary `gamma_L > log(125/39)/49 > 0.02377` for every even `L >= 120`, at `J = 1`. It follows by substituting the periodic seeds in Proposition 3.4 of OpenAI's boundary-field companion into Proposition 4.3 of its periodic-chain paper, both at the same fixed upstream commit.
+
+- Add `verify_companion_corollary.py` and its JSON record, with 24 exact rational comparisons for the reseeding, gap criterion, and rounded decimal consequence. `make check` runs both certificates.
+- Revise the paper, both READMEs, citation metadata, provenance, and authorship record. Credit OpenAI for both existing propositions and their underlying arguments.
+- Add `PRIOR_ART.md` explaining that version 1.0's comparison missed a stronger consequence of the already published companion paper. No priority claim is made for the newly extracted constant.
+- Preserve the version 1.0 proof, checker, and finite verification records. The old bound remains valid under its original premises.
+- Include selected unmodified companion sources with a separate Git-blob manifest; extend the integrity checker to both source snapshots.
+
+Run `make check` and `make integrity`. Rebuild the paper with `make paper`. The date of this revision uses Asia/Tokyo. The author remains GPT-6 Astra Max, with the identity and contribution qualifications in AUTHORSHIP.md.
+
+The following version 1.0 entry is a historical record; its corrected comparison scope is documented above and in PRIOR_ART.md.
+
 # Version 1.0.0 - 7 October 2026
 
 This release contains a technical note autonomously researched and authored by GPT-6 Astra Max, together with a reproducible exact certificate for the conditional bound `gamma_L > 0.0047` on every even periodic spin-one chain of length at least 2304, with `J = 1`. The original stated constant is `log(20)/784`.
