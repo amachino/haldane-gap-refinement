@@ -29,6 +29,7 @@ No mathematical result, certificate integer, interval, status, timestamp, or rec
 
 ## Additional work
 
+- `verify_signed_extension.py`: 21 exact checks for the extension to every integer length at least 120. It verifies a polynomial identity, endpoint inequalities proving its sign on the full defect interval, the purity floor, the strict gap prefactor, and the rounded bound `0.02377`. The concentration and signed-trace proof is in the note; its upstream analytic dependencies remain explicit.
 - `verify_companion_corollary.py`: the stronger corollary's 24 exact rational comparisons, including the companion's reseeding arithmetic, the periodic uniform-gap criterion, and the rounded bound `0.02377`. It uses the rational Taylor upper bound from the older checker. The analytic and finite-input premises remain upstream dependencies.
 - `verify_gap_improvement.py`: the small exact certificate for the 0.0047 refinement. It depends on the upstream analytic representation and seed bounds. Decimal and float outputs are explanatory only.
 - `independent_audit.py`: selected computations reconstructed from the manuscript's definitions and tables. It imports no functions from the upstream implementation. For distribution, an explicit guard against disabled assertions was added.
@@ -38,7 +39,13 @@ No mathematical result, certificate integer, interval, status, timestamp, or rec
 
 Version 1.1 reused the recorded full finite verification without altering its results or claiming a new full run. The periodic inputs required by the companion reseeding were already included in that execution. Both scalar certificates were executed for this revision, and their output records are included. The new corollary does not require the boundary-field paper's additional open-chain thermal certificates. The revision is dated 8 October 2026 in Asia/Tokyo.
 
+Version 1.2 extends the same bound to **every integer length at least 120**, hence every odd length at least 121. It uses the periodic paper's signed trace formula for all integer lengths and the companion's positive dominant eigenvalues, purity estimates, and adjacent-temperature leading-eigenvalue ratios. The new argument bounds both residual absolute moments at the same even reference length, using partition-function cancellation for the second temperature, before increasing the moment order to an arbitrary integer. The elementary concentration bound is proved for every defect below one half, including the `3u` value needed here. An exact polynomial identity certifies the full-interval estimate. These analytic steps were derived and written by the agent; the quoted spectral inputs are credited to OpenAI.
+
+All three small bound certificates were executed for version 1.2. The imported source files and earlier finite verification records remain unchanged; no new full thermal run or additional finite input is claimed. The TeX/PDF, both READMEs, metadata, and snapshot checksums were updated. The date uses Asia/Tokyo. The owner's request to incorporate newly verified findings is recorded in `AGENTS.md` for continued work on this repository.
+
 GPT-6 Astra Max autonomously conducted the investigation, derived the first refinement and the later explicit corollary, implemented and executed the checks, and authored the manuscript after reading the public sources. The human user initiated the open-ended task, authorized computation and publication, and requested the prior-art review, this update, and attribution and layout revisions. The mathematical derivations and verification code were produced by the agent. This was not a blind experiment on an unsolved problem. No claim is made about the ability to discover the original proof without seeing it, or about the capabilities or training of a private model.
+
+The human subsequently asked whether odd lengths could also be proved and requested that new findings be incorporated. The agent derived and verified the signed-moment extension and prepared version 1.2 under that authorization.
 
 The model designation GPT-6 Astra Max (OpenAI) was supplied by the human user. The execution agent was Codex. A backend model snapshot identifier was not available in the session; the model designation is user-supplied provenance rather than a runtime metadata measurement. [AUTHORSHIP.md](AUTHORSHIP.md) records the contribution and identity scope.
 

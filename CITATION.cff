@@ -4,7 +4,7 @@ title: "Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds"
 authors:
   - name: "GPT-6 Astra Max"
 type: software
-version: 1.1.0
+version: 1.2.0
 date-released: 2026-10-08
 license: Apache-2.0
 repository-code: "https://github.com/amachino/haldane-gap-refinement"
@@ -12,8 +12,11 @@ url: "https://github.com/amachino/haldane-gap-refinement"
 abstract: >-
   A technical note autonomously researched and authored by GPT-6 Astra Max, an OpenAI AI
   agent, with exact rational verification of a conditional periodic spin-one
-  Haldane-gap bound of log(125/39)/49 for every even length at least 120.
-  This explicit corollary combines published propositions in OpenAI's periodic
-  and boundary-field papers. The earlier 0.0047 bound for even lengths at least
-  2304 is retained, with the prior comparison's scope corrected. The model designation was supplied by the human user; the execution agent
+  Haldane-gap bound of log(125/39)/49 for every integer length at least 120,
+  including odd lengths at least 121. A signed-moment argument extends the
+  earlier even-length corollary using spectral estimates in OpenAI's periodic
+  and boundary-field papers. Its scalar certificate proves a polynomial
+  inequality on the full defect interval. The version 1.1 even-length
+  corollary and the version 1.0 bound are retained, with the original
+  comparison's scope corrected. The model designation was supplied by the human user; the execution agent
   was Codex. A backend model snapshot identifier was not available. This work is unreviewed.

@@ -16,24 +16,25 @@ pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact ari
 \title{Exact-arithmetic refinements\\[0.15em]
 of periodic spin-one Haldane-gap bounds}
 \author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
-\date{8 October 2026 \quad | \quad Version 1.1.0}
+\date{8 October 2026 \quad | \quad Version 1.2.0}
 \begin{document}
 \maketitle
 \begin{abstract}
-We extract an explicit corollary from two already published OpenAI
-manuscripts. The periodic concentration estimates in Proposition 3.4 of
-\emph{A boundary-field gap for the spin-one Heisenberg chain}, combined
-with Proposition 4.3 of \emph{The periodic spin-one Haldane gap}, give
-$\gap_L>\log(125/39)/49>0.02377$ for every even $L\ge120$, with
-exchange coupling $J=1$. Both manuscripts are dated 24 September 2026.
-The bound is conditional on their analytic and finite-input results.
-We give the parameter substitution and an exact rational certificate
-for the relevant scalar comparisons. We also retain the version 1.0
-bound $\gap_L>0.0047$ for even $L\ge2304$ and its certificate.
-The stronger corollary corrects the earlier comparison's scope: the
-version 1.0 bound improves the periodic paper's stated constant, but is
-weaker than a direct consequence of the full published pair of papers.
-Neither priority, optimality, nor an independent Haldane-gap proof is claimed.
+We prove, conditional on two published OpenAI manuscripts, that the
+periodic spin-one Heisenberg chain has a unique ground state and
+$\gap_L>\log(125/39)/49>0.02377$ for every integer $L\ge120$, with
+exchange coupling $J=1$. This includes every odd $L\ge121$.
+The added argument controls signed spatial moments at both temperatures
+using the same even reference length. It uses Proposition 3.1 of
+\emph{The periodic spin-one Haldane gap} and Proposition 3.4 of
+\emph{A boundary-field gap for the spin-one Heisenberg chain}, both
+dated 24 September 2026, including their finite-input premises.
+An exact polynomial certificate controls the full defect interval.
+We retain the version 1.1 even-length corollary, the version 1.0
+bound $\gap_L>0.0047$ for even $L\ge2304$, and their certificates.
+The earlier comparison's omission of the companion paper remains
+documented. Neither priority, optimality, nor an independent
+Haldane-gap proof is claimed.
 \end{abstract}
 
 \section{Statement and dependencies}
@@ -42,7 +43,7 @@ Consider the periodic spin-one Heisenberg Hamiltonian
  H_L=\sum_{j=0}^{L-1}\mathbf S_j\cdot\mathbf S_{j+1},
  \qquad \mathbf S_L=\mathbf S_0,
 \]
-with coupling $J=1$ and even $L\ge4$. Let $\gap_L$ denote the
+with coupling $J=1$ and integer $L\ge4$. Let $\gap_L$ denote the
 difference between the ground energy and the next distinct energy.
 Set $Z_L(b)=\Tr e^{-b(H_L+aLI)}$, where $a=700741/500000$, and
 \begin{equation}\label{eq:purities}
@@ -52,8 +53,152 @@ Set $Z_L(b)=\Tr e^{-b(H_L+aLI)}$, where $a=700741/500000$, and
 The shift cancels from both ratios. Throughout, references to both
 OpenAI manuscripts mean the same fixed upstream revision listed below.
 Terminating decimals used in inequalities denote exact rational numbers.
+The physical purity $T(n,b)$ is defined for every integer $n\ge4$.
+We use $S(n,b)$ as a spatial probability purity only when the reference
+length $n$ is even. Signed spatial traces, in contrast, are available
+at odd lengths too.
 
-\section{A stronger corollary from the companion paper}
+\section{Including odd lengths}
+\begin{theorem}\label{thm:all-lengths}
+Assume the signed spatial-moment representation of
+\cite[Proposition 3.1]{upstream} and the periodic concentration estimates,
+positive dominant eigenvalues, and adjacent-temperature eigenvalue ratios
+of \cite[Proposition 3.4]{boundary}, including their finite-input premises.
+The periodic chain has a unique ground state and
+\[
+ \boxed{\gap_L>\frac{\log(125/39)}{49}>0.02377
+       \quad\text{for every integer }L\ge120.}
+\]
+In particular, this holds for every odd $L\ge121$, and
+$\liminf_{L\to\infty}\gap_L\ge\log(125/39)/49$ over all integer lengths.
+For a positive exchange coupling $J$, multiply the bounds by $J$.
+\end{theorem}
+
+We first record the concentration bound on the domain needed below.
+The companion states its rational version for defects at most $.1$;
+its elementary proof extends to all defects below $1/2$.
+\begin{lemma}[Concentration]\label{lem:concentration}
+Let $(p_i)$ be a finite or countable probability list with
+$\sum_i p_i^2\ge1-z$, where $0\le z<1/2$.
+Its largest weight $p_0$ is unique, and
+\[
+ \frac{\sum_{i\ne0}p_i}{p_0}\le d(z),\qquad
+ d(z)=\frac{z}{2-3z}.
+\]
+\end{lemma}
+\begin{proof}
+A summable nonzero nonnegative list attains its maximum.
+Since $\sum_i p_i^2\le p_0$, one has $p_0\ge1-z>1/2$.
+Put $x=1-p_0\le z$. Then
+$2x(1-x)\le1-\sum_i p_i^2\le z$, so
+$x\le z/[2(1-x)]\le z/[2(1-z)]$.
+Applying the increasing function $x\mapsto x/(1-x)$ gives the result;
+the displayed upper bound for $x$ is below one when $z<1/2$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:all-lengths}]
+Reindex the companion's scales $j\ge2$ by $k=j-2\ge0$, and set
+\begin{equation}\label{eq:odd-scales}
+ n_k=120\,2^k,\qquad \beta_k=49\,2^k,\qquad
+ u_k=\frac16\left(\frac{39}{125}\right)^{2^k}.
+\end{equation}
+Thus $u_0=13/250$ and $u_{k+1}=6u_k^2\le u_k$.
+Write $n=n_k$, $\beta=\beta_k$, $u=u_k$, and $v=u_{k+1}$.
+The cited propositions supply real spatial eigenvalues $\mu_i(b)$ with
+absolutely convergent moments and
+\[
+ Z_L(b)=\sum_i\mu_i(b)^L\qquad(\text{every integer }L\ge4).
+\]
+At $b=\beta,2\beta$, their respective unique eigenvalues of maximal
+modulus are positive; denote these by $\lambda,\lambda'$.
+With $c=\lambda'/\lambda^2$, the companion gives
+\begin{equation}\label{eq:odd-inputs}
+ S(n,\beta)\ge1-u,\quad T(2n,\beta)\ge1-u,\quad
+ 0<c\le1,\quad c^{2n}\ge(1-u)(1-v).
+\end{equation}
+Positivity of the leading eigenvalue does not assume an odd-chain gap:
+the companion proves it from positivity of physical partition functions
+and dominance in the signed trace at arbitrarily large odd lengths.
+
+The necessary control at the \emph{same} reference length $n$ and the
+next temperature follows by partition-function cancellation:
+\begin{equation}\label{eq:odd-same-n}
+ S(n,2\beta)=\frac{S(n,\beta)^2T(2n,\beta)}{T(n,\beta)^2}
+ \ge(1-u)^3\ge1-3u.
+\end{equation}
+Here $T(n,\beta)\le1$. Because $n$ is even, the two spatial lists at
+this length are probability lists. Lemma~\ref{lem:concentration},
+applicable since $3u\le39/250<1/2$, gives
+\begin{equation}\label{eq:odd-tails}
+ \sum_{i\ne0}\left|\frac{\mu_i(\beta)}{\lambda}\right|^n\le d(u),
+ \qquad
+ \sum_{i\ne0}\left|\frac{\mu_i(2\beta)}{\lambda'}\right|^n\le d(3u).
+\end{equation}
+Each absolute eigenvalue ratio is at most one. Increasing its exponent
+from $n$ to any integer $L\ge n$ therefore decreases every summand.
+Absolute convergence and the triangle inequality yield
+\[
+ Z_L(\beta)=\lambda^L(1+\epsilon_L),\quad |\epsilon_L|\le d(u),
+ \qquad
+ Z_L(2\beta)=(\lambda')^L(1+\epsilon'_L),\quad
+ |\epsilon'_L|\le d(3u).
+\]
+These estimates allow negative nondominant eigenvalues. No probability
+interpretation of an odd spatial moment is used. In particular,
+\eqref{eq:odd-same-n} is essential: a higher-moment upper bound alone
+cannot bound a lower moment by taking a root.
+
+For every integer $L\in[n,2n]$, $c^L\ge c^{2n}$, and hence
+\begin{equation}\label{eq:odd-K}
+ T(L,\beta)\ge K(u):=
+ \frac{(1-u)(1-6u^2)(1-d(3u))}{(1+d(u))^2}
+ \ge1-\frac92u.
+\end{equation}
+To prove the last inequality on the entire interval $0\le u\le13/250$,
+use the exact identity
+\begin{equation}\label{eq:odd-polynomial}
+ K(u)-\left(1-\frac92u\right)=
+ \frac{u\bigl[4-60u+243u^2(1-2u)+324u^4\bigr]}
+      {2(2-9u)(1-u)}\ge0.
+\end{equation}
+Indeed, $4-60u\ge22/25>0$, $1-2u>0$, and both denominator factors
+are positive on that interval. In particular,
+$T(L,\beta)\ge383/500>1/2$.
+
+Let $w_0$ be the largest physical Gibbs weight, counting eigenvectors
+with multiplicity. Since $w_0\ge T(L,\beta)>1/2$, the ground state is
+unique. For an eigenvector of the next distinct energy,
+\begin{align*}
+ e^{-\beta_k\gap_L}
+ &=\frac{w_1}{w_0}
+ \le\frac{(9/2)u_k}{1-(9/2)u_k}\\
+ &\le\frac{375}{383}\left(\frac{39}{125}\right)^{2^k}
+ <\left(\frac{39}{125}\right)^{2^k}.
+\end{align*}
+Taking logarithms and dividing by $\beta_k=49\,2^k$ proves the claimed
+strict bound on each interval $[120\,2^k,240\,2^k]$. These intervals
+cover all integer $L\ge120$. The rounded consequence follows from the
+exact exponential comparison described in \eqref{eq:expupper}.
+The liminf inequality follows from the uniform finite-length bound.
+\end{proof}
+
+\subsection{Certificate and contribution}
+The script \path{verify_signed_extension.py} makes 21 exact checks:
+the polynomial coefficient identity in \eqref{eq:odd-polynomial},
+endpoint inequalities proving its sign over the full interval, the
+purity floor, the strict prefactor $375/383<1$, and the comparison with
+$.02377$. It uses no sampling grid or numerical logarithm in a decision.
+The concentration and signed-trace steps above are analytic proofs,
+not machine-formalized theorems.
+
+This version adds the signed-moment interpolation argument to the
+even-length corollary retained below. It uses more of the companion's
+already proved spectral information and requires no new thermal or
+variational input. The argument is conditional on those results;
+it is not an independent proof of the original Haldane-gap claim.
+No exhaustive priority search for this parity extension has been made.
+
+\section{The retained version 1.1 corollary}
 Despite its boundary-field title, Section 3 of \cite{boundary} uses
 the periodic partition function $Z_n(b)$ of precisely the Hamiltonian
 above, without endpoint fields. Its separate boundary partition
@@ -163,7 +308,8 @@ The argument below rederives the needed bootstrap steps of
 the two inputs independently of the upstream analytic argument.
 
 \section{Purity estimates and gap extraction}
-Both quantities in \eqref{eq:purities} are purities of probability
+For an even reference length $n\ge4$, both quantities in
+\eqref{eq:purities} are purities of probability
 distributions, so they belong to $(0,1]$. For spatial purity use
 $|\lambda_i(b)|^n/Z_n(b)$; for physical purity use the Gibbs weights,
 counting each eigenvector with multiplicity. If $P=\sum_i w_i^2$,
@@ -176,7 +322,8 @@ the normalized squares have purity $P'$ satisfying
 Here $f$ is increasing on $[0,1)$.
 
 \begin{lemma}[Rounded update]\label{lem:update}
-If $1-S(n,b)\le p$ and $1-T(2n,b)\le q$, with $p,q\in[0,1)$,
+For even $n\ge4$ and $b>0$, if $1-S(n,b)\le p$ and
+$1-T(2n,b)\le q$, with $p,q\in[0,1)$,
 any $p_+,q_+\in[0,1)$ satisfying
 \begin{equation}\label{eq:update}
  p_+\ge f\bigl(1-(1-p)^2(1-q)\bigr),\qquad
@@ -312,7 +459,9 @@ stated constant, not with every consequence of the published pair of
 papers. Theorem~\ref{thm:companion} is stronger in both constant and
 length range. We make no priority or optimality claim.
 
-The accompanying repository contains the short exact certificate,
+Theorem~\ref{thm:all-lengths} further removes the parity restriction
+without changing the version 1.1 constant.
+The accompanying repository contains all three exact certificates,
 the upstream source and verification material at the fixed commit,
 fresh verification results, and \texttt{independent\_audit.py}.
 The latter reconstructs selected computations from the printed
@@ -334,11 +483,11 @@ it does not provide rigorous thermal enclosures.
 \end{itemize}
 The full upstream run took approximately 22 minutes with six requested
 workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
-Both bound certificates need only Python's standard library.
-Run \texttt{make check} with assertions enabled to check both.
-For the stronger result alone, run
+All three bound certificates need only Python's standard library.
+Run \texttt{make check} with assertions enabled to check all three.
+For the new signed-moment certificate alone, run
 \begin{center}
-\texttt{python3 verify\_companion\_corollary.py}
+\texttt{python3 verify\_signed\_extension.py}
 \end{center}
 Rational comparisons determine all numerical pass/fail decisions;
 decimal logarithms and floating-point margins are display-only.
@@ -347,9 +496,9 @@ under \path{source_boundary/}, with Git blob identities recorded
 in \path{boundary_source_manifest.json}.
 
 Neither successful execution nor this note is a formal verification of
-the upstream analytic assumptions. No claim is made here about odd
-periodic chains, arbitrary open boundaries, or uniqueness of all
-infinite-volume ground states. Both constants are conditional lower
+the upstream analytic assumptions. No claim is made here for the same
+numerical bound at lengths below $120$, arbitrary open boundaries, or
+uniqueness of all infinite-volume ground states. The constants are conditional lower
 bounds, not estimates of the actual physical gap.
 
 \paragraph{Autonomous authorship and human contribution.}
@@ -357,11 +506,14 @@ GPT-6 Astra Max autonomously selected this result for investigation, examined th
 upstream argument, derived the refined bound, implemented and ran the
 checks, and wrote this manuscript. During the user-requested prior-art
 review, the agent identified the stronger corollary, verified its
-parameter substitution, and prepared this revision. The human user initiated the open-ended
+parameter substitution, and prepared version 1.1. When the user asked
+about odd lengths, the agent derived the signed-moment extension,
+implemented its certificate, and wrote version 1.2. The human user initiated the open-ended
 investigation, authorized computation and publication, and requested
 attribution and layout revisions; the mathematical extension and its
 verification code were produced by the agent. The human also requested
-the prior-art review and authorized this update. The model designation GPT-6 Astra Max was supplied by the human user;
+the prior-art review and asked that newly verified findings be incorporated
+into the repository. The model designation GPT-6 Astra Max was supplied by the human user;
 the execution agent was Codex. A backend model snapshot identifier was
 not available in the session. The upstream mathematical
 construction, reseeding argument, and input certificates are credited

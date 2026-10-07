@@ -1,0 +1,220 @@
+{
+  "source_commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "dependencies": [
+    "Periodic paper Proposition 3.1: signed moments for every integer length",
+    "Boundary-field paper Proposition 3.4: positive dominant eigenvalues, tracked purities, and temperature ratios"
+  ],
+  "finite_gap_statement": "gamma_L > log(125/39)/49 for every integer L >= 120",
+  "odd_length_statement": "In particular, every odd L >= 121",
+  "thermodynamic_statement": "liminf over all integer L of gamma_L >= log(125/39)/49",
+  "ground_state": "unique for every integer L >= 120",
+  "coupling_normalization": "J = 1",
+  "decimal_display_only": "0.0237704508402582591092560269630758899821233787800529917874327",
+  "interval_proof": "K(u)-(1-9u/2) = u[4-60u+243u^2(1-2u)+324u^4]/[2(2-9u)(1-u)] >= 0 for 0 <= u <= 13/250",
+  "same_reference_length": "Both temperatures use the same EVEN reference n_k; signed traces are then bounded for EVERY integer L >= n_k.",
+  "all_arithmetic_exact_rational": true,
+  "scope": "Conditional analytic extension with an exact scalar certificate; not a formal verification of upstream analytic premises",
+  "success": true,
+  "checks": [
+    {
+      "name": "even reference length at least four",
+      "passed": true,
+      "evidence": {
+        "n0": 120
+      }
+    },
+    {
+      "name": "positive inverse temperature",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "49"
+      }
+    },
+    {
+      "name": "positive initial defect",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "13/250"
+      }
+    },
+    {
+      "name": "concentration lemma valid for 3u",
+      "passed": true,
+      "evidence": {
+        "left": "39/250",
+        "relation": "<",
+        "right": "1/2"
+      }
+    },
+    {
+      "name": "quadratic recurrence contracts",
+      "passed": true,
+      "evidence": {
+        "left": "39/125",
+        "relation": "<",
+        "right": "1"
+      }
+    },
+    {
+      "name": "next defect below one",
+      "passed": true,
+      "evidence": {
+        "left": "507/31250",
+        "relation": "<",
+        "right": "1"
+      }
+    },
+    {
+      "name": "polynomial identity for K(u)-(1-9u/2)",
+      "passed": true,
+      "evidence": {
+        "computed_coefficients": [
+          "0",
+          "4",
+          "-60",
+          "243",
+          "-486",
+          "324"
+        ],
+        "expected_coefficients": [
+          "0",
+          "4",
+          "-60",
+          "243",
+          "-486",
+          "324"
+        ]
+      }
+    },
+    {
+      "name": "4-60u positive on full interval",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "22/25"
+      }
+    },
+    {
+      "name": "1-2u positive on full interval",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "112/125"
+      }
+    },
+    {
+      "name": "2-9u positive on full interval",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "383/250"
+      }
+    },
+    {
+      "name": "1-u positive on full interval",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "237/250"
+      }
+    },
+    {
+      "name": "positive cubic coefficient",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "243"
+      }
+    },
+    {
+      "name": "positive quintic coefficient",
+      "passed": true,
+      "evidence": {
+        "left": "0",
+        "relation": "<",
+        "right": "324"
+      }
+    },
+    {
+      "name": "purity floor",
+      "passed": true,
+      "evidence": {
+        "left": "383/500",
+        "relation": "=",
+        "right": "383/500"
+      }
+    },
+    {
+      "name": "physical purity exceeds one half",
+      "passed": true,
+      "evidence": {
+        "left": "1/2",
+        "relation": "<",
+        "right": "383/500"
+      }
+    },
+    {
+      "name": "uniform prefactor",
+      "passed": true,
+      "evidence": {
+        "left": "375/383",
+        "relation": "=",
+        "right": "375/383"
+      }
+    },
+    {
+      "name": "strict final gap comparison",
+      "passed": true,
+      "evidence": {
+        "left": "375/383",
+        "relation": "<",
+        "right": "1"
+      }
+    },
+    {
+      "name": "exact decay base",
+      "passed": true,
+      "evidence": {
+        "left": "39/125",
+        "relation": "=",
+        "right": "39/125"
+      }
+    },
+    {
+      "name": "closed-form recurrence initial value",
+      "passed": true,
+      "evidence": {
+        "left": "13/250",
+        "relation": "=",
+        "right": "13/250"
+      }
+    },
+    {
+      "name": "exact logarithm argument",
+      "passed": true,
+      "evidence": {
+        "left": "125/39",
+        "relation": "=",
+        "right": "125/39"
+      }
+    },
+    {
+      "name": "certified rounded consequence .02377",
+      "passed": true,
+      "evidence": {
+        "left": "19093053419503208576415728456388072006510938969180190196218552011377460468120876152788783069220396593800496833630808808524023561519383177890826436943810062758370686865627214918508453257788850039246352489963581846544151627862844347688432051243019410172525365766394043585316806197301098086518732494396731455588914414457291122322281181409830981308457880806830146315977005019235274700430740696036488048231994826687378217782064737542447302991/5957164266175740873231050349145009172913916266590744167015749092067716059480719360000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "relation": "<",
+        "right": "125/39"
+      }
+    }
+  ]
+}

@@ -3,6 +3,7 @@ PYTHON ?= python3
 .PHONY: check integrity paper
 
 check:
+	$(PYTHON) verify_signed_extension.py
 	$(PYTHON) verify_companion_corollary.py
 	$(PYTHON) verify_gap_improvement.py
 

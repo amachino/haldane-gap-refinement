@@ -30,6 +30,14 @@ The initial comparison omitted the stronger periodic seeds in the boundary-field
 
 Search indexing, very recent posts, unavailable discussions, and private or unpublished work limit this review. Failure to locate a result is not evidence of priority. Older numerical estimates of a physical gap near `0.4105` are a different type of claim from a certified uniform lower bound for all lengths in a specified range.
 
+## Version 1.2: parity extension and search scope
+
+Version 1.2 adds an argument for the same bound at **every integer length at least 120**, including odd lengths at least 121. The signed trace formula for all integer lengths is already in periodic Proposition 3.1. Positive dominant eigenvalues, dyadic purity estimates, and adjacent-temperature ratios are already in companion Proposition 3.4. The added proof controls the residual absolute moments at both temperatures using the same even reference length and derives a full-interval polynomial bound before extracting the physical gap.
+
+This proof does not apply the even-only gap proposition outside its stated domain. It also does not make the upstream premises independent. The earlier search described above focused on the constants and the even-length refinement; it was not an exhaustive search for an existing version of this signed-moment extension. The record therefore makes no claim of priority for the parity argument, nor of a fresh literature search or external expert validation in version 1.2.
+
 ## Attribution
 
 OpenAI is credited for both upstream propositions and their proofs. GPT-6 Astra Max performed this investigation, identified the cross-paper corollary, checked the normalization and hypotheses, implemented the scalar certificate, and revised the note. The human user requested the prior-art review and authorized the repository update. No new external mathematical review is claimed.
+
+The agent subsequently derived the signed-moment extension and its exact scalar certificate after the human asked about odd lengths. The human requested that newly verified findings be incorporated into this repository.

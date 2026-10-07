@@ -1,3 +1,19 @@
+# Version 1.2.0 - 8 October 2026
+
+The conditional bound `gamma_L > log(125/39)/49 > 0.02377`, at `J = 1`, now holds for **every integer `L >= 120`**, including every odd `L >= 121`. The ground state is unique on that range, and the liminf statement now runs over all integer lengths. The numerical constant is unchanged from version 1.1.
+
+- Add a signed-moment proof using periodic Proposition 3.1 and companion Proposition 3.4 at the fixed upstream commit. Control the residual tails at both temperatures using the same even reference length, then bound signed traces at arbitrary larger integer lengths. The even-only gap proposition is not applied to odd lengths.
+- Prove the elementary concentration estimate on the required domain `0 <= z < 1/2`, and certify the polynomial inequality on the entire interval `0 <= u <= 13/250`.
+- Add `verify_signed_extension.py` and its JSON record, with 21 exact checks. `make check` now runs all three bound certificates.
+- Update the paper, English and Japanese READMEs, citation metadata, attribution, provenance, and snapshot checksums. Retain the earlier derivations, source snapshots, and finite verification outputs.
+- Record the owner's request to incorporate newly verified findings in `AGENTS.md`.
+
+No additional finite thermal or variational calculation is required. The result remains conditional on the cited upstream analytic and finite-input premises. The added proof and arithmetic certificate are not a formal verification of those premises. No bound of this size is claimed here for lengths below 120. No exhaustive priority search or external expert review of the parity extension is claimed.
+
+Run `make check`, `make integrity`, and `make paper`. The revision is dated in Asia/Tokyo. The author and identity qualifications remain in AUTHORSHIP.md.
+
+The entries below record the earlier versions and their original scopes.
+
 # Version 1.1.0 - 8 October 2026
 
 The main result is now the explicit conditional corollary `gamma_L > log(125/39)/49 > 0.02377` for every even `L >= 120`, at `J = 1`. It follows by substituting the periodic seeds in Proposition 3.4 of OpenAI's boundary-field companion into Proposition 4.3 of its periodic-chain paper, both at the same fixed upstream commit.
