@@ -16,25 +16,25 @@ pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact ari
 \title{Exact-arithmetic refinements\\[0.15em]
 of periodic spin-one Haldane-gap bounds}
 \author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
-\date{8 October 2026 \quad | \quad Version 1.2.0}
+\date{8 October 2026 \quad | \quad Version 1.3.0}
 \begin{document}
 \maketitle
 \begin{abstract}
 We prove, conditional on two published OpenAI manuscripts, that the
 periodic spin-one Heisenberg chain has a unique ground state and
-$\gap_L>\log(125/39)/49>0.02377$ for every integer $L\ge120$, with
-exchange coupling $J=1$. This includes every odd $L\ge121$.
-The added argument controls signed spatial moments at both temperatures
-using the same even reference length. It uses Proposition 3.1 of
-\emph{The periodic spin-one Haldane gap} and Proposition 3.4 of
-\emph{A boundary-field gap for the spin-one Heisenberg chain}, both
-dated 24 September 2026, including their finite-input premises.
-An exact polynomial certificate controls the full defect interval.
-We retain the version 1.1 even-length corollary, the version 1.0
-bound $\gap_L>0.0047$ for even $L\ge2304$, and their certificates.
-The earlier comparison's omission of the companion paper remains
-documented. Neither priority, optimality, nor an independent
-Haldane-gap proof is claimed.
+$\gap_L>3/50=0.06$ for every integer $L\ge34$, with exchange coupling
+$J=1$. This includes every odd $L\ge35$.
+The argument tracks two unequal purity defects, chooses the inverse
+temperature according to length, and bounds signed spatial moments.
+A certificate with 88 exact checks covers 12 finite intervals and an
+infinite tail controlled by the invariant $p^{3/2}\le w$, $q\le w$.
+No additional thermal or variational computation is required.
+The dependencies are the spatial-transfer construction and periodic
+spectral estimates in \emph{The periodic spin-one Haldane gap} and
+\emph{A boundary-field gap for the spin-one Heisenberg chain}, including
+their finite-input premises. We retain the earlier derivations,
+certificates, and correction to the initial comparison's scope.
+Neither priority, optimality, nor an independent Haldane-gap proof is claimed.
 \end{abstract}
 
 \section{Statement and dependencies}
@@ -58,7 +58,228 @@ We use $S(n,b)$ as a spatial probability purity only when the reference
 length $n$ is even. Signed spatial traces, in contrast, are available
 at odd lengths too.
 
+\section{A length-adaptive bound}
+\begin{theorem}\label{thm:adaptive}
+Assume the signed spatial-transfer representation of
+\cite[Proposition 3.1]{upstream} and the periodic spectral estimates
+of \cite[Proposition 3.4 and its proof]{boundary}, including their
+finite-input premises. Then
+\[
+ \boxed{\gap_L>\frac{3}{50}=0.06
+       \quad\text{for every integer }L\ge34,}
+\]
+and the ground state is unique throughout this range. In particular,
+every odd $L\ge35$ is included, and
+$\liminf_{L\to\infty}\gap_L\ge3/50$ over all integer lengths.
+For a positive exchange coupling $J$, multiply the bound by $J$.
+\end{theorem}
+
+\subsection{Inputs and interpolation}
+Write $\lambda(b)>0$ for the unique eigenvalue of largest modulus of
+the spatial operator, and define its residual absolute moment by
+\[
+ R_b(m)=\sum_{i\ne0}\left|\frac{\mu_i(b)}{\lambda(b)}\right|^m.
+\]
+All sums used here converge absolutely. Let $b_*=49/4$.
+The proof of the cited companion proposition supplies
+\begin{gather}
+ R_{b_*}(32)<.0442,\quad \rho_{b_*}<.874,\quad
+ R_{2b_*}(32)<.9525^{32},\label{eq:adaptive-initial-tails}\\
+ \lambda(b_*)\le1.00139,\qquad
+ \lambda(2b_*)^{72}>.968,\label{eq:adaptive-initial-leading}\\
+ S(60,49/2)>.9002,\qquad T(120,49/2)>.9372.
+ \label{eq:adaptive-seeds}
+\end{gather}
+Here $\rho_b$ is the largest nondominant absolute eigenvalue ratio.
+These are periodic estimates, without boundary fields. The reseeding
+comparisons were checked by the version 1.1 certificate retained below.
+In particular, the rational number $c_*=.9967754$ satisfies
+\[
+ (c_*\,1.00139^2)^{72}<.968,
+ \qquad \frac{\lambda(2b_*)}{\lambda(b_*)^2}>c_*.
+\]
+Increasing moment orders in \eqref{eq:adaptive-initial-tails} gives,
+for every integer $L\ge32$,
+\begin{equation}\label{eq:adaptive-short}
+ T(L,b_*)\ge
+ \frac{c_*^L(1-.9525^L)}{(1+.0442\,.874^{L-32})^2}.
+\end{equation}
+The first residual bound uses the ratio $\rho_{b_*}$ term by term.
+For the second, the sequence norm inequality gives
+$R_{2b_*}(L)\le R_{2b_*}(32)^{L/32}<.9525^L$.
+
+For the subsequent scales, suppose $n$ is even and
+$1-S(n,b)\le p$, $1-T(2n,b)\le q$.
+With $f(z)=z^2/[2(1-z)^2]$, put
+\begin{equation}\label{eq:adaptive-update}
+ a=1-(1-p)^2(1-q),\quad
+ p_+\ge f(a),\quad
+ q_+\ge f\bigl(1-(1-q)^2(1-p_+)\bigr).
+\end{equation}
+The coupled update, proved in Lemma~\ref{lem:update} below, bounds the
+defects at the next scale $(2n,2b)$ by $p_+,q_+$.
+Cancellation also gives $S(n,2b)\ge1-a$ at the \emph{same} reference
+length. When $p,a<1/2$, the concentration lemma below yields
+\[
+ R_b(n)\le d(p),\qquad R_{2b}(n)\le d(a),\qquad
+ d(z)=\frac{z}{2-3z}.
+\]
+The leading spatial weight at $(2n,2b)$ is at least $1-p_+$.
+Since $Z_{2n}(b)\ge\lambda(b)^{2n}$, it follows that
+\begin{equation}\label{eq:adaptive-ratio}
+ \left(\frac{\lambda(2b)}{\lambda(b)^2}\right)^{2n}
+ \ge(1-p_+)\frac{Z_{2n}(2b)}{Z_{2n}(b)^2}
+ \ge(1-p_+)(1-q)=:g.
+\end{equation}
+
+Choose rational numbers $0<c,\rho_0,\rho_1<1$ with
+$c^{2n}\le g$, $\rho_0^n\ge d(p)$, and $\rho_1^n\ge d(a)$.
+Each residual eigenvalue ratio is bounded by the corresponding $\rho$.
+For any integer interval $n\le A\le L\le B$, the signed trace therefore gives
+\begin{equation}\label{eq:adaptive-interval}
+ T(L,b)\ge
+ \frac{c^B\bigl(1-d(a)\rho_1^{A-n}\bigr)}
+      {\bigl(1+d(p)\rho_0^{A-n}\bigr)^2}
+ =:\mathcal K(A,B;b),
+\end{equation}
+provided the displayed numerator factor is positive. No parity
+restriction is imposed on $L$. The numerator uses the lower bound on
+the signed residual, and the denominator uses its upper bound.
+
+\subsection{Finite coverage}
+Starting with $n=60$, $b=49/2$, $p=.0998$, and $q=.0628$, the checker
+iterates \eqref{eq:adaptive-update}, rounding each output upward to
+12 significant decimal digits. The rounded $p_+$ is used in the
+second update. At the seventh doubling it obtains
+\begin{equation}\label{eq:adaptive-tail-seed}
+ n=7680,\quad b=3136,\quad
+ p=2.30218227586\times10^{-56},\quad
+ q=1.75070874875\times10^{-83}.
+\end{equation}
+All these decimals are exact upper bounds. The full sequence and
+rational interpolation parameters are in the machine-readable certificate.
+
+For each interval in Table~\ref{tab:adaptive}, the checker uses
+\eqref{eq:adaptive-short} or \eqref{eq:adaptive-interval} to certify
+\begin{equation}\label{eq:adaptive-finite-check}
+ \mathcal K>\tfrac12,\qquad
+ E_m(3b/50)<\frac{\mathcal K}{1-\mathcal K},
+\end{equation}
+where $E_m$ is the rational exponential upper bound in
+\eqref{eq:expupper}. For the initial four intervals, the lower bound
+uses $c_*^B$, $.9525^A$, and $.0442\,.874^{A-32}$.
+The largest physical Gibbs weight exceeds $1/2$, so the ground state
+is unique; the ratio of a next-energy weight to it is at most
+$(1-\mathcal K)/\mathcal K$. Thus \eqref{eq:adaptive-finite-check}
+proves $\gap_L>3/50$ for every integer $34\le L\le11519$.
+
+\begin{table}[ht]
+\centering
+\caption{Certified finite intervals; every integer in each row is covered.}
+\label{tab:adaptive}
+\begin{tabular}{rrr}
+\toprule
+First length & Last length & Inverse temperature $b$\\
+\midrule
+34 & 35 & $49/4$\\
+36 & 46 & $49/4$\\
+47 & 84 & $49/4$\\
+85 & 116 & $49/4$\\
+117 & 164 & $49/2$\\
+165 & 202 & $49/2$\\
+203 & 302 & 49\\
+303 & 421 & 49\\
+422 & 814 & 98\\
+815 & 1937 & 196\\
+1938 & 4748 & 392\\
+4749 & 11519 & 784\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The root calculations in parameter selection are proposals only.
+Every root direction is certified by an integer-power comparison over
+the rationals. Positive products in those comparisons and in
+\eqref{eq:adaptive-interval} are rounded outward to multiples of
+$10^{-140}$. Floor or ceiling of the integer quotient gives the
+corresponding enclosure; induction through exponentiation by squaring
+preserves its direction. The chosen interval covering is then checked
+for both its inequalities and the absence of missing integers.
+
+\subsection{An asymmetric invariant for the infinite tail}
+Suppose
+\begin{equation}\label{eq:adaptive-invariant}
+ p^{3/2}\le w,\qquad q\le w,\qquad 0<w\le10^{-6}.
+\end{equation}
+Write $x=w^{1/3}\le1/100$, so $p\le x^2$ and $q\le x^3$.
+Since $a\le2p+q\le(2+x)x^2$, the exact scalar comparisons
+\[
+ \frac{(2.01)^2}{2(1-2.01\times10^{-4})^2}<3,
+ \qquad
+ \frac{(2.03)^2}{2(1-2.03\times10^{-6})^2}<3
+\]
+imply, using the unrounded upper updates,
+\[
+ p_+\le3x^4,\qquad
+ q_+\le f(2x^3+3x^4)\le3w^2.
+\]
+Consequently $p_+^{3/2}\le\sqrt{27}\,w^2<6w^2$ and
+$q_+\le6w^2$. The invariant propagates with $w_+=6w^2$.
+
+For every integer $3n/2\le L\le3n$, increasing the absolute-moment
+order gives
+\[
+ R_b(L)\le d(p)^{3/2}\le w,\qquad
+ R_{2b}(L)\le d(a)^{3/2}\le(2.01)^{3/2}w<3w.
+\]
+We used $d(z)\le z$ for $0\le z\le1/3$; both $p$ and $a$ lie in
+this domain. Also $g\ge1-q-p_+\ge1-1.03w$. By
+\eqref{eq:adaptive-ratio}, the leading-eigenvalue contribution at
+length $L$ is at least $g^{L/(2n)}\ge g^2\ge1-2.06w$.
+It follows that
+\begin{equation}\label{eq:adaptive-tail-purity}
+ T(L,b)\ge\frac{(1-2.06w)(1-3w)}{(1+w)^2}
+ \ge1-7.06w\ge1-\frac{15}{2}w>\frac12.
+\end{equation}
+Here $(1+w)^{-2}\ge1-2w$, and multiplication of the three nonnegative
+factors bounds their defect by the sum of the individual defects.
+
+At \eqref{eq:adaptive-tail-seed}, take $w_0=2\times10^{-83}$.
+The checker verifies $p^3\le w_0^2$, $q\le w_0$, and $6w_0<1$.
+Let
+\[
+ n_k=7680\,2^k,\quad b_k=3136\,2^k,\quad
+ w_k=\tfrac16(6w_0)^{2^k},\quad B_0=15/2.
+\]
+The invariant and \eqref{eq:adaptive-tail-purity} apply on every interval
+$[11520\,2^k,23040\,2^k]$. On each interval the ground state is unique,
+and
+\[
+ e^{-b_k\gap_L}\le\frac{B_0w_k}{1-B_0w_k}
+ \le\frac{B_0}{6(1-B_0w_0)}(6w_0)^{2^k}.
+\]
+Set $E=E_m(3136\times3/50)\ge e^{3136(3/50)}$.
+The final two exact exponential checks are
+\[
+ E\,6w_0<1,\qquad
+ E\,\frac{B_0w_0}{1-B_0w_0}<1.
+\]
+Therefore
+\[
+ e^{b_k(3/50)}e^{-b_k\gap_L}
+ \le\frac{B_0}{6(1-B_0w_0)}(E\,6w_0)^{2^k}<1.
+\]
+This proves the strict target bound for every integer $L\ge11520$.
+Together with the finite coverage, it proves Theorem~\ref{thm:adaptive}.
+
+The certificate \path{verify_adaptive_bound.py} implements 88 exact
+checks. Its analytic assumptions and the proof above remain outside
+machine-formal verification. The gain comes from retaining unequal
+defects, changing the interpolation intervals, and using an invariant
+matched to their different decay rates. No extra finite input is used.
+
 \section{Including odd lengths}
+This section retains the version 1.2 argument and its smaller constant.
 \begin{theorem}\label{thm:all-lengths}
 Assume the signed spatial-moment representation of
 \cite[Proposition 3.1]{upstream} and the periodic concentration estimates,
@@ -461,7 +682,9 @@ length range. We make no priority or optimality claim.
 
 Theorem~\ref{thm:all-lengths} further removes the parity restriction
 without changing the version 1.1 constant.
-The accompanying repository contains all three exact certificates,
+Theorem~\ref{thm:adaptive} improves both the constant and the starting
+length using the same finite inputs.
+The accompanying repository contains all four exact certificates,
 the upstream source and verification material at the fixed commit,
 fresh verification results, and \texttt{independent\_audit.py}.
 The latter reconstructs selected computations from the printed
@@ -483,11 +706,11 @@ it does not provide rigorous thermal enclosures.
 \end{itemize}
 The full upstream run took approximately 22 minutes with six requested
 workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
-All three bound certificates need only Python's standard library.
-Run \texttt{make check} with assertions enabled to check all three.
-For the new signed-moment certificate alone, run
+All four bound certificates need only Python's standard library.
+Run \texttt{make check} with assertions enabled to check all four.
+For the new length-adaptive certificate alone, run
 \begin{center}
-\texttt{python3 verify\_signed\_extension.py}
+\texttt{python3 verify\_adaptive\_bound.py}
 \end{center}
 Rational comparisons determine all numerical pass/fail decisions;
 decimal logarithms and floating-point margins are display-only.
@@ -497,7 +720,7 @@ in \path{boundary_source_manifest.json}.
 
 Neither successful execution nor this note is a formal verification of
 the upstream analytic assumptions. No claim is made here for the same
-numerical bound at lengths below $120$, arbitrary open boundaries, or
+numerical bound at lengths below $34$, arbitrary open boundaries, or
 uniqueness of all infinite-volume ground states. The constants are conditional lower
 bounds, not estimates of the actual physical gap.
 
@@ -508,7 +731,10 @@ checks, and wrote this manuscript. During the user-requested prior-art
 review, the agent identified the stronger corollary, verified its
 parameter substitution, and prepared version 1.1. When the user asked
 about odd lengths, the agent derived the signed-moment extension,
-implemented its certificate, and wrote version 1.2. The human user initiated the open-ended
+implemented its certificate, and wrote version 1.2. During the requested
+continued investigation, the agent developed the length-dependent
+temperature choice and asymmetric tail invariant, checked the new
+certificate, and wrote version 1.3. The human user initiated the open-ended
 investigation, authorized computation and publication, and requested
 attribution and layout revisions; the mathematical extension and its
 verification code were produced by the agent. The human also requested

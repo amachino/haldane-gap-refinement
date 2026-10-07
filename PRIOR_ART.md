@@ -36,7 +36,13 @@ Version 1.2 adds an argument for the same bound at **every integer length at lea
 
 This proof does not apply the even-only gap proposition outside its stated domain. It also does not make the upstream premises independent. The earlier search described above focused on the constants and the even-length refinement; it was not an exhaustive search for an existing version of this signed-moment extension. The record therefore makes no claim of priority for the parity argument, nor of a fresh literature search or external expert validation in version 1.2.
 
-## Attribution
+## Version 1.3: length-adaptive refinement
+
+The new conditional result is `gamma_L > 0.06` for every integer `L >= 34`. Its finite inputs, original coupled purity update, signed transfer representation, and positive dominant eigenvalues are already in the two pinned OpenAI manuscripts. The added work is the length-dependent interpolation, use of the unequal defects, the asymmetric tail invariant, and the resulting exact certificate.
+
+On 8 October 2026 (Asia/Tokyo), a small additional public web search used the combinations `Haldane 0.06 OpenAI gap`, `Haldane 0.0606`, and `Haldane L 34 OpenAI`. No matching report of this certified constant and length range was identified. The public [OpenAI overview](https://github.com/openai/math/blob/main/overview.tex) continues to describe the periodic result for even rings and the companion's odd open chains with endpoint fields. This bounded search is not an exhaustive review and does not establish priority. Exploratory recurrence rates are not new certified theorems. The mathematical statement remains conditional on the original analytic and finite-input premises.
+
+## Attribution for the continuing investigation
 
 OpenAI is credited for both upstream propositions and their proofs. GPT-6 Astra Max performed this investigation, identified the cross-paper corollary, checked the normalization and hypotheses, implemented the scalar certificate, and revised the note. The human user requested the prior-art review and authorized the repository update. No new external mathematical review is claimed.
 

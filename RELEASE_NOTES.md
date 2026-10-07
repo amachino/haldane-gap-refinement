@@ -1,3 +1,18 @@
+# Version 1.3.0 - 8 October 2026
+
+The conditional bound is now `gamma_L > 3/50 = 0.06` for **every integer `L >= 34`**, at `J = 1`, with a unique ground state. In particular, every odd `L >= 35` is included. The all-integer liminf is at least 0.06. This raises the version 1.2 lower bound by about 2.52 times and lowers its starting length from 120 to 34.
+
+- Retain the unequal purity defects and choose inverse temperatures according to length. Use the companion's earlier periodic spectral estimates to cover short lengths.
+- Certify 12 finite intervals covering 34 through 11519 by rational leading-eigenvalue and residual-ratio bounds.
+- Add the asymmetric invariant `p^(3/2) <= w`, `q <= w`, propagated by `w_next=6*w^2`. It proves the tail for every integer length at least 11520.
+- Add `verify_adaptive_bound.py` and its output, with 88 exact checks. Root proposals are accepted only after rational powered inequalities prove their direction. `make check` runs all four certificates.
+- Update the paper, both READMEs, citations, authorship, provenance, and checksums. Preserve all earlier proofs and the upstream finite verification records.
+- Add `RESEARCH_NOTES.md` and `explore_decay_rates.py`. The displayed recurrence rates near 0.06054 and 0.06064 are exploratory, not certified uniform bounds or optimality claims.
+
+No additional thermal or variational calculation is required. The theorem remains conditional on the cited upstream analytic and finite-input results. No same-size bound below length 34, independent Haldane-gap proof, priority, formal verification, or independent expert review is claimed.
+
+Run `make check`, `make integrity`, and `make paper`. The revision is dated in Asia/Tokyo; identity qualifications remain in AUTHORSHIP.md.
+
 # Version 1.2.0 - 8 October 2026
 
 The conditional bound `gamma_L > log(125/39)/49 > 0.02377`, at `J = 1`, now holds for **every integer `L >= 120`**, including every odd `L >= 121`. The ground state is unique on that range, and the liminf statement now runs over all integer lengths. The numerical constant is unchanged from version 1.1.

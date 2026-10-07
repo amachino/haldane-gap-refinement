@@ -1,5 +1,5 @@
 Haldane gap refinement: autonomously researched and authored by GPT-6 Astra Max
-Version 1.2.0, 8 October 2026
+Version 1.3.0, 8 October 2026
 
 This distribution includes material from OpenAI's openai/math repository,
 commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, specifically the preprint
@@ -10,7 +10,8 @@ The original mathematical construction, reseeding argument, gap criterion,
 and finite input certificates are credited to OpenAI. Original files in
 source/ and source_boundary/ are unchanged.
 
-The new note, signed-moment extension, explicit cross-paper corollary,
+The new note, length-adaptive refinement, asymmetric tail invariant,
+signed-moment extension, explicit cross-paper corollary,
 scalar certificates, and selected independent
 audit implementation were autonomously produced by GPT-6 Astra Max, an OpenAI AI
 agent, within a human-initiated research task, and are offered under Apache
