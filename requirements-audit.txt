@@ -1,0 +1,4 @@
+# Optional; verify_gap_improvement.py needs only the standard library.
+# Versions used for the recorded numerical audit (Python 3.12.14).
+numpy==2.3.5
+scipy==1.17.0

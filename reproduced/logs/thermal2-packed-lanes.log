@@ -1,0 +1,7 @@
+thermal_sha256 e783f89ba1bf63512055ba02c2efbafb21268660b3aa985d4edfa7d6c861899b
+floor_identity_cases 71668
+retained_coefficients 173
+n=4 twist= 0 total= 5192725790794372768314618877759728 unpack_calls= 100 pre_floor_max= 448315702113059962
+n=4 twist= 1 total= 8207946274329379236487962256542 unpack_calls= 100 pre_floor_max= 421115101775550979
+n=4 twist= 2 total= 67736952004777071661940680919774 unpack_calls= 100 pre_floor_max= 427342775161691856
+PASS: all exact scalar coordinates and totals agree with unchanged part().

@@ -1,0 +1,280 @@
+{
+  "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "files": [
+    {
+      "path": "verification/computations/README.md",
+      "git_sha": "ac272c845868c5fa2c41a21c9bfbc1956ce2940f",
+      "size": 1982
+    },
+    {
+      "path": "verification/computations/evidence/source1/error-bounds.json",
+      "git_sha": "d3c5e4ed42d54ca6ff4eebdf9862668f04727644",
+      "size": 4381
+    },
+    {
+      "path": "verification/computations/evidence/source1/thermal-run/certificates.json",
+      "git_sha": "a7e49af81c71ed3cc71f0aa48c38d322359e7b1f",
+      "size": 112129
+    },
+    {
+      "path": "verification/computations/evidence/source1/thermal-run/interval-summary.json",
+      "git_sha": "acb6ea14be9a257573fc8965bf7fa86c4426eed2",
+      "size": 2375
+    },
+    {
+      "path": "verification/computations/evidence/source1/thermal-run/outputs.txt",
+      "git_sha": "30784251f9f2a810b2c6577828c556cbbb3f2a85",
+      "size": 623
+    },
+    {
+      "path": "verification/computations/evidence/source1/thermal-run/sectors.jsonl",
+      "git_sha": "99ab264a4e8156fad86a6693055e31ed98451aa8",
+      "size": 41933
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/independent-arithmetic.json",
+      "git_sha": "26617773854fbd5f4d8c76217ef148634a1cbe92",
+      "size": 4818
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n10-g0.json",
+      "git_sha": "94e8c130fb188876924f220b3ced19f3f92fe3a5",
+      "size": 6186
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n10-g1.json",
+      "git_sha": "0c8c0dba7bb2615679768e9f53231b15d01133af",
+      "size": 6180
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n10-g2.json",
+      "git_sha": "77bd2e458535aa643f70f89fb4cc9c6fcaa87712",
+      "size": 6168
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n6-g0.json",
+      "git_sha": "a8e11d5f43afb484ff696bf32518fd9976b94385",
+      "size": 6721
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n6-g1.json",
+      "git_sha": "423baf0433d116008e0e83111fb4ef4c60de9130",
+      "size": 6727
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n6-g2.json",
+      "git_sha": "5a54b4575302382c8c70188075a476370aca4f8d",
+      "size": 6727
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n8-g0.json",
+      "git_sha": "8aec7d812127527595dfeea9bc010826ba6d6ecb",
+      "size": 6248
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n8-g1.json",
+      "git_sha": "68737e32d2f8df4479c577677ad161838903809f",
+      "size": 6258
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/n8-g2.json",
+      "git_sha": "955f2f26c1a61d0ac83474bfa7e759bcc91fea9e",
+      "size": 6251
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/summary.json",
+      "git_sha": "a7b7499babf5b9f94e1b12ab761944af9f43f8a6",
+      "size": 1825
+    },
+    {
+      "path": "verification/computations/evidence/source2/runs/thermal-actual.txt",
+      "git_sha": "5fa70c602696ecaa93790be8e787a2dc4b0488fd",
+      "size": 285
+    },
+    {
+      "path": "verification/computations/evidence/trials/certificate120.json",
+      "git_sha": "cee334eabd4d0c39cf194036ff296280e19290a4",
+      "size": 16044
+    },
+    {
+      "path": "verification/computations/evidence/trials/certificate72.json",
+      "git_sha": "4563e44f1380321bc3a8b11bba0cdf09a26e8da0",
+      "size": 1553
+    },
+    {
+      "path": "verification/computations/evidence/trials/exact-checks.json",
+      "git_sha": "9d35b410620a21fc663972256f9edb951caa4efd",
+      "size": 670
+    },
+    {
+      "path": "verification/computations/evidence/trials/matrix-data.json",
+      "git_sha": "1016da7a9baf5a9d037f0b22bd84dfcaad59a090",
+      "size": 4931
+    },
+    {
+      "path": "verification/computations/scalars/check-bootstrap-scalars.py",
+      "git_sha": "2cecf9b4c533526075e2507712ce7a5faa4ac8fb",
+      "size": 4534
+    },
+    {
+      "path": "verification/computations/scalars/check-moment-initializations.py",
+      "git_sha": "20765135f86fc5dc592c34ade0d39fb61e0a0c46",
+      "size": 6080
+    },
+    {
+      "path": "verification/computations/source-manifest.json",
+      "git_sha": "921ce40278e23aea718b9d5b2b27abeb89600e51",
+      "size": 6130
+    },
+    {
+      "path": "verification/computations/source1/check_error_bounds.py",
+      "git_sha": "fd834f0f8508c692e8f00ea2a45d5fad179ea927",
+      "size": 2733
+    },
+    {
+      "path": "verification/computations/source1/check_symmetry.py",
+      "git_sha": "ae5f6f89518ef9ac04ba84754188306060dc1363",
+      "size": 2272
+    },
+    {
+      "path": "verification/computations/source1/original-computation.py",
+      "git_sha": "0d4049b1598acc0d1befbc06aacc83c2cd7a9507",
+      "size": 5123
+    },
+    {
+      "path": "verification/computations/source1/run_initialization.py",
+      "git_sha": "8e461da80650335f6fdc77c38cfafd00fa57d28e",
+      "size": 643
+    },
+    {
+      "path": "verification/computations/source1/run_thermal.py",
+      "git_sha": "d5913c1f934ebebb24851de2de69a49a16cfd4cc",
+      "size": 6308
+    },
+    {
+      "path": "verification/computations/source1/source-output.txt",
+      "git_sha": "db893b08ff86398d2ef610514aa077928ca956e8",
+      "size": 1590
+    },
+    {
+      "path": "verification/computations/source1/thermal-definitions.py",
+      "git_sha": "1da11d3411e016dda0c96baef3275fee1abbc92c",
+      "size": 2537
+    },
+    {
+      "path": "verification/computations/source2/audit_arithmetic.py",
+      "git_sha": "307af1029afac49198a7b9b60048a8fab52b2df0",
+      "size": 5553
+    },
+    {
+      "path": "verification/computations/source2/initialization.py",
+      "git_sha": "3fdf30366567cb83fb59248566accd37a981df95",
+      "size": 1322
+    },
+    {
+      "path": "verification/computations/source2/packed_lanes_independent_check.py",
+      "git_sha": "46661552d648ce6ac35f6a1d82b997f29d97eadd",
+      "size": 7504
+    },
+    {
+      "path": "verification/computations/source2/run_thermal.py",
+      "git_sha": "3a6c537584a81139535c67d5899c8e7ef14be396",
+      "size": 3621
+    },
+    {
+      "path": "verification/computations/source2/thermal-expected.txt",
+      "git_sha": "5fa70c602696ecaa93790be8e787a2dc4b0488fd",
+      "size": 285
+    },
+    {
+      "path": "verification/computations/source2/thermal.py",
+      "git_sha": "eabf47a917be25726c0b610e31823c16d5f7e56d",
+      "size": 3223
+    },
+    {
+      "path": "verification/computations/trials/check_certificate_windows.py",
+      "git_sha": "c15d8830a707a2cf97d47f86e07f588f36c20cc4",
+      "size": 768
+    },
+    {
+      "path": "verification/computations/trials/exact_checks.py",
+      "git_sha": "d5b3457c4055a35e37a25dd6b8a6e51b9cb6284e",
+      "size": 2645
+    },
+    {
+      "path": "verification/computations/trials/original_trial.py",
+      "git_sha": "fc44347ff130444a3a45d8f70dcb3166702622af",
+      "size": 1461
+    },
+    {
+      "path": "verification/computations/trials/run_trial.py",
+      "git_sha": "4016f821ea620d760eb50c4e8ec436aed750e21d",
+      "size": 3933
+    },
+    {
+      "path": "verification/computations/trials/verify_entry_recipe.py",
+      "git_sha": "4f6abf43e39de900eae6d1d1543ac6091fe57e26",
+      "size": 1806
+    },
+    {
+      "path": "verification/verify.py",
+      "git_sha": "34d6077a52c64d0fc5826c4e722f9762d033ad4e",
+      "size": 11663
+    },
+    {
+      "path": "README.md",
+      "git_sha": "423cf5df5c78f42566e893edee0a52f466be0a50",
+      "size": 1355
+    },
+    {
+      "path": "build/bootstrap.tex",
+      "git_sha": "88fa5eac56ad58f410b81ac8dcb0195dc0b49869",
+      "size": 10484
+    },
+    {
+      "path": "build/initialization.tex",
+      "git_sha": "a9a4604db87448b4e7d211ef483518b57862f097",
+      "size": 15711
+    },
+    {
+      "path": "build/model.tex",
+      "git_sha": "f11cff765b71f52b913e389d4471655679c95274",
+      "size": 6886
+    },
+    {
+      "path": "build/transfer.tex",
+      "git_sha": "41e01eee2b9103fd61201931005bd1b079b51cf1",
+      "size": 9389
+    },
+    {
+      "path": "build/trials.tex",
+      "git_sha": "14be92f2308bc6758f3aac628e337a363caead77",
+      "size": 8408
+    },
+    {
+      "path": "build/thermal120.tex",
+      "git_sha": "b5ea94feb70999eaab5f79f42ef4bada16da3f70",
+      "size": 9129
+    },
+    {
+      "path": "build/thermal72.tex",
+      "git_sha": "b9f3c87a4fcfa96a82cdb5d4daf30b6088428037",
+      "size": 9625
+    },
+    {
+      "path": "build/assembly.tex",
+      "git_sha": "495b5810afe35da8d73fbf52ac4bdcc7be1f9f5f",
+      "size": 3848
+    },
+    {
+      "path": "paper.pdf",
+      "git_sha": "295e30d16bdddec53efe94e9d15afc37b372f8dc",
+      "size": 502024
+    },
+    {
+      "path": "LICENSE",
+      "git_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357
+    }
+  ]
+}

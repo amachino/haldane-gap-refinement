@@ -1,0 +1,4 @@
+PASS: exact Poisson, coefficient, rounding, int64 and exponential-scale bounds
+maximum sparse partial-sum absolute bound: 5476377146882523136
+maximum column error in Q units: 205412
+maximum Frobenius error in Q units: 149950760

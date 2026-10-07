@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this technical note by title, author, version, date, and the repository revision consulted."
+title: "An exact-arithmetic refinement of the periodic spin-one Haldane-gap bound"
+authors:
+  - name: "GPT-6 Astra Max"
+type: software
+version: 1.0.0
+date-released: 2026-10-07
+license: Apache-2.0
+repository-code: "https://github.com/amachino/haldane-gap-refinement"
+url: "https://github.com/amachino/haldane-gap-refinement"
+abstract: >-
+  A technical note autonomously researched and authored by GPT-6 Astra Max, an OpenAI AI
+  agent, with exact rational verification of a conditional periodic spin-one
+  Haldane-gap bound of 0.0047 for every even length at least 2304. The note
+  depends on the spatial-moment representation and initial purity bounds in
+  the upstream OpenAI manuscript. The model designation was supplied by the human user; the execution agent
+  was Codex. A backend model snapshot identifier was not available. This work is unreviewed.

@@ -1,0 +1,285 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=26mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\hypersetup{pdftitle={An exact-arithmetic refinement of the periodic spin-one Haldane-gap bound},
+pdfauthor={GPT-6 Astra Max (OpenAI)},
+pdfsubject={Conditional gap lower bound with an exact rational certificate},
+pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact arithmetic}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\gap}{\gamma}
+\newcommand{\commit}{\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}}
+\title{An exact-arithmetic refinement\\[0.15em]
+of the periodic spin-one Haldane-gap bound}
+\author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
+\date{7 October 2026 \quad | \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a quantitative corollary of the purity bootstrap in OpenAI's
+\emph{The periodic spin-one Haldane gap} (24 September 2026).
+Conditional on that manuscript's spatial-moment representation and
+certified initial purity estimates, the gap satisfies
+$\gap_L>47/10000$ for every even $L\ge2304$, with exchange coupling
+$J=1$. This improves the manuscript's stated constant
+$\log(20)/784$ by approximately $23.0\%$, on the same range of lengths.
+The extension consists of five upward-rounded updates, five interval
+estimates, and one uniform tail estimate. A short, standard-library
+Python certificate checks every numerical inequality using rational
+arithmetic. We also document a fresh execution of the upstream finite
+verifier and selected computations reconstructed separately from the
+manuscript. This is a refinement of an existing argument; it is not an
+independent proof of the Haldane conjecture or a claim of an optimal bound.
+\end{abstract}
+
+\section{Statement and dependencies}
+Consider the periodic spin-one Heisenberg Hamiltonian
+\[
+ H_L=\sum_{j=0}^{L-1}\mathbf S_j\cdot\mathbf S_{j+1},
+ \qquad \mathbf S_L=\mathbf S_0,
+\]
+with coupling $J=1$ and even $L\ge4$. Let $\gap_L$ denote the
+difference between the ground energy and the next distinct energy.
+Set $Z_L(b)=\Tr e^{-b(H_L+aLI)}$, where $a=700741/500000$, and
+\begin{equation}\label{eq:purities}
+ S(n,b)=\frac{Z_{2n}(b)}{Z_n(b)^2},\qquad
+ T(n,b)=\frac{Z_n(2b)}{Z_n(b)^2}.
+\end{equation}
+The shift cancels from both ratios. The dependencies on \cite{upstream}
+are the following two inputs:
+\begin{enumerate}
+\item For each $b>0$, a real finite or countable sequence $\lambda_i(b)$
+obeys $\sum_i|\lambda_i(b)|^4<\infty$ and
+$Z_L(b)=\sum_i|\lambda_i(b)|^L$ for every even $L\ge4$
+(Proposition 3.1).
+\item The initial estimates are
+\begin{equation}\label{eq:seeds}
+ 1-S(2304,784)\le\frac{84513}{10^7},\qquad
+ 1-T(4608,784)\le\frac{27493}{5\cdot10^6}
+\end{equation}
+(Proposition 5.5, including its finite certificates).
+\end{enumerate}
+All references are to the fixed upstream revision listed at the end.
+
+\begin{theorem}\label{thm:main}
+Under these inputs, the ground state is unique and
+\[
+ \boxed{\gap_L>\frac{47}{10000}\quad
+        \text{for every even }L\ge2304.}
+\]
+Consequently $\liminf_{L\to\infty,\,L\ {\rm even}}\gap_L\ge47/10000$.
+For any positive exchange coupling $J$, multiply these bounds by $J$.
+\end{theorem}
+The argument below rederives the needed bootstrap steps of
+\cite[Lemma 4.2 and Proposition 4.3]{upstream}. It does not establish
+the two inputs independently of the upstream analytic argument.
+
+\section{Purity estimates and gap extraction}
+Both quantities in \eqref{eq:purities} are purities of probability
+distributions, so they belong to $(0,1]$. For spatial purity use
+$|\lambda_i(b)|^n/Z_n(b)$; for physical purity use the Gibbs weights,
+counting each eigenvector with multiplicity. If $P=\sum_i w_i^2$,
+the normalized squares have purity $P'$ satisfying
+\[
+ 1-P'=\frac{2\sum_{i<k}w_i^2w_k^2}{P^2}
+ \le\frac{2(\sum_{i<k}w_iw_k)^2}{P^2}
+ =f(1-P),\qquad f(x)=\frac{x^2}{2(1-x)^2}.
+\]
+Here $f$ is increasing on $[0,1)$.
+
+\begin{lemma}[Rounded update]\label{lem:update}
+If $1-S(n,b)\le p$ and $1-T(2n,b)\le q$, with $p,q\in[0,1)$,
+any $p_+,q_+\in[0,1)$ satisfying
+\begin{equation}\label{eq:update}
+ p_+\ge f\bigl(1-(1-p)^2(1-q)\bigr),\qquad
+ q_+\ge f\bigl(1-(1-q)^2(1-p_+)\bigr)
+\end{equation}
+bound $1-S(2n,2b)$ and $1-T(4n,2b)$ respectively.
+\end{lemma}
+\begin{proof}
+Cancellation of partition functions gives
+\[
+ S(n,2b)=\frac{S(n,b)^2T(2n,b)}{T(n,b)^2},\qquad
+ T(4n,b)=\frac{T(2n,b)^2S(2n,2b)}{S(2n,b)^2}.
+\]
+The denominators are at most one. Apply the probability-squaring
+inequality first in the spatial variable and then in the temperature
+variable. Use the already rounded $p_+$ in the second application.
+\end{proof}
+
+\begin{lemma}[Intermediate lengths]\label{lem:interval}
+Under the same hypotheses, put $K=(1-p)^2(1-q)$.
+If $K>1/2$, every even $L\in[n,2n]$ has a unique ground state and
+\begin{equation}\label{eq:intervalgap}
+ \gap_L\ge\frac1b\log\frac{K}{1-K}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The monotonicity of sequence $\ell^r$ norms, applied to the spatial
+moments at $b$ and $2b$, yields
+\[
+ Z_L(b)\le Z_n(b)^{L/n},\qquad
+ Z_L(2b)\ge Z_{2n}(2b)^{L/(2n)}.
+\]
+Hence
+\[
+ T(L,b)\ge[T(2n,b)S(n,b)^2]^{L/(2n)}\ge K.
+\]
+The last step uses a base in $(0,1]$ and an exponent at most one.
+The largest Gibbs weight $w_0$ is at least the purity, because
+$\sum_iw_i^2\le(\max_iw_i)\sum_iw_i$. Thus $w_0>1/2$, excluding
+ground-state degeneracy. For one eigenvector at the next energy,
+\[
+ e^{-b\gap_L}=\frac{w_1}{w_0}\le\frac{1-w_0}{w_0}
+ \le\frac{1-K}{K}.
+\]
+Taking logarithms proves the assertion.
+\end{proof}
+
+\section{A finite certificate and the infinite tail}
+Use the exact rational numbers in Table~\ref{tab:certificate} with
+$n_j=2304\cdot2^j$ and $b_j=784\cdot2^j$.
+Every displayed decimal denotes an exact rational, not a floating-point
+approximation. The script \texttt{verify\_gap\_improvement.py}
+checks \eqref{eq:update} at each of the five steps.
+
+\begin{table}[ht]
+\centering
+\caption{Upward-rounded purity-defect bounds.}\label{tab:certificate}
+\begin{tabular}{rrrrr}
+\toprule
+$j$ & $n_j$ & $b_j$ & $p_j$ & $q_j$\\
+\midrule
+0 & 2304 & 784 & $0.0084513$ & $0.0054986$\\
+1 & 4608 & 1568 & $2.59\times10^{-4}$ & $6.45\times10^{-5}$\\
+2 & 9216 & 3136 & $1.70\times10^{-7}$ & $8.35\times10^{-9}$\\
+3 & 18432 & 6272 & $6.07\times10^{-14}$ & $1.40\times10^{-16}$\\
+4 & 36864 & 12544 & $7.39\times10^{-27}$ & $3.93\times10^{-32}$\\
+5 & 73728 & 25088 & $1.10\times10^{-52}$ & $3.09\times10^{-63}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For $j=0,\ldots,4$, set $K_j=(1-p_j)^2(1-q_j)$.
+The certificate verifies
+\begin{equation}\label{eq:expcheck}
+ K_j>\tfrac12,\qquad
+ e^{(47/10000)b_j}<\frac{K_j}{1-K_j}.
+\end{equation}
+Lemma~\ref{lem:interval} therefore proves the strict target bound
+throughout $2304\le L\le73728$, restricted to even lengths.
+
+For clarity, the exponential comparisons use no numerical transcendental
+evaluation. Given rational $x\ge0$, choose
+$m=4\lfloor x\rfloor+64$. Since $\rho=x/(m+2)<1$, the Taylor
+series and the ratio bound for its remaining terms imply
+\begin{equation}\label{eq:expupper}
+ e^x\le E_m(x):=\sum_{k=0}^{m}\frac{x^k}{k!}
+ +\frac{x^{m+1}}{(m+1)!}\frac{1}{1-x/(m+2)}.
+\end{equation}
+Every term on the right is rational. The script verifies the stronger
+inequality obtained by replacing $e^x$ with $E_m(x)$ in
+\eqref{eq:expcheck}.
+
+The final row controls all remaining lengths. Let
+\[
+ u=1.10\times10^{-52},\quad C=5,\quad r=Cu,\qquad
+ G(v)=\frac12\bigl((1-v)^{-1}+(1-v)^{-2}+(1-v)^{-3}\bigr)^2.
+\]
+Exact checks give $0<u<1/6$, $G(u)<C$, $r<1$, and
+$C(1-3u)>3$. Define $u_k=C^{-1}r^{2^k}$ for $k\ge0$.
+Both defects at $(2^k n_5,2^k b_5)$ are bounded by $u_k$:
+indeed, $u_{k+1}=Cu_k^2<u_k$, and
+\[
+ f\bigl(1-(1-u_k)^3\bigr)=G(u_k)u_k^2\le Cu_k^2.
+\]
+Lemma~\ref{lem:update} then applies to both coordinates by induction.
+For even $L\in[2^k n_5,2^{k+1}n_5]$, the proof of
+Lemma~\ref{lem:interval} gives $w_0\ge(1-u_k)^3\ge1-3u_k$.
+Consequently
+\[
+ e^{-(2^k b_5)\gap_L}
+ \le\frac{3u_k}{1-3u_k}
+ \le\frac{3}{C(1-3u)}r^{2^k}<r^{2^k}.
+\]
+These intervals cover every even $L\ge n_5$, proving
+\begin{equation}\label{eq:tail}
+ \gap_L>\frac{\log(1/(Cu))}{b_5}
+ =\frac{\log(10^{53}/55)}{25088}
+ =0.004704626783460297\ldots>\frac{47}{10000}.
+\end{equation}
+The final strict comparison is certified by
+$E_m((47/10000)25088)<10^{53}/55$, again over the rationals.
+Together with the five finite intervals this proves
+Theorem~\ref{thm:main}. A strict bound for each finite length yields
+the stated non-strict bound on the liminf.
+
+\section{Reproducibility and scope}
+The quantitative gain comes from retaining the unequal seed bounds and
+performing a few more coupled updates before using a common envelope.
+The upstream theorem instead rounds both seed defects to $1/100$ and
+uses $C=5$, giving $\log(20)/784$. No new thermal or variational input
+is required for this refinement. We make no priority or optimality claim.
+
+The accompanying repository contains the short exact certificate,
+the upstream source and verification material at the fixed commit,
+fresh verification results, and \texttt{independent\_audit.py}.
+The latter reconstructs selected computations from the printed
+definitions and tables without importing upstream verifier functions.
+The recorded audit, completed on 7 October 2026, comprises:
+\begin{itemize}
+\item A full fresh run of the upstream verifier, with all checks passing
+and all finite results newly recomputed.
+It reproduces 27 thermal certificates, the 72- and 120-site variational
+contractions, and the associated arithmetic and scalar checks.
+\item A separate arbitrary-precision integer reconstruction of both
+variational contractions. The complete numerator and norm integers
+match the upstream evidence. A direct four-site wavefunction calculation
+also agrees with the contraction formula.
+\item A separate full-spectrum diagonalization on chains of four to
+eight sites, including twists, in 16 cases. All values lie within the
+printed tolerances. This floating-point calculation is a diagnostic;
+it does not provide rigorous thermal enclosures.
+\end{itemize}
+The full upstream run took approximately 22 minutes with six requested
+workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
+The new bound certificate itself needs only Python's standard library.
+Run \texttt{python3 verify\_gap\_improvement.py} with assertions enabled.
+Rational comparisons determine every pass/fail decision in that script;
+decimal logarithms and floating-point margins are display-only.
+
+Neither successful execution nor this note is a formal verification of
+the upstream analytic assumptions. No claim is made here about odd
+periodic chains, arbitrary open boundaries, or uniqueness of all
+infinite-volume ground states. The number $0.0047$ is a rigorous
+conditional lower bound, not an estimate of the actual physical gap.
+
+\paragraph{Autonomous authorship and human contribution.}
+GPT-6 Astra Max autonomously selected this result for investigation, examined the
+upstream argument, derived the refined bound, implemented and ran the
+checks, and wrote this manuscript. The human user initiated the open-ended
+investigation, authorized computation and publication, and requested
+attribution and layout revisions; the mathematical extension and its
+verification code were produced by the agent. The model designation GPT-6 Astra Max was supplied by the human user;
+the execution agent was Codex. A backend model snapshot identifier was
+not available in the session. The upstream mathematical
+construction and input certificates are credited to \cite{upstream}.
+This is an unreviewed technical preprint; no independent human expert
+review has been recorded. Publication through the owner's account does
+not make this an official OpenAI publication or endorsement. Corrections
+are welcome through the repository's issue tracker.
+
+\begin{thebibliography}{1}
+\bibitem{upstream}
+OpenAI, \emph{The periodic spin-one Haldane gap},
+24 September 2026, OpenAI Math Release preprint.
+Repository \url{https://github.com/openai/math}, commit
+\commit. File
+\path{preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf}.
+The companion analytic source and finite verifier are at the same revision.
+\end{thebibliography}
+\end{document}

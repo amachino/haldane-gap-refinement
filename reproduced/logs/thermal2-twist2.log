@@ -1,0 +1,8 @@
+{"event": "start", "twist": 2, "utc": "2026-10-07T13:10:30.898325+00:00", "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]", "platform": "Linux-6.18.44-x86_64-with-glibc2.39", "thermal_sha256": "e783f89ba1bf63512055ba02c2efbafb21268660b3aa985d4edfa7d6c861899b", "wrapper_sha256": "330eda36def457a679ea20a83c08650af97914217382ed15b198e5f7da0052d9", "retained_coefficients": 173}
+{"event": "case-start", "n": 6, "twist": 2}
+{"event": "case-pass", "n": 6, "twist": 2, "total": 9839536903588146388838689926305, "elapsed_seconds": 0.2506274669999584, "cpu_seconds": 0.250629706}
+{"event": "case-start", "n": 8, "twist": 2}
+{"event": "case-pass", "n": 8, "twist": 2, "total": 1301346729026243689610427021457, "elapsed_seconds": 4.7929030919999605, "cpu_seconds": 4.791741393}
+{"event": "case-start", "n": 10, "twist": 2}
+{"event": "case-pass", "n": 10, "twist": 2, "total": 167487042402286114495695779656, "elapsed_seconds": 290.4777221440004, "cpu_seconds": 290.437648275}
+{"event": "all-pass", "twist": 2}

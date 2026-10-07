@@ -1,0 +1,22 @@
+{
+  "started_utc": "2026-10-07T12:53:57Z",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu_count": 9,
+  "workers": 6,
+  "assertions_enabled": true,
+  "hashes": {
+    "original-computation.py": "588732e6900209a031998b532c0eaec26b13f06c8d0b41de29083029e1b0538c",
+    "thermal-definitions.py": "7aa84b556e5809adc4899ab019d0fd4211919f89a741ba191530c48dfe0f8f4b",
+    "source-output.txt": "67e19e4b3926be3b09b8ecc220f05de379bbfda3dcf4ecd1aaf535b11c73bb23",
+    "run_thermal.py": "2be84007004ccc432d2ded7356582193d09ff0b6a7db07d9cbe6714e2bbcc6e3"
+  },
+  "finished_utc": "2026-10-07T13:06:27Z",
+  "wall_seconds": 749.5736720509999,
+  "worker_cpu_seconds": 4390.588467732,
+  "certificates": 18,
+  "all_source_outputs_match": true,
+  "all_intervals_pass": true
+}

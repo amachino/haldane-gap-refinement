@@ -1,0 +1,225 @@
+{
+  "started_utc": "2026-10-07T12:53:57.407785+00:00",
+  "selection": "all",
+  "full_recomputation": true,
+  "assertions_enabled": true,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "workers": 6,
+  "source_manifest_sha256": "2d2461e8f87ef9c3af62ce226412b106fcfb34f01d5139683a90708859e2dc92",
+  "commands": [
+    {
+      "cwd": "source1",
+      "command": [
+        "python3",
+        "-u",
+        "run_thermal.py",
+        "--workers",
+        "6",
+        "--max-n",
+        "12"
+      ],
+      "log": "logs/thermal1.log",
+      "seconds": 750.1362769930001,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "run_thermal.py",
+        "--twist",
+        "0"
+      ],
+      "log": "logs/thermal2-twist0.log",
+      "seconds": 104.11821083299992,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "run_thermal.py",
+        "--twist",
+        "1"
+      ],
+      "log": "logs/thermal2-twist1.log",
+      "seconds": 139.17348772800005,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "run_thermal.py",
+        "--twist",
+        "2"
+      ],
+      "log": "logs/thermal2-twist2.log",
+      "seconds": 295.60774521799976,
+      "exit_code": 0
+    },
+    {
+      "cwd": "trials",
+      "command": [
+        "python3",
+        "-u",
+        "run_trial.py",
+        "--length",
+        "72"
+      ],
+      "log": "logs/trial72.log",
+      "seconds": 16.66998239400027,
+      "exit_code": 0
+    },
+    {
+      "cwd": "trials",
+      "command": [
+        "python3",
+        "-u",
+        "run_trial.py",
+        "--length",
+        "120"
+      ],
+      "log": "logs/trial120.log",
+      "seconds": 26.945454834999964,
+      "exit_code": 0
+    },
+    {
+      "cwd": "trials",
+      "command": [
+        "python3",
+        "-u",
+        "exact_checks.py"
+      ],
+      "log": "logs/trial-small-chain.log",
+      "seconds": 0.9128688680002597,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source1",
+      "command": [
+        "python3",
+        "-u",
+        "check_error_bounds.py"
+      ],
+      "log": "logs/thermal1-error-bounds.log",
+      "seconds": 0.6193542900000466,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source1",
+      "command": [
+        "python3",
+        "-u",
+        "check_symmetry.py"
+      ],
+      "log": "logs/thermal1-symmetry.log",
+      "seconds": 0.6178100610000001,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source1",
+      "command": [
+        "python3",
+        "-u",
+        "run_initialization.py"
+      ],
+      "log": "logs/source1-original-initialization.log",
+      "seconds": 0.4902930190000916,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "initialization.py"
+      ],
+      "log": "logs/source2-original-initialization.log",
+      "seconds": 0.03251318000002357,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "audit_arithmetic.py"
+      ],
+      "log": "logs/thermal2-arithmetic.log",
+      "seconds": 0.16882937699983813,
+      "exit_code": 0
+    },
+    {
+      "cwd": "source2",
+      "command": [
+        "python3",
+        "-u",
+        "packed_lanes_independent_check.py"
+      ],
+      "log": "logs/thermal2-packed-lanes.log",
+      "seconds": 2.488378275999821,
+      "exit_code": 0
+    },
+    {
+      "cwd": "scalars",
+      "command": [
+        "python3",
+        "-u",
+        "check-moment-initializations.py"
+      ],
+      "log": "logs/moment-initializations.log",
+      "seconds": 0.035880539000118006,
+      "exit_code": 0
+    },
+    {
+      "cwd": "scalars",
+      "command": [
+        "python3",
+        "-u",
+        "check-bootstrap-scalars.py"
+      ],
+      "log": "logs/bootstrap-scalars.log",
+      "seconds": 0.037758897000003344,
+      "exit_code": 0
+    },
+    {
+      "cwd": "trials",
+      "command": [
+        "python3",
+        "-u",
+        "verify_entry_recipe.py"
+      ],
+      "log": "logs/trial-entry-recipe.log",
+      "seconds": 0.04932068400012213,
+      "exit_code": 0
+    },
+    {
+      "cwd": "trials",
+      "command": [
+        "python3",
+        "-u",
+        "check_certificate_windows.py"
+      ],
+      "log": "logs/trial-energy-windows.log",
+      "seconds": 0.06494348300020647,
+      "exit_code": 0
+    }
+  ],
+  "checks": [
+    "source1: 18 newly computed exact totals and full rational intervals",
+    "source2: all nine newly computed exact totals and error-expanded rational intervals",
+    "trial72: fresh full norm/energy, exact variational window and common matrix triple",
+    "trial120: fresh full norm/energy, exact variational window and common matrix triple",
+    "one shared trial matrix triple: all entries and four-site physical contraction",
+    "all exact scalar, rounding, packing, initialization and manuscript entry/window checks"
+  ],
+  "success": true,
+  "finished_utc": "2026-10-07T13:16:15.620910+00:00"
+}

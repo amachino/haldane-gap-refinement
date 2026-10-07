@@ -1,0 +1,17 @@
+Haldane gap refinement: autonomously researched and authored by GPT-6 Astra Max
+Version 1.0.0, 7 October 2026
+
+This distribution includes material from OpenAI's openai/math repository,
+commit adc7f1241b42e322a6451854ab7e4b4c146bf78a, specifically the preprint
+"The periodic spin-one Haldane gap" dated 24 September 2026 and its
+companion verification material, distributed under Apache License 2.0.
+The original mathematical construction and finite input certificates
+are credited to OpenAI. Original files in source/ are unchanged.
+
+The new note, scalar refinement certificate, and selected independent
+audit implementation were autonomously produced by GPT-6 Astra Max, an OpenAI AI
+agent, within a human-initiated research task, and are offered under Apache
+License 2.0. Details and distribution-only path normalizations are
+documented in PROVENANCE.md.
+
+This project is not an OpenAI publication, affiliation, or endorsement.
