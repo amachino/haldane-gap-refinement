@@ -16,24 +16,25 @@ pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact ari
 \title{Exact-arithmetic refinements\\[0.15em]
 of periodic spin-one Haldane-gap bounds}
 \author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
-\date{8 October 2026 \quad | \quad Version 1.5.0}
+\date{8 October 2026 \quad | \quad Version 1.6.0}
 \begin{document}
 \maketitle
 \begin{abstract}
 We prove, conditional on the cited OpenAI spatial-transfer and finite-input
 results, that the periodic spin-one Heisenberg chain has a unique ground
-state and $\gap_L>27/250=0.108$ for every integer $L\ge32$, at coupling
-$J=1$. Odd lengths are included. A recurrence retaining the rotation
-sectors, simultaneous moment certificates, sharper use of the original
-thermal enclosures, and a new 88-site integer trial contraction give the
-improvement. An exact rational certificate checks 51 short lengths,
-ten finite intervals, and an infinite tail. Smaller constants extend
-to shorter chains, including $0.07$ for all integers $L\ge24$ and $0.10$
-for all integers $L\ge30$. Three supplemental cyclic-twist traces are
-also computed and certified, but are not used in the main result.
-The previous derivations and correction to the initial comparison are
-retained. The work is unreviewed; priority, optimality, a formal proof,
-and an independent proof of the upstream analytic premises are not claimed.
+state and $\gap_L>29/200=0.145$ for every integer $L\ge24$, at coupling
+$J=1$. Odd lengths are included. A complete nine-length cyclic-twist
+thermal table resolves the input rotation sectors. An integer-certified
+five-site energy inequality sharpens the thermal rounding errors, and
+a tight conversion from purity to gap improves finite-length coverage.
+The retained sector recurrence then gives the result with 304 named exact
+checks, 42 individually checked main-range lengths, six finite intervals,
+and an infinite tail. Smaller bounds give $0.02$ for all integer $L\ge18$,
+including the previously uncovered length 19, $0.09$ for $L\ge20$, and
+$0.12$ for $L\ge22$. The previous derivations and correction to the initial
+comparison are retained. The work is unreviewed; priority, optimality,
+a formal proof, and an independent proof of the upstream analytic premises
+are not claimed.
 \end{abstract}
 
 \section{Statement and dependencies}
@@ -58,7 +59,8 @@ length $n$ is even. Signed spatial traces, in contrast, are available
 at odd lengths too.
 
 \newpage
-\section{Sector-resolved refinement with simultaneous moments}
+\input{resolved.tex}
+\section{Retained version 1.5 sector refinement}
 \begin{theorem}\label{thm:sector}
 Assume the spatial-transfer and sector identities in
 \cite[Section 3]{upstream}, its certified thermal enclosures and
@@ -74,7 +76,7 @@ In particular, $\liminf_{L\to\infty}\gap_L\ge0.108$ over all integer
 lengths. Multiply the bounds by $J$ for positive coupling $J$.
 \end{theorem}
 
-The main advance is to retain the $I$, $O$, and $N$ sector information
+The advance in version 1.5 was to retain the $I$, $O$, and $N$ sector information
 through each temperature doubling, as well as in the initialization.
 Joint moment inequalities improve the starting estimates. The sector
 identities, polynomial-filter principle, capped-mass principle, and
@@ -1218,7 +1220,9 @@ Theorem~\ref{thm:spectral} then sharpens the spectral inputs and raises
 the bound again, without changing the finite computation data.
 Theorem~\ref{thm:sector} adds the sector-resolved recurrence,
 simultaneous moment bounds, and the newly computed 88-site trial.
-The accompanying repository contains all six gap certificates,
+Theorem~\ref{thm:resolved} adds the complete cyclic table, geometric
+rounding bounds, and tight purity extraction.
+The accompanying repository contains all seven gap certificates,
 the upstream source and verification material at the fixed commit,
 fresh verification results, and \texttt{independent\_audit.py}.
 The latter reconstructs selected computations from the printed
@@ -1240,12 +1244,22 @@ it does not provide rigorous thermal enclosures.
 \end{itemize}
 The full upstream run took approximately 22 minutes with six requested
 workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
-All six bound certificates need only Python's standard library.
+All seven bound certificates need only Python's standard library.
 Run \texttt{make check} with assertions enabled to check them and the
-supplemental cyclic-trace enclosures. For the current main certificate, run
+local energy and both cyclic-trace enclosures. For the current main certificate, run
 \begin{center}
-\texttt{python3 verify\_sector\_refinement.py}
+\texttt{python3 verify\_resolved\_refinement.py}
 \end{center}
+All nine new cyclic totals were recomputed from the distributed evaluator.
+To repeat this calculation and its small independent cross-checks, run
+\begin{center}
+\texttt{make extended-cyclic}
+\end{center}
+This needs a C++17 compiler with OpenMP and
+NumPy/SciPy for the odd-chain check. The recorded eight-CPU run took
+about 6.5 minutes. The retained 88-site trial can be reconstructed with
+\texttt{make trial88}. These new computations do not constitute a fresh
+complete upstream run.
 Rational comparisons determine all numerical pass/fail decisions;
 decimal logarithms and floating-point margins are display-only.
 The companion's selected analytic sources are preserved unmodified
@@ -1254,7 +1268,7 @@ in \path{boundary_source_manifest.json}.
 
 Neither successful execution nor this note is a formal verification of
 the upstream analytic assumptions. No claim is made here for the same
-numerical bound at lengths below $32$, arbitrary open boundaries, or
+numerical bound $0.145$ at lengths below $24$, arbitrary open boundaries, or
 uniqueness of all infinite-volume ground states. The constants are conditional lower
 bounds, not estimates of the actual physical gap.
 
@@ -1275,6 +1289,10 @@ In version 1.5 the agent developed the sector-resolved recurrence,
 certified simultaneous moment bounds, recomputed the 88-site trial,
 computed supplemental cyclic traces, and authored the new certificate
 and manuscript section.
+In version 1.6 the agent computed and cross-checked the complete cyclic
+table, certified the local energy inequality and sharper error bounds,
+derived the tight purity conversion, and authored the revised theorem,
+certificate, and exposition.
 The human user initiated the open-ended
 investigation, authorized computation and publication, and requested
 attribution and layout revisions; the mathematical extension and its

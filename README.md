@@ -1,31 +1,28 @@
 # Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds
 
-**Version 1.5.0 · 8 October 2026 · Autonomously researched and written by GPT-6 Astra Max · Unreviewed technical note**
+**Version 1.6.0 · 8 October 2026 · Autonomously researched and written by GPT-6 Astra Max · Unreviewed technical note**
 
 [Read the paper](paper/note.pdf) · [LaTeX source](paper/note.tex) · [日本語](README.ja.md)
 
-Retaining the rotation sectors throughout the recurrence, combining several moment constraints, and adding an exact 88-site trial calculation improve the conditional bound to
+A complete cyclic-twist thermal table, sharper rigorous rounding errors, and tight purity-to-gap conversion improve the conditional result to
 
 $$
-\gamma_L > \frac{27}{250}=0.108
-\quad\text{for every integer }L\ge32,\qquad J=1.
+\gamma_L > \frac{29}{200}=0.145
+\quad\text{for every integer }L\ge24,\qquad J=1.
 $$
 
-The ground state is unique throughout this range, including **every odd $L\ge33$**. The result assumes the cited OpenAI spatial-transfer and certified finite-input results. It raises the version 1.4 constant by **54.3%** and includes length 32. The all-integer thermodynamic statement is $\liminf\gamma_L\ge0.108$. These are lower bounds, not estimates of the physical gap; multiply by $J$ for positive coupling $J$.
+The ground state is unique, including **every odd $L\ge25$**. The result assumes the cited OpenAI spatial-transfer identities and the certified finite inputs specified in the paper. The constant is **34.3% larger** than version 1.5's 0.108, and the starting length decreases from 32 to 24. The all-integer thermodynamic statement is $\liminf\gamma_L\ge0.145$. These are lower bounds, not estimates of the physical gap; multiply by $J$ for positive coupling $J$.
 
-Smaller bounds now apply to shorter chains, also with unique ground states:
+The shorter-chain bounds also improve, including the previously uncovered length 19:
 
 | Strict gap lower bound | All integer lengths |
 |---|---|
-| $0.03$ | $L\ge20$ |
-| $0.05$ | $L\ge22$ |
-| $0.07$ | $L\ge24$ |
-| $0.08$ | $L\ge26$ |
-| $0.09$ | $L\ge28$ |
-| $0.10$ | $L\ge30$ |
-| **$0.108$** | **$L\ge32$** |
+| $0.02$ | $L\ge18$ |
+| $0.09$ | $L\ge20$ |
+| $0.12$ | $L\ge22$ |
+| **$0.145$** | **$L\ge24$** |
 
-Separately, $\gamma_{18}>0.03$, with a unique ground state. No corresponding bound at length 19 is established here. All results remain conditional and unreviewed.
+All these ground states are unique. Separately, $\gamma_{18}>0.08$. All results remain conditional and unreviewed.
 
 **Correction to the version 1.0 comparison:** the previous bound of $0.0047$ improves the periodic paper's *stated* constant, but is weaker than this direct consequence of OpenAI's two published papers. The companion's stronger periodic seeds were overlooked in the initial comparison. The old proof and certificate remain valid and are retained below. We do not claim priority, optimality, an independent Haldane-gap proof, or an improvement beyond everything implied by the published OpenAI material.
 
@@ -38,10 +35,35 @@ Separately, $\gamma_{18}>0.03$, with a unique ground state. No corresponding bou
 | Length-adaptive refinement in version 1.3 | **$0.06$** | **Every integer $L\ge34$** |
 | Spectral refinement in version 1.4 | $0.07$ | Every integer $L\ge33$ |
 | Sector-resolved refinement in version 1.5 | **$0.108$** | **Every integer $L\ge32$** |
+| Three-twist refinement in version 1.6 | **$0.145$** | **Every integer $L\ge24$** |
 
-All rows use the same periodic Hamiltonian and $J=1$. Version 1.4 raised the version 1.3 constant by **16.7%** and included length 33. Version 1.3 had raised the version 1.2 constant by about **2.52 times** and lowered the starting length from 120 to 34. The new derivation uses existing spectral inputs; it does not replace their proof. The prior-art review is limited and establishes no priority claim. See [PRIOR_ART.md](PRIOR_ART.md).
+All rows use the same periodic Hamiltonian and $J=1$. Version 1.4 raised the version 1.3 constant by **16.7%** and included length 33. Version 1.3 had raised the version 1.2 constant by about **2.52 times** and lowered the starting length from 120 to 34. The analytic transfer representation remains an upstream premise. Version 1.6 adds finite cyclic-twist data and does not replace the analytic proof. The prior-art review is limited and establishes no priority claim. See [PRIOR_ART.md](PRIOR_ART.md).
 
-## The version 1.5 refinement
+## The version 1.6 refinement
+
+1. Compute all nine cyclic-twist thermal traces at lengths 4 through 12 with an exact integer C++ evaluator of the published Horner construction. Small even-chain totals agree exactly with the unmodified packed engine; an odd-chain all-column check independently tests the orbit reduction.
+2. Prove $H^{\mathrm{open}}_5>-35/6$ by integer positive-definiteness checks. Translation around the ring gives $H_L(g)\ge-35L/24$ for $L\ge5$. This makes the Horner matrix a strict contraction and substantially reduces certified rounding errors, including for the old integer totals.
+3. Resolve the $I$, $O$, and $N$ inputs separately. Six fixed filters and 67 rational moment polynomials sharpen the seed at $(n,\beta)=(44,2009/80)$. The physical defect decreases from about .02030 to .010285.
+4. Use the tight two-level purity threshold $K>(1+E^2)/(1+E)^2$, with $E\ge e^{\beta\delta}$, to certify gap greater than $\delta$. This requires no assumption about the first excitation's spin or degeneracy.
+
+The certificate checks **42 individual lengths, 24 through 65**, then **six intervals covering 66 through 33791**. At reference length 22528 and inverse temperature $64288/5$, the invariant starts with $w=1.05443040418529\times10^{-811}$ and covers every remaining integer length. The shorter-chain checks include **$L=19$**.
+
+### Reproduce version 1.6
+
+```sh
+python3 verify_resolved_refinement.py
+make check
+make integrity
+make paper
+```
+
+The main checker performs **304 named exact checks**, plus exact root-direction and full-interval polynomial comparisons. It writes [`independent_results/resolved_refinement.json`](independent_results/resolved_refinement.json). The scalar checkers need only Python 3.11+ and its standard library. `make check` runs all seven gap certificates and three auxiliary checks. Assertions must be enabled.
+
+Recompute all new thermal integer totals with `make extended-cyclic`. This requires a C++17 compiler with OpenMP, plus NumPy/SciPy for the independent odd-chain cross-check, and took about 6.5 minutes with eight CPUs. `python3 recompute_extended_cyclic.py --quick` runs the small cases. The 88-site trial is reused and remains reproducible with `make trial88`. Earlier source bytes and verification records are retained.
+
+The optional thermal and moment exploration scripts are explicitly non-rigorous. The temperature screen, including unsuccessful colder inputs, is recorded in [RESEARCH_NOTES.md](RESEARCH_NOTES.md). The proof is conditional, unreviewed, and not machine-formalized; no optimality or priority claim is made.
+
+## Retained version 1.5 refinement
 
 1. Reuse the original thermal integer totals with their individual rational enclosures. New filters bound the $J$ spectrum in $(-1.0013391,1.0013391)$ and the $N$ spectrum in $(-.8710311,.750234)$.
 2. Combine the moments of orders 4 through 12 in fixed rational polynomial majorants and minorants. Exact Bernstein subdivision proves their signs on the entire spectral intervals. Signed odd moments sharpen the short-chain bounds.
@@ -50,7 +72,7 @@ All rows use the same periodic Hamiltonian and $J=1$. Version 1.4 raised the ver
 
 The certificate checks each length **32 through 82**, then **ten intervals covering 83 through 16895**. At reference length 11264 and inverse temperature $34496/5$, it enters the retained asymmetric invariant, which covers every remaining integer. The additional short-chain results are checked separately. Three new cyclic-twist thermal traces are also enclosed, but are **not premises of the main gap result**.
 
-### Reproduce the current result
+### Reproduce version 1.5
 
 ```sh
 python3 verify_sector_refinement.py
@@ -58,7 +80,7 @@ make check
 make integrity
 ```
 
-The main script performs **237 named exact checks**, plus exact root-direction and Bernstein-subdivision checks. It writes [`independent_results/sector_refinement.json`](independent_results/sector_refinement.json). `make check` runs all six retained gap certificates and the supplemental trace-enclosure checker. Python 3.11 or later and its standard library suffice; optimized execution with `-O` is rejected.
+The main script performs **237 named exact checks**, plus exact root-direction and Bernstein-subdivision checks. It writes [`independent_results/sector_refinement.json`](independent_results/sector_refinement.json). Version 1.5 ran six gap certificates and the supplemental trace-enclosure checker; the current `make check` also includes the version 1.6 checks listed above. Python 3.11 or later and its standard library suffice; optimized execution with `-O` is rejected.
 
 To recompute the new finite inputs:
 
@@ -214,8 +236,10 @@ The rational certificate contains the following bounds. Every decimal in this ta
 
 | Evidence | Scope | Interpretation |
 |---|---|---|
+| Version 1.6 exact certificate | 304 named checks plus root and full-interval polynomial checks; 42 individual main-range lengths, six intervals, infinite tail | Certifies 0.145 for all integers at least 24 and the shorter-chain ladder from 18 |
+| Version 1.6 exact finite inputs | Nine cyclic-twist totals recomputed, small independent cross-checks, five-site energy certificate, geometric error enclosures | The complete cyclic table and sharper errors enter the main result |
 | Version 1.5 exact certificate | 237 named checks plus root and full-interval polynomial checks; 51 individual lengths, ten finite intervals, infinite tail | Certifies 0.108 for all integers at least 32 and the shorter-chain ladder |
-| New exact finite inputs | 88-site integer contraction, four-site direct check, three cyclic-twist thermal totals and enclosures | Trial enters the main result; cyclic traces are supplementary |
+| Version 1.5 exact finite inputs | 88-site integer contraction, four-site direct check, three cyclic-twist thermal totals and enclosures | Trial enters version 1.5; its three cyclic traces are supplementary to that result |
 | Version 1.4 exact certificate | 111 exact checks; ten finite intervals, length 32, and an infinite tail | Checks the scalar certificate for $0.07$ at every integer length at least 33, and $0.06$ at length 32 |
 | Version 1.3 exact certificate | 88 exact checks; 12 finite intervals and one asymmetric infinite tail | Checks the scalar certificate for $0.06$ at every integer length at least 34 |
 | Version 1.2 exact certificate | 21 exact checks, including a polynomial identity and sign on a full interval | Checks the scalar part of the signed-moment extension to every integer length at least 120 |
@@ -225,7 +249,7 @@ The rational certificate contains the following bounds. Every decimal in this ta
 | Separate integer implementation | Full 72- and 120-site contraction integers and a direct four-site check | Exact agreement with the upstream values, using code reconstructed from the manuscript |
 | Separate floating-point implementation | 16 full-spectrum thermal cases on four to eight sites with twists | Diagnostic agreement within the manuscript's tolerances; not rigorous interval arithmetic |
 
-The complete finite run finished on 7 October 2026 and took about 22 minutes. Its record is [`reproduced/verification.json`](reproduced/verification.json). It reports both `success: true` and `full_recomputation: true`. These existing finite outputs remain unchanged in version 1.5; all six gap certificates and the supplemental trace checker were executed for this revision. The new 88-site contraction and three cyclic traces are recorded separately. Mathematical certificates and supporting logs are included. This audit is not a Lean or other kernel-checked formal proof of the analytic argument.
+The complete finite run finished on 7 October 2026 and took about 22 minutes. Its record is [`reproduced/verification.json`](reproduced/verification.json). It reports both `success: true` and `full_recomputation: true`. These existing finite outputs remain unchanged. All seven gap certificates and three auxiliary checks were executed for version 1.6, and all nine new cyclic totals were recomputed. The 88-site contraction and both cyclic tables are recorded separately. Mathematical certificates and supporting logs are included. This audit is not a Lean or other kernel-checked formal proof of the analytic argument.
 
 ## Additional reproduction
 
@@ -264,7 +288,7 @@ The upstream source is pinned to OpenAI Math commit
 - [`PROVENANCE.md`](PROVENANCE.md) distinguishes imported files, fresh outputs, and new work.
 - [`NOTICE`](NOTICE) and [`LICENSE`](LICENSE) retain the upstream attribution and Apache-2.0 terms. New material is also distributed under Apache-2.0.
 
-**GPT-6 Astra Max autonomously performed the research and authored this work.** Within the open-ended task set by the human user, the agent selected the target result, examined the upstream proof, derived the version 1.0 bound, wrote and ran the verification programs, and wrote the paper and repository documentation. During the requested prior-art review, the agent identified and verified the stronger corollary and prepared version 1.1. In response to the question about odd lengths, the agent developed the signed-moment extension, implemented its certificate, and authored version 1.2. During the requested continued investigation, the agent derived the length-adaptive interpolation and asymmetric invariant, implemented the 0.06 certificate, and authored version 1.3. Continuing the investigation, the agent selected the tighter filter, derived the new spectral bounds and seeds, implemented the 0.07 certificate, and authored version 1.4. In version 1.5 the agent derived the sector-resolved recurrence, certified simultaneous moment bounds, computed the 88-site trial and supplemental cyclic traces, and wrote the new all-integer certificate and exposition. The human contribution was to initiate the investigation, authorize computation and publication, ask about odd lengths, and request the prior-art review, incorporation of newly verified findings, and attribution and presentation revisions. The mathematical derivations and verification code were produced by the agent; the underlying spatial-transfer construction, reseeding argument, spectral estimates, and original gap criterion are credited to OpenAI.
+**GPT-6 Astra Max autonomously performed the research and authored this work.** Within the open-ended task set by the human user, the agent selected the target result, examined the upstream proof, derived the version 1.0 bound, wrote and ran the verification programs, and wrote the paper and repository documentation. During the requested prior-art review, the agent identified and verified the stronger corollary and prepared version 1.1. In response to the question about odd lengths, the agent developed the signed-moment extension, implemented its certificate, and authored version 1.2. During the requested continued investigation, the agent derived the length-adaptive interpolation and asymmetric invariant, implemented the 0.06 certificate, and authored version 1.3. Continuing the investigation, the agent selected the tighter filter, derived the new spectral bounds and seeds, implemented the 0.07 certificate, and authored version 1.4. In version 1.5 the agent derived the sector-resolved recurrence, certified simultaneous moment bounds, computed the 88-site trial and supplemental cyclic traces, and wrote the new all-integer certificate and exposition. In version 1.6 the agent computed the complete cyclic table, proved the local energy and geometric error bounds, applied tight purity extraction, and authored the 0.145 certificate and revision. The human contribution was to initiate the investigation, authorize computation and publication, ask about odd lengths, and request the prior-art review, incorporation of newly verified findings, and attribution and presentation revisions. The mathematical derivations and verification code were produced by the agent; the underlying spatial-transfer construction, reseeding argument, spectral estimates, and original gap criterion are credited to OpenAI.
 
 The model designation **GPT-6 Astra Max (OpenAI)** was supplied by the human user. The execution agent was Codex; a backend model snapshot identifier was not available in the session. See [AUTHORSHIP.md](AUTHORSHIP.md) for contribution and identity details. This is an unreviewed technical preprint, not an official OpenAI publication or endorsement. No independent human expert review has been recorded. The new arithmetic is small enough to inspect separately from the much larger source verifier. Corrections to the assumptions, proof, or implementation are welcome through the repository's issue tracker.
 

@@ -1,8 +1,11 @@
 PYTHON ?= python3
 
-.PHONY: check integrity paper trial88 cyclic-traces
+.PHONY: check integrity paper trial88 cyclic-traces extended-cyclic
 
 check:
+	$(PYTHON) verify_local_energy.py
+	$(PYTHON) verify_extended_cyclic.py
+	$(PYTHON) verify_resolved_refinement.py
 	$(PYTHON) verify_sector_refinement.py
 	$(PYTHON) verify_cyclic_traces.py
 	$(PYTHON) verify_spectral_refinement.py
@@ -16,6 +19,9 @@ trial88:
 
 cyclic-traces:
 	$(PYTHON) recompute_cyclic_traces.py
+
+extended-cyclic:
+	$(PYTHON) recompute_extended_cyclic.py
 
 integrity:
 	$(PYTHON) tools/check_integrity.py

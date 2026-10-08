@@ -8,6 +8,7 @@ from fractions import Fraction as Q
 from math import comb
 
 GRID = 10**500
+ROOT_MARGIN = Q(1,10**200)
 
 
 def rounded(x, upper=True):
@@ -43,7 +44,7 @@ def root(x, n, upper=True):
         ctx.prec = 560
         y = (decimal(x).ln()/n).exp()
         z = Q(int(y*GRID), GRID)
-    z += Q(1 if upper else -1, 10**200)
+    z += ROOT_MARGIN if upper else -ROOT_MARGIN
     if not z > 0:
         raise ArithmeticError('Root proposal too small.')
     if upper:

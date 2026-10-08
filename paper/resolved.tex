@@ -1,0 +1,247 @@
+\section{Three-twist refinement and tight purity extraction}
+\label{sec:resolved}
+\begin{theorem}\label{thm:resolved}
+Assume the pinned spatial-transfer and sector identities of
+\cite{upstream}, its recorded untwisted and $P$-twisted thermal integer
+totals and 120-site trial, the retained 88-site trial, and the new
+cyclic-twist integer totals certified below. At coupling $J=1$,
+\[
+ \boxed{\gap_L>\frac{29}{200}=0.145
+ \quad\text{for every integer }L\ge24.}
+\]
+The ground state is unique. The strict bounds $0.02$, $0.09$, and
+$0.12$ hold for every integer length at least $18$, $20$, and $22$,
+respectively. Separately, $\gap_{18}>0.08$.
+Thus $\liminf_{L\to\infty}\gap_L\ge0.145$, with no parity restriction.
+\end{theorem}
+
+This revision supplies the complete cyclic-twist table at lengths
+$4,\ldots,12$, separates $I$ and $O$ already at the input temperature,
+and uses a local energy inequality to reduce Horner rounding errors.
+It retains the sector recurrence proved in the next section. A sharper
+elementary conversion of purity into a gap improves the finite-length
+coverage. These are quantitative refinements conditional on the cited
+analytic premises; neither priority nor a new general moment method is
+claimed. Earlier statements and certificates are retained unchanged.
+
+\subsection{A local energy bound and geometric rounding errors}
+\begin{lemma}\label{lem:local-energy}
+For the five-site open spin-one Hamiltonian $H^{\mathrm{open}}_5$,
+\[
+ H^{\mathrm{open}}_5>-\frac{35}{6}I.
+\]
+Consequently $H_L(g)\ge-35L/24$ for $L\ge5$ and each of the three
+boundary rotations $g=1,P,C$ used here.
+\end{lemma}
+\begin{proof}
+In the spin-weight basis, the open Hamiltonian has diagonal
+$\sum_{j=1}^{4}w_jw_{j+1}$ and unit entries for allowed opposite unit
+steps on adjacent spins. Its nonnegative-magnetization block dimensions
+are $51,45,30,15,5,1$. Spin reversal supplies the remaining blocks.
+Fraction-free Bareiss elimination verifies that every leading principal
+minor of the integer matrix $6H^{\mathrm{open}}_5+35I$ is positive.
+The checker verifies every division exactly; its complete pivot lists
+are in \path{independent_results/local_energy.json}.
+Sylvester's criterion gives strict positivity in each block.
+
+Sum the translated five-site open blocks around a ring. Each bond is
+counted four times. For a twisted ring, any such open path is unitarily
+equivalent to the untwisted path: on-site rotations move its single
+seam to the missing bond. Thus the same local inequality applies, and
+division by four gives the asserted ring bound.
+\end{proof}
+
+The thermal calculation retains the upstream matrix
+$R=I-(H_n(g)+3nI/2)/16$. For $5\le n\le12$, the lemma and
+$H_n(g)\le nI$ imply
+\[
+ \operatorname{spec}(R)\subseteq
+ [1-5n/32,\,1-n/384],\qquad
+ \|R\|\le\kappa_n=1-n/384<1.
+\]
+At $n=4$ we keep the original bound $\|R\|\le1$.
+This stronger contraction bound changes only the error estimate, not
+the recorded integer columns.
+
+For completeness, set $Q_*=2^{55}$, $J_*=280$, and
+$p_j=98^j/j!\big/\sum_{k=0}^{280}98^k/k!$.
+The exact Horner coefficients are $\lfloor Q_*p_j\rfloor$; only indices
+through 191 are nonzero. The conditioned Poisson-tail error is less
+than $3^{98}/2^{280}<Q_*^{-1}$.
+For a magnetization block of dimension $d$, put
+$d^+=\lfloor\sqrt d\rfloor+1$.
+A real-coordinate floor has Euclidean error at most $\sqrt d$.
+For the cyclic twist, use $u+v\omega$, with
+$\omega=e^{2\pi i/3}$; its squared modulus is $u^2-uv+v^2$.
+Both floor errors lie in $[-1,0]$, where
+$a^2-ab+b^2\le1$, so the same vector error bound applies.
+One coefficient floor contributes at most one more unit.
+Geometric propagation therefore gives the integer column-error bounds
+\[
+ e_{n,d}=\begin{cases}
+ 281(d^++1)+1,&n=4,\\
+ \left\lceil384(d^++1)/n\right\rceil+1,&5\le n\le12.
+ \end{cases}
+\]
+The final unit includes the Poisson approximation. If $d_M$ is the
+dimension of magnetization block $M$, use
+\[
+ E_n=\left\lfloor\sqrt{\sum_{M=-n}^{n}d_M e_{n,d_M}^2}\right\rfloor+1
+\]
+as the Frobenius error in $Q_*$ units. Repeating representative columns
+with their orbit multiplicities preserves this estimate: equality of
+the \emph{exact} column norms follows from the upstream symmetries,
+whereas the rounded columns are bounded individually.
+The resulting trace endpoints have the same form as in the retained
+derivation, with this smaller $E_n$.
+
+\subsection{Extended cyclic table and resolved input sectors}
+The new evaluator \path{compute_thermal_moments.cpp} implements the
+same integer Horner construction for $g=1,P,C$. It uses denominator
+32 also at odd lengths; the cyclic phase is represented by two integer
+coordinates. Ordinary column operations fit signed 64-bit integers:
+the absolute coordinate row sums are at most 80 and
+$80(2Q_*+2\max_d e_{n,d})<2^{63}$.
+The per-column quadratic sums and their orbit-weighted values fit
+signed 128-bit integers. A checked four-limb accumulator stores the
+total, whose conservative upper bound is below $2^{256}$.
+The coefficient files are generated as exact rational floors.
+
+All nine cyclic totals are recorded in
+\path{independent_results/extended_cyclic_totals.json}.
+They were recomputed from the distributed C++ source. At lengths
+4, 6, and 8, they agree exactly with the unmodified upstream packed
+engine using the same coefficients. The untwisted and $P$-twisted
+four-site totals were cross-checked too. At odd length five, an
+independent all-column calculation without orbit reduction gives
+overlapping rigorous norm intervals. These checks support the
+implementation; they are not independent peer review of the proof.
+
+Write $C_n=Z_n(b_*,C)$ and $b_*=49/4$. The sector inversion is
+\[
+ I_n=\frac{J_n+2C_n}{3},\qquad
+ O_n=\frac{J_n-C_n}{3},\qquad
+ Z_n=I_n+2O_n+3N_n.
+\]
+The old untwisted and $P$-twisted totals are re-enclosed using the same
+geometric error bound. Fixed quartic filters $x^4P(x)^2$ then give
+\begin{align*}
+ -.59564&<\mu_I<1.0008406,\\
+ -.577508&<\mu_O<.699301,\\
+ -.8710233&<\mu_N<.7502156.
+\end{align*}
+The coefficient vectors are fixed in
+\path{verify_resolved_refinement.py}. Every coefficient after shifting
+the relevant exterior ray is positive, and the endpoint filter exceeds
+its rigorously bounded moment sum. Thus these are full-ray exclusions.
+
+For each sector the positive measure
+$\sum_j\mu_j^4\delta_{\mu_j}$ permits joint use of moments 4 through 12.
+Fixed rational majorants and minorants in
+\path{independent_results/resolved_moment_polynomials.json}
+are certified on the entire respective support by Bernstein subdivision.
+Their signed odd-moment bounds are used only for signed traces;
+odd moments are never treated as probability moments.
+All these certificates use exact arithmetic and are independent of
+optimizer success or a sampled grid.
+
+Let $\overline I_m,\overline O_m,\overline N_m$ denote the resulting
+upper bounds, combined with the retained capped-mass bounds when
+those are smaller. For even $m$ and $t\ge1$, the three positive
+physical partition functions give the input bounds
+\begin{align*}
+ D&=(\overline I_m+2\overline O_m+3\overline N_m)^t,\\
+ E_P&=(\overline I_m+2\overline O_m-\underline N_m)^t,\\
+ E_C&=(\overline I_m-\underline O_m)^t,\\
+ I_{\rm cap}&=(D+3E_P+8E_C)/12,\qquad
+ J_{\rm cap}=(D+3E_P)/4.
+\end{align*}
+The chosen radicands are positive. This uses
+$Z_m(tb_*,g)\le Z_m(b_*,g)^t$ for each twist, before applying
+the sector inversion. No analogous time-power inequality is assumed
+directly for a spatial sector.
+
+The retained 120-site trial forces a unique dominant spatial
+eigenvalue through the same capped residual comparison as before.
+Its positivity follows from the signed trace at large odd lengths.
+The 88-site trial supplies the physical-purity initialization.
+The selected starting point is
+\[
+ m=28,\qquad t=41/20,\qquad n_0=44,\qquad b_0=2009/80.
+\]
+The exact seed and all intermediate fractions are recorded in
+\path{independent_results/resolved_refinement.json}.
+
+\subsection{A tighter conversion from purity to a gap}
+\begin{lemma}\label{lem:tight-purity}
+Let a physical Gibbs state at inverse temperature $b$ have purity
+$T\ge K>1/2$. For any $E\ge e^{b\delta}>1$, the inequality
+\[
+ K>\frac{1+E^2}{(1+E)^2}
+\]
+implies a unique ground state and spectral gap greater than $\delta$.
+\end{lemma}
+\begin{proof}
+The largest Gibbs weight $p_0$ is at least $T$, so $p_0>1/2$ and
+the ground state is unique. Moreover
+$T\le p_0^2+(1-p_0)^2$, since the remaining squared weights sum to
+at most the square of their sum. The increasing branch of this
+quadratic implies $p_0\ge(1+\sqrt{2K-1})/2$.
+For the first excited weight $p_1$,
+\[
+ e^{-b\gap}=\frac{p_1}{p_0}
+ \le\frac{1-p_0}{p_0}
+ \le\frac{1-\sqrt{2K-1}}{1+\sqrt{2K-1}}.
+\]
+The displayed hypothesis gives a strict bound below $E^{-1}$,
+which is at most $e^{-b\delta}$. The rational threshold is increasing
+in $E>1$, so an upper Taylor enclosure for the exponential suffices.
+\end{proof}
+The two-level probability distribution saturates this conversion.
+No assumption about the spin or degeneracy of the first excitation
+is required. This elementary inequality improves finite-length
+coverage; it does not, by itself, improve the asymptotic decay rate.
+
+\subsection{Coverage and limits of the computation}
+The sector recurrence and length interpolation in the next section
+are retained, using even spatial reference lengths throughout.
+The new certificate performs 304 named checks, with additional root-direction
+and polynomial-positivity comparisons. It checks each length $24$ through
+$65$ directly and then the following intervals:
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+First length & Last length & Recurrence level \\
+\midrule
+66 & 80 & 0 \\
+81 & 246 & 0 \\
+247 & 821 & 2 \\
+822 & 2919 & 3 \\
+2920 & 13012 & 5 \\
+13013 & 33791 & 7 \\
+\bottomrule
+\end{tabular}
+\end{center}
+The tail starts at $L=33792$. At reference length $22528$ and inverse
+temperature $64288/5$, the invariant holds with
+$w_0=1.05443040418529\times10^{-811}$. Its update is $w_+=6w^2$.
+The retained exponential comparisons give the strict gap bound on the
+entire tail. The short-chain ladder is checked separately, including
+$T(19,49/4)>.50776$, which now exceeds one half.
+The ninth update requires outward products on a $10^{-1000}$ grid.
+Root proposals use a smaller margin $10^{-450}$ and are still accepted
+only after exact powered comparisons; the retained checkers keep
+their original arithmetic settings. Exponential upper bounds use a rational
+Taylor bound at an argument at most one, followed by upward-rounded
+squaring to 40 significant digits. Every rounding direction is explicit.
+
+The temperature exploration that motivated this revision is
+non-rigorous. With the available moment orders, simply lowering the
+temperature made the coarse two-sector initialization worse in the
+screened examples. Resolving all three sectors was more effective.
+Exploratory decay rates are neither uniform gap certificates nor
+optimality barriers. The new theorem remains conditional on the
+upstream transfer construction and has not received independent
+external review or machine-formal verification.
+
+\newpage

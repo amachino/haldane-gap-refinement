@@ -1,0 +1,65 @@
+{
+  "entries": [
+    {
+      "n": 4,
+      "twist": 0,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 4,
+      "twist": 1,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 4,
+      "twist": 2,
+      "stored_integer_total_matches": true,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 5,
+      "twist": 2,
+      "stored_integer_total_matches": true,
+      "all_column_integer_total": "2693291159342523469701501331301",
+      "all_column_norm_intervals_overlap": true
+    },
+    {
+      "n": 6,
+      "twist": 2,
+      "stored_integer_total_matches": true,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 7,
+      "twist": 2,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 8,
+      "twist": 2,
+      "stored_integer_total_matches": true,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 9,
+      "twist": 2,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 10,
+      "twist": 2,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 11,
+      "twist": 2,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 12,
+      "twist": 2,
+      "stored_integer_total_matches": true
+    }
+  ],
+  "success": true
+}

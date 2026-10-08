@@ -1,3 +1,15 @@
+# Version 1.6.0 — 8 October 2026
+
+- Conditional strict gap bound **0.145 for every integer L >= 24**, with a unique ground state. This is a 34.3% increase over version 1.5 and includes shorter chains.
+- Short-chain ladder: 0.02 for every L >= 18, 0.09 for L >= 20, 0.12 for L >= 22; separately gamma_18 > 0.08. Length 19 is now included.
+- Complete exact cyclic-twist table at lengths 4 through 12; every total recomputed and small cases cross-checked against the upstream packed engine and an all-column integer implementation.
+- Exact five-site local energy certificate and geometric, blockwise thermal rounding bounds.
+- Six sector filters, 67 certified moment polynomials, and tight purity-to-gap conversion. The main checker has 304 named exact checks, 42 individual main-range lengths, six intervals, and an infinite tail from 33792.
+- All earlier proofs and records retained, with unchanged imported source bytes. Updated English/Japanese documentation, mathematical note, reproducibility scripts, metadata, and snapshot hashes.
+- Conditional and unreviewed. No claim of priority, optimality, formal verification, or an independent proof of the upstream transfer construction.
+
+---
+
 # Version 1.5.0 - 8 October 2026
 
 The conditional bound is now `gamma_L > 0.108` for **every integer `L >= 32`**, including odd lengths, with a unique ground state and `J = 1`. This is a 54.3% increase over 0.07. The all-integer thermodynamic liminf is at least 0.108.

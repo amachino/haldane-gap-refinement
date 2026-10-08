@@ -1,3 +1,49 @@
+# Continuing investigation — 8 October 2026, version 1.6
+
+## Certified results
+
+Conditional on the pinned analytic premises and specified finite inputs, `gamma_L > 0.145` for **every integer L >= 24**, with a unique ground state. The main checker has 304 named exact checks, 67 full-interval polynomial certificates, 42 individual main-range lengths, six finite intervals, and an infinite tail beginning at 33792. The shorter bounds are .02 from L=18, .09 from L=20, and .12 from L=22; separately gamma_18 > .08. Length 19 is now covered. The earlier .108 result and all older derivations remain intact.
+
+## What changed
+
+The new cyclic-twist table covers every length 4 through 12 at beta=49/4. Separating I and O lowers the bound on the dominant I eigenvalue from the earlier J-based cap 1.0013391 to 1.0008406. The other full supports are I > -.59564, O in (-.577508,.699301), and N in (-.8710233,.7502156). The three-twist initialization uses m=28, n=44, and beta=2009/80. Its bounds are approximately i=.01139428, j=.01252915, r=.03797597, and q=.01028467. The physical defect is about half the preceding seed's .02030009. These displays are not the acceptance values; exact fractions are in the certificate.
+
+A separate five-site open-chain calculation proves H_open,5 > -35/6 using positive integer principal minors. Summing translated local inequalities gives H_L(g) >= -35 L/24 for every L>=5 and all three boundary twists. This improves the Horner contraction modulus to 1-L/384 for the thermal lengths. Rounding errors can then be summed geometrically and separately by magnetization block, including for the existing two-twist totals. In Eisenstein coordinates both floor errors are in [-1,0], where a^2-a*b+b^2 <= 1, so a cyclic vector floor also costs at most sqrt(d). At length 12, the new cyclic half-width is about 4.17e-7 and the resolved I half-width about 4.19e-7.
+
+The tight elementary conversion from purity K>1/2 uses K > (1+E^2)/(1+E)^2 with E >= exp(beta*delta). It requires no assumption about the first excitation's spin or multiplicity. This improves finite-length coverage, not the limiting exponential rate. The certified length-19 purity exceeds .50776; the earlier failure to cross one half was an input limitation.
+
+The ninth recurrence update reaches q of order 10^-811. The new checker therefore uses a 10^-1000 outward grid and 10^-450 root proposal margin. Every root direction is still accepted by exact powered comparisons. A coarser root margin caused a failed finite cover during development; increasing arithmetic resolution resolved that failure without changing an inequality or relaxing acceptance. Earlier checkers retain their defaults.
+
+## Temperature exploration and unsuccessful directions
+
+The initial plan was to obtain colder data. A non-rigorous low-spectrum calculation screened temperatures using moments of orders 4 through 12. Eigenvalues and the omitted-state trace estimates in that screen are numerical diagnostics, not rigorous enclosures.
+
+| Base inverse temperature | Two-sector, capped-moment diagnostic | Three-sector, capped-moment diagnostic |
+|---|---:|---:|
+| 10.5 | .10035 | not screened in that run |
+| 12.25 | .10416 | .14220 |
+| 13 | .09581 | not screened in that run |
+| 14 | .07841 | .13633 |
+| 15 | .05737 | not screened in that run |
+| 16 | .03384 | .10574 |
+| 18 and 20 | no usable seed in the scanned grid | not screened in that run |
+
+Adding sampled moment optimization to the three-sector screen at 12.25 gave about .145204. The final rigorous inputs have a recurrence decay diagnostic near .145180; only **.145 with the full length cover** is the theorem. These are local/grid searches, not global optima or bounds on what colder data, higher moment orders, or other proofs could achieve.
+
+`explore_thermal_inputs.py --refresh` reconstructs the optional low-spectrum cache. `explore_thermal_parameters.py --two-sectors 12.25` and `explore_thermal_parameters.py --lp 12.25` expose the two-sector and three-sector screens. `explore_resolved_polynomials.py` proposes additional sampled polynomial duals from the certified moment intervals. No optimizer is called by a gap checker.
+
+The original sensitivity experiment artificially scaled seed bounds; its apparent .2 or .28 rates were counterfactual diagnostics. The actual new finite calculations certify .145. Simply extending the old recurrence or lowering the temperature at the same moment orders did not provide this gain. The complete symmetry information and tighter finite-length conversion did.
+
+## Verification and remaining questions
+
+All nine new thermal totals were recomputed from the C++ source. Independent small even cases matched the unmodified upstream packed engine exactly with the same coefficients. The five-site all-column integer check avoids orbit reduction and its rigorous norm intervals overlap. `recompute_extended_cyclic.py` reproduces those checks and the complete table; `--quick` selects the small cases. No new full upstream computation is claimed. The existing 88- and 120-site variational inputs are reused.
+
+Further substantial progress could come from new moment orders beyond 12, additional rigorously controlled low-temperature information, or a sharper physical-purity update that retains more excitation information. The screened rate near .14518 is not a method barrier. Reaching the expected physical gap would require stronger uniform control over excitation weights and length dependence. Independent mathematical review remains outstanding. No priority or optimality claim is made for the new quantitative result or the elementary tools used here.
+
+---
+
+The following log is retained from version 1.5. Its current values and open questions are historical; the length-19 gap and incomplete cyclic table are resolved above.
+
 # Continuing investigation — 8 October 2026, version 1.5
 
 ## Certified results
