@@ -1,3 +1,17 @@
+# Version 1.7.0 - 8 October 2026
+
+- Conditional strict gap bound **0.1515 for every integer L >= 24**, with a unique ground state. This increases the preceding constant 0.145 by about 4.48%.
+- Short-chain bounds: **0.063 from L=18**, **0.119 from L=20**, **0.145 from L=22**; separately gamma_18 > 0.088. In particular, the length-19 lower bound is 3.15 times its previous value.
+- Add nine exact quarter-turn thermal traces, rigorous Gaussian-coordinate error estimates, all-column small-chain cross-checks, and an exactly reconstructed 84-site trial.
+- Derive and verify the octahedral sector identities, including T_n=B_n+E_n and effective spatial multiplicities 1,4,5,3. Credit the upstream spatial representation and standard finite-group principles.
+- Eight full-ray filters and 117 rational polynomial certificates sharpen the retained recurrence. The new checker makes 381 named exact checks, covering 39 individual lengths, seven intervals, and an infinite tail from 32256.
+- Preserve all older proofs, finite outputs, and pinned source bytes. Update the paper/PDF, both READMEs, metadata, research/provenance/authorship records, reproducibility scripts, and checksums.
+- Conditional and unreviewed; no priority, optimality, formal-verification, or independent-upstream-proof claim.
+
+`make check` runs eight gap certificates and five auxiliary checks. `make quarter-traces` and `make trial84` reproduce the new finite inputs. All new totals and the trial were recomputed before publication.
+
+---
+
 # Version 1.6.0 — 8 October 2026
 
 - Conditional strict gap bound **0.145 for every integer L >= 24**, with a unique ground state. This is a 34.3% increase over version 1.5 and includes shorter chains.

@@ -1,0 +1,66 @@
+{
+  "entries": [
+    {
+      "n": 4,
+      "twist": 0,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 4,
+      "twist": 1,
+      "packed_reference_exact_match": true
+    },
+    {
+      "n": 4,
+      "twist": 3,
+      "stored_integer_total_matches": true,
+      "all_column_integer_total": "58513392189113026929620912863249",
+      "all_column_norm_intervals_overlap": true
+    },
+    {
+      "n": 5,
+      "twist": 3,
+      "stored_integer_total_matches": true,
+      "all_column_integer_total": "636798550138812762579488094510",
+      "all_column_norm_intervals_overlap": true
+    },
+    {
+      "n": 6,
+      "twist": 3,
+      "stored_integer_total_matches": true,
+      "all_column_integer_total": "2319923211161893634397782310204",
+      "all_column_norm_intervals_overlap": true
+    },
+    {
+      "n": 7,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 8,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 9,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 10,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 11,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    },
+    {
+      "n": 12,
+      "twist": 3,
+      "stored_integer_total_matches": true
+    }
+  ],
+  "success": true
+}

@@ -19,6 +19,7 @@ The work was autonomously carried out by the agent within an open-ended research
 | Selecting the tighter polynomial filter, sharpening spectral bounds and seeds, and certifying 0.07 for all integer lengths at least 33 in version 1.4 | GPT-6 Astra Max |
 | Developing the sector-resolved recurrence and simultaneous moment certificates, verifying the 88-site trial, and certifying 0.108 in version 1.5 | GPT-6 Astra Max |
 | Computing the full cyclic table, deriving geometric error bounds and tight purity extraction, and certifying version 1.6 | GPT-6 Astra Max |
+| Deriving the octahedral sector identities, computing quarter-turn traces and the 84-site trial, and certifying version 1.7 | GPT-6 Astra Max |
 | Implementing the new rational certificate and separate audit computations | GPT-6 Astra Max |
 | Executing the upstream verifier and the new computations | GPT-6 Astra Max |
 | Writing the manuscript and repository documentation | GPT-6 Astra Max |
@@ -43,12 +44,14 @@ Version 1.5 arose from the request to pursue promising research directions thoro
 
 Version 1.6 continues that autonomous investigation. The agent screened temperatures, identified the missing cyclic-sector information, implemented and cross-checked the integer thermal evaluator, and computed all nine cyclic traces. It supplied the five-site positive-definiteness certificate, derived the geometric error estimates and tight purity conversion, generated and verified the fixed polynomial bounds, and authored the 0.145 all-integer result. The human supplied the continued research and publication authorization. The local translation-sum argument, general integer linear algebra, probability inequalities, and moment-optimization principles are not claimed as newly invented methods. The analytic transfer construction remains credited to OpenAI.
 
+Version 1.7 was developed autonomously after the user asked to resume. The agent derived the relation between the octahedral components using the two physical half-turn classes, implemented exact finite-group checks, computed the quarter-turn table and 84-site trial, certified the filters and moment bounds, and authored the new 0.1515 result and documentation. The retained recurrence and purity conversion are earlier results in this repository. The finite-group character theory and compactly supported moment uniqueness used in the derivation are standard principles, not claimed inventions. The human supplied continuation and publication authorization, not these mathematical derivations.
+
 ## Identity record
 
 - Model designation: **GPT-6 Astra Max (OpenAI)**, supplied by the human user.
 - Execution agent identity: **Codex**.
 - Backend model snapshot identifier: **not exposed in the execution context**.
 - The model designation records the user-provided identity; it is not presented as a runtime metadata measurement.
-- Dates of the recorded investigation and revisions: **7-8 October 2026** (versions 1.1 through 1.6 are dated in Asia/Tokyo).
+- Dates of the recorded investigation and revisions: **7-8 October 2026** (versions 1.1 through 1.7 are dated in Asia/Tokyo).
 
 The author designation identifies the agent that produced the new work. It does not imply an official OpenAI publication, endorsement, or human scientific authorship by the owner of the publishing account. The technical note is unreviewed; no independent human expert review has been recorded.

@@ -63,3 +63,10 @@ The upstream sector multiplicities, twisted partition identities, nonnegative po
 ## Version 1.6: attribution and search limits
 
 The full cyclic table, geometric rounding-error certificate, tight purity conversion, and resulting 0.145 bound were developed in the continued investigation on 8 October 2026. No new exhaustive literature search was performed for this revision. The upstream twisted-trace identities, Horner construction, transfer sectors, polynomial filters, capped masses, and physical-purity update remain credited to OpenAI. Translated finite-cluster energy bounds, Bareiss elimination/Sylvester positivity, and elementary probability inequalities are established mathematical tools. This revision records their explicit quantitative use; it does not establish a priority claim for the methods or the final bound.
+
+
+## Version 1.7 scope and limited follow-up search (8 October 2026)
+
+The quarter-turn refinement uses the proper signed permutation representation already constructed in pinned periodic Proposition 3.1. The octahedral character decomposition and compact-interval moment uniqueness are standard tools. Comparing the two physical half-turn classes gives the additional relation used here. This revision claims its explicit derivation and certified quantitative use in this repository, not invention of representation theory, moment methods, or physical rotational covariance.
+
+A limited web check used the queries `"Haldane" "octahedral" "gap" "OpenAI"`, `"Haldane" "0.1515"`, and `"The periodic spin-one Haldane gap" refinement`. The returned results did not identify an independent report of this exact constant and four-twist certificate. The primary result located was OpenAI's overview at https://github.com/openai/math/blob/main/overview.tex; indexed summaries were not used as technical premises. This is not an exhaustive search or evidence of priority. The note continues to use the fixed upstream revision, not an unspecified current branch. Independent expert review is outstanding.

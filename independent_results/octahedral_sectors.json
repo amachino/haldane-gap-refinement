@@ -1,0 +1,148 @@
+{
+  "group_order": 24,
+  "characters_order": [
+    "A",
+    "B",
+    "E",
+    "T",
+    "V"
+  ],
+  "classes": [
+    {
+      "size": 3,
+      "rotation_trace": -1,
+      "characters": [
+        1,
+        1,
+        2,
+        -1,
+        -1
+      ]
+    },
+    {
+      "size": 1,
+      "rotation_trace": 3,
+      "characters": [
+        1,
+        1,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "size": 6,
+      "rotation_trace": -1,
+      "characters": [
+        1,
+        -1,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "size": 6,
+      "rotation_trace": 1,
+      "characters": [
+        1,
+        -1,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "size": 8,
+      "rotation_trace": 0,
+      "characters": [
+        1,
+        1,
+        -1,
+        0,
+        0
+      ]
+    }
+  ],
+  "projector_algebra_verified": true,
+  "pi_class_difference": [
+    0,
+    -2,
+    -2,
+    2,
+    0
+  ],
+  "moment_relation": "T_n = B_n + E_n for n >= 4",
+  "effective_sector_order": [
+    "A",
+    "B",
+    "E",
+    "V"
+  ],
+  "effective_multiplicities": [
+    1,
+    4,
+    5,
+    3
+  ],
+  "twist_order": [
+    "identity",
+    "pi",
+    "2pi/3",
+    "pi/2"
+  ],
+  "forward_matrix": [
+    [
+      1,
+      4,
+      5,
+      3
+    ],
+    [
+      1,
+      0,
+      1,
+      -1
+    ],
+    [
+      1,
+      1,
+      -1,
+      0
+    ],
+    [
+      1,
+      -2,
+      -1,
+      1
+    ]
+  ],
+  "inverse_numerators": [
+    [
+      1,
+      9,
+      8,
+      6
+    ],
+    [
+      1,
+      -3,
+      8,
+      -6
+    ],
+    [
+      2,
+      6,
+      -8,
+      0
+    ],
+    [
+      3,
+      -9,
+      0,
+      6
+    ]
+  ],
+  "inverse_denominator": 24,
+  "success": true
+}

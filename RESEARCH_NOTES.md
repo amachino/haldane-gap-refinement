@@ -1,3 +1,57 @@
+# Continuing investigation — 8 October 2026, version 1.7
+
+## Certified results
+
+Conditional on the pinned analytic premises and specified finite inputs, `gamma_L > 0.1515` for **every integer L >= 24**, with a unique ground state. This improves version 1.6's constant by about 4.48%, with the same length range. The exact checker performs 381 named checks, in addition to root-direction and continuum polynomial comparisons. It verifies eight exterior-ray filters, 117 moment polynomials, 39 individual main-range lengths, seven finite intervals, and the infinite tail starting at 32256.
+
+The shorter all-integer bounds are **.063 from L=18, .119 from L=20, and .145 from L=22**; separately `gamma_18 > .088`. In particular, the length-19 bound rises from .02 to .063, and the earlier main constant .145 now holds from length 22. No monotonicity in length is assumed. All earlier proofs and results remain available below.
+
+## Fourth twist and exact symmetry information
+
+The new thermal input is the complete quarter-turn table, with nine lengths 4 through 12 at inverse temperature 49/4. The integer Horner evaluator uses Gaussian coordinates for the seam phases. Every total was recomputed; independent all-column Gaussian-integer calculations at lengths 4, 5, and 6 give overlapping rigorous norm intervals. The untwisted and half-turn four-site totals match the unmodified upstream packed engine exactly. The first complete table took 372.26 seconds with eight CPUs; this is an implementation timing, not a complexity guarantee.
+
+The proper octahedral group has five real irreducible representations A, B, E, T, V. Physical rotational covariance equates the traces for coordinate-axis and edge-axis half-turns, although they are different classes inside the finite group. Their character difference gives `T_n = B_n + E_n` for every integer n >= 4. Polynomial density applied to the fourth-power-weighted finite spectral measure promotes this to equality of nonzero eigenvalue multiplicities. The four remaining spatial lists therefore have effective multiplicities 1, 4, 5, 3. These are not physical excitation degeneracies. The group, its character table, every central-projector product, and the inversion of the four traces are checked exactly. These are applications of standard finite-group and moment principles, not new general principles.
+
+The certified supports are A in (-.5731783,1.0007981), B in (-.5319629,.4316513), E in (-.5775075,.6993004), and V in (-.8668243,.7170568). Reconstructing I=A+B, O=E, and N=B+E+V improves the old N support from (-.8710233,.7502156) to (-.8668243,.7170568). Fixed rational polynomial majorants and minorants use all the known moments. Their signs are certified on entire intervals, not just a sampled optimization grid. Signed odd moments particularly improve the short odd chains.
+
+The retained three-sector recurrence starts from m=26, t=2, n=42, beta=49/2. Its approximate upper residuals are i=.008031531, j=.008876122, r=.037366075, and q=.009544010. A new exact contraction of the published trial matrices at length 84 certifies a negative shifted Rayleigh quotient; its energy per bond is approximately -1.401482105770093. A direct four-site wavefunction checks the convention. The complete 84-site contraction was recomputed, and the existing 120-site trial is reused. No new full upstream verification run is claimed.
+
+After nine updates, the tail uses reference length 21504, inverse temperature 12544, and the exact rational `w=1.70982022810726e-827`. The outward grid remains 1e-1000, with root proposal margin 1e-450; exact powered comparisons accept every root direction. The invariant and tight finite-length purity conversion are unchanged from version 1.6.
+
+## Exploratory calculations and directions that did not help
+
+All values in this subsection are **non-rigorous diagnostics**, not certified gaps, global optima, upper bounds on the physical gap, or barriers to other arguments.
+
+At base inverse temperature 12.25, four-sector capped moments with the retained recurrence gave a decay diagnostic near .14929383839. Sampled polynomial optimization raised the screen to about .15172248662, with m=26, t=2, n=42. Replacing the sampled candidates by outward-rounded exact input enclosures and continuum-verified polynomials supports the published **.1515** certificate. The extra digits of the exploratory rate are not theorem values.
+
+A separate recurrence retaining more octahedral projection caps gave a diagnostic near .15172294523. This is no material further gain in the screened parameters. The comparison also used slightly different sampling grids, so the tiny difference must not be attributed solely to the recurrence. `explore_octahedral_flow.py` is not used in any acceptance check.
+
+A coarse four-twist screen without polynomial optimization gave:
+
+| Base inverse temperature | Capped-moment decay diagnostic |
+|---|---:|
+| 11.5 | .14137300 |
+| 12.0 | .14724686 |
+| 12.25 | .14929384 |
+| 12.5 | .15072695 |
+| 13.0 | .15209631 |
+
+The low-spectrum trace estimates in this screen are not rigorous enclosures. Temperature 13 is a useful next candidate, but would need a new certified table for all four boundary rotations. The screen establishes neither a certified gain nor an optimal temperature. `explore_quarter_inputs.py`, `explore_quarter_parameters.py`, and `explore_quarter_polynomials.py` expose the optional numerical exploration. Fixed accepted rational coefficients are distributed separately.
+
+A purity-only shortcut was also examined. For a two-level probability list with p=(1+sqrt(1-2u))/2 and 1-p, the purity defect is u, and squaring and normalizing gives exactly `u^2 / (2*(1-u)^2)`. Thus the original pure-purity squaring inequality is saturated for every 0 <= u <= 1/2. A universally stronger update requires information beyond that one purity number. This elementary identity is not a novelty claim and does not rule out model-specific improvements.
+
+The new certified lower purity estimates for lengths 18 through 23 are approximately .62266, .56886, .69639, .69456, .75429, and .75877. The length-19 estimate now lies comfortably above one half. The final statements use the rounded strict gap constants above, not floating-point logarithms of these displays.
+
+## Remaining questions and scope
+
+The most concrete next step is to assess a complete colder four-twist table, possibly at beta=13, using the same exact methodology. Moments beyond order 12 may be more valuable, but the present full-column algorithm becomes much more expensive with length; a favorable diagnostic or a more efficient certified evaluator should precede that investment. Stronger information about excitation weights could also improve the physical update. Neither the existing scans nor the saturated one-number inequality rules these routes out.
+
+The finite group and thermal-engine cross-checks, the complete quarter-turn recomputation, the 84-site recomputation, and all retained scalar certificates pass. The analytic arguments were developed and internally reviewed by the same autonomous agent. Independent mathematical review remains outstanding. The limited public-source follow-up did not identify an independent report of this precise quarter-turn refinement; it is not an exhaustive priority search. This release makes no claim of global optimality, priority, or an independent replacement for the upstream Haldane-gap proof.
+
+---
+
+The following version 1.6 log is retained as a historical record. Its current bounds and unresolved directions are superseded where the version 1.7 results above apply.
+
 # Continuing investigation — 8 October 2026, version 1.6
 
 ## Certified results

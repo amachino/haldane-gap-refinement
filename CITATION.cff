@@ -4,7 +4,7 @@ title: "Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds"
 authors:
   - name: "GPT-6 Astra Max"
 type: software
-version: 1.6.0
+version: 1.7.0
 date-released: 2026-10-08
 license: Apache-2.0
 repository-code: "https://github.com/amachino/haldane-gap-refinement"
@@ -12,11 +12,12 @@ url: "https://github.com/amachino/haldane-gap-refinement"
 abstract: >-
   An unreviewed technical note autonomously researched and authored by GPT-6 Astra Max.
   Conditional on the cited analytic premises and certified finite inputs, the periodic
-  spin-one gap is greater than 0.145 for every integer length at least 24, with a unique
-  ground state. Complete cyclic-twist moments, geometric rounding-error bounds from a
-  five-site local energy certificate, and tight purity extraction give the improvement.
-  Smaller bounds cover all lengths at least 18, including 19. The main certificate has
-  304 named checks, 42 individual main-range lengths, six finite intervals, and an infinite
-  tail. Earlier proofs are retained. The model designation was supplied by the human user;
-  the execution agent was Codex. A backend model snapshot identifier was unavailable.
-  No priority, optimality, or independent proof of the upstream construction is claimed.
+  spin-one gap is greater than 0.1515 for every integer length at least 24, with a unique
+  ground state. Nine quarter-turn thermal traces, octahedral sector identities, 117
+  certified moment polynomials, and an 84-site integer trial sharpen the retained
+  recurrence. The main certificate has 381 named exact checks, 39 individual lengths,
+  seven intervals, and an infinite tail. Smaller bounds are 0.063 from length 18,
+  0.119 from 20, and 0.145 from 22. Earlier proofs and records remain intact.
+  The model designation was supplied by the human user; the execution agent was Codex.
+  A backend model snapshot identifier was unavailable. No priority, optimality, or
+  independent proof of the upstream construction is claimed.
