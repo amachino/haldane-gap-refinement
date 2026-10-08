@@ -1,4 +1,50 @@
-# Continuing investigation — 8 October 2026
+# Continuing investigation — 8 October 2026, version 1.5
+
+## Certified results
+
+Conditional on the pinned spatial-transfer and finite-input premises, `gamma_L > 0.108` for every integer `L >= 32`, with a unique ground state and `J=1`. The main certificate has 237 named exact checks, additional root-direction and Bernstein checks, 51 individual main-range lengths, ten finite intervals, and an infinite tail starting at 16896. The shorter all-integer bounds are 0.03 from length 20, 0.05 from 22, 0.07 from 24, 0.08 from 26, 0.09 from 28, and 0.10 from 30. Length 18 separately has gap greater than 0.03. All earlier results are retained below as historical records.
+
+## What produced the gain
+
+**Individual input errors.** The original integer thermal totals come with much sharper individual intervals than the common printed error of 30e-6. Re-enclosing those existing totals, without rerunning the thermal engine, narrows some low-order errors to roughly 1e-10. The exact original enclosure formulas are preserved and re-evaluated.
+
+**Simultaneous moments.** Treat the fourth-power-weighted spatial spectrum as a positive measure. Polynomial majorants and minorants of each desired power use all the known moments at once. The fixed rational coefficients are verified on the full spectral support by Bernstein subdivision. This is not acceptance of a sampled linear program. Joint J-sector bounds further sharpen the initial seed after the first N-sector improvement. The final caps are `U=1.0013391`, `V=.8710311`, and positive N cap `.750234`.
+
+**Sector information during iteration.** Instead of reducing everything immediately to a total purity defect, retain the invariant residual, the full J residual, and the total residual. The other two lists have multiplicities two and three. Convex maximization at four explicit vertices bounds the residual after the leading eigenvalue is removed. This supplies the new spatial update. Physical cancellation and squaring are unchanged from the upstream argument. The paper proves uniqueness and positivity of the required spatial eigenvalue at every step, rather than presuming it at a new temperature.
+
+**A different starting point.** The optimum among the screened reference lengths lies near `n=44`, `beta=26.95`, using the moment of order 26. The published trial matrices are newly contracted at length 88, verifying a negative shifted Rayleigh quotient with arbitrary-precision integers. A direct four-site wavefunction checks the convention. The final start uses the exact rational inverse temperature `539/20`.
+
+**Negative odd moments.** For short odd rings, simply discarding negative N eigenvalues loses substantial information. Certified polynomial upper bounds on the signed odd N moments improve the partition-function denominator. This yields the new ladder of shorter-chain bounds. It does not treat signed odd moments as probabilities.
+
+## Explorations and limits
+
+`explore_sector_rates.py` compares ordinary and sector-resolved updates for the same trial-compatible starting choices. The values below are non-rigorous late-iteration decay diagnostics, not proved gaps or upper bounds:
+
+| Reference length, moment, temperature multiplier | Ordinary update | Sector-resolved update |
+|---|---:|---:|
+| 36, 24, 1.775 | about 0.064235 | about 0.105742 |
+| 44, 26, 2.2 | about 0.085663 | about 0.108319 |
+| 60, 26, 3.1 | about 0.090342 | about 0.101359 |
+
+A broader screen tried reference lengths 36, 40, 42, 44, 46, 48, and 60, base moments 22 through 32 in steps of two, and multipliers 1 through 3.25 in steps of .025. The largest diagnostic in this grid was near .108319 at reference 44, moment 26, multiplier 2.2. Intermediate trial lengths in this screen were hypothetical candidates; only the chosen new length 88 was subsequently certified. This is not a global parameter optimum, a barrier for the method, or an upper bound on the physical gap. Further recurrence iterations could support finer decimal improvements, but 0.108 is the proved rounded bound reported here.
+
+Three extra cyclic-twist traces at inverse temperature 49/4 and lengths 6, 8, 10 were computed and separately certified. Their centers and radii are in `independent_results/cyclic_trace_enclosures.json`. A filter using only the added I-sector information gave a cap around 1.00244 in numerical exploration, weaker than the J-sector cap already available. Reseeding with those traces did not supersede the selected certificate. They are therefore recorded as additional results rather than hidden dependencies.
+
+A sampled J-sector moment optimization at order 88 improved the capped upper bound by less than 1e-6, whereas the order-26 improvement was around .00146 and was incorporated after continuum certification. The order-88 screen was not promoted to a new certified bound. Trying to force a negative N eigenvalue directly from a one-polynomial Rayleigh quotient gave too weak a magnitude estimate to improve the certificate. The eventual signed odd-moment majorants were more useful.
+
+The current short-length calculation does not give a useful positive bound at length 19: the available lower purity estimate fails to cross one half. This is a limitation of these estimates, not a claim about the chain's actual gap or ground state. No conclusion below the proved ranges follows by rooting a higher-moment upper bound.
+
+## Remaining research directions
+
+A substantial next increase appears to require stronger thermal information at a new temperature, further constraints on the spatial spectrum, or an improvement to the physical-purity update. None is established here, and the diagnostic rates do not prove that these are the only routes. Direct spectral information for shorter odd chains may close the length-19 gap in this particular certificate. Changing boundary conditions or the Hamiltonian would require new premises; the periodic result does not imply those variants.
+
+The proof and new scalar checks were produced and reviewed internally by the same autonomous agent. Independent mathematical review remains outstanding. The result is a refinement conditional on the cited OpenAI analytic premises, not an independent solution of those premises or a priority claim.
+
+---
+
+The following is the previous research log. Its open questions and “current” values refer to version 1.4 and are superseded where the new results above apply.
+
+# Retained version 1.4 research log
 
 ## Certified in version 1.4
 

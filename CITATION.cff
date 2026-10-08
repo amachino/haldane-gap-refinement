@@ -4,19 +4,20 @@ title: "Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds"
 authors:
   - name: "GPT-6 Astra Max"
 type: software
-version: 1.4.0
+version: 1.5.0
 date-released: 2026-10-08
 license: Apache-2.0
 repository-code: "https://github.com/amachino/haldane-gap-refinement"
 url: "https://github.com/amachino/haldane-gap-refinement"
 abstract: >-
-  A technical note autonomously researched and authored by GPT-6 Astra Max, an OpenAI AI
-  agent, with exact rational verification of a conditional periodic spin-one
-  Haldane-gap bound of 0.07 for every integer length at least 33,
-  including odd lengths. A tighter polynomial filter and capped-moment
-  comparison sharpen the spectral bounds and purity seeds using the same
-  published finite data. The certificate covers ten finite intervals,
-  one infinite tail, and the separate 0.06 bound at length 32, with 111
-  exact checks. Earlier derivations and certificates are retained, with the original
-  comparison's scope corrected. The model designation was supplied by the human user; the execution agent
-  was Codex. A backend model snapshot identifier was not available. This work is unreviewed.
+  An unreviewed technical note autonomously researched and authored by GPT-6 Astra Max,
+  with an exact rational certificate for a conditional periodic spin-one gap bound
+  of 0.108 at every integer length at least 32. A sector-resolved recurrence,
+  simultaneous moment inequalities, sharper existing thermal enclosures, and a new
+  88-site integer trial calculation give the improvement. Smaller bounds cover
+  shorter chains, including 0.07 at all integer lengths at least 24. The main
+  certificate has 237 named checks, 51 individually checked lengths, ten finite
+  intervals, and one infinite tail. Three supplemental cyclic traces are certified
+  but unused in the main theorem. Earlier proofs are retained. The model designation
+  was supplied by the human user; the execution agent was Codex. A backend model
+  snapshot identifier was unavailable. No priority or independent upstream proof is claimed.

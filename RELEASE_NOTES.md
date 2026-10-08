@@ -1,3 +1,19 @@
+# Version 1.5.0 - 8 October 2026
+
+The conditional bound is now `gamma_L > 0.108` for **every integer `L >= 32`**, including odd lengths, with a unique ground state and `J = 1`. This is a 54.3% increase over 0.07. The all-integer thermodynamic liminf is at least 0.108.
+
+- Retain rotation-sector residuals throughout temperature doubling and prove the sharper recurrence.
+- Use the individual original thermal enclosures and fixed simultaneous-moment polynomial certificates, with exact full-interval Bernstein subdivision.
+- Compute the existing integer trial state at length 88 and use the seed `n=44`, `beta=539/20`.
+- Add a standard-library certificate with 237 named checks: 51 individual main-range lengths, ten finite intervals, and an infinite tail beginning at 16896.
+- Certify the shorter-chain ladder: 0.03 from length 20, 0.05 from 22, 0.07 from 24, 0.08 from 26, 0.09 from 28, and 0.10 from 30, always for all integer lengths. Separately, length 18 has gap greater than 0.03; no such result is asserted for length 19.
+- Compute and enclose three supplemental cyclic-twist traces, with rerunnable exact code. They are not inputs to the main bound.
+- Update the complete note/PDF, both READMEs, reproducibility commands, metadata, authorship, provenance, research/search records, and snapshot checksums. Retain the earlier five gap certificates and all imported source bytes.
+
+`make check` runs six gap certificates and the supplemental trace checker. `make trial88` recomputes the new trial; `make cyclic-traces` recomputes the supplemental thermal totals. Run `make integrity` and `make paper` for hashes and PDF rebuilding.
+
+The result is conditional and unreviewed. No exhaustive priority search, global optimum, machine-formalization, or independent proof of the original spatial-transfer premises is claimed. Model-identity qualifications remain in AUTHORSHIP.md.
+
 # Version 1.4.0 - 8 October 2026
 
 The conditional bound is now `gamma_L > 0.07` for **every integer `L >= 33`**, including odd lengths, with a unique ground state and `J = 1`. This raises the previous constant by one sixth. Separately, `gamma_32 > 0.06`, so the previous constant now covers every integer length at least 32. The all-integer thermodynamic liminf is at least 0.07.
