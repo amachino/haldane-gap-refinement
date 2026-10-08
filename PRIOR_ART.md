@@ -47,3 +47,9 @@ On 8 October 2026 (Asia/Tokyo), a small additional public web search used the co
 OpenAI is credited for both upstream propositions and their proofs. GPT-6 Astra Max performed this investigation, identified the cross-paper corollary, checked the normalization and hypotheses, implemented the scalar certificate, and revised the note. The human user requested the prior-art review and authorized the repository update. No new external mathematical review is claimed.
 
 The agent subsequently derived the signed-moment extension and its exact scalar certificate after the human asked about odd lengths. The human requested that newly verified findings be incorporated into this repository.
+
+## Version 1.4 search and attribution note (8 October 2026)
+
+A small follow-up web search using `"Haldane" "0.07" gap OpenAI` and `"haldane-gap-refinement" "spectral"` did not identify a matching report of this precise constant and all-integer length range. Some results concern the distinct two-dimensional Haldane model and do not address this spin-one chain. This limited search is not an exhaustive novelty or priority assessment. The fixed upstream inputs remain unchanged.
+
+The new coefficient choice and numerical estimates reuse the polynomial-filter and capped-mass lemmas already in Section 5 of the periodic paper. In particular, forcing a dominant eigenvalue by comparing two moments is an existing upstream technique. The contribution here is the sharper instantiation, its all-integer gap consequence, and the exact certificate; a new general moment method is not claimed.

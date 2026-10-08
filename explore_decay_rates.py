@@ -2,7 +2,7 @@
 
 The physical-defect diagnostic -log(2*q_k)/beta_k is computed by ordinary
 Decimal arithmetic. It is neither a proved bound on the chain's gap nor a
-proof that this method cannot improve. Run verify_adaptive_bound.py for
+proof that this method cannot improve. Run verify_spectral_refinement.py for
 the exact, certified theorem.
 """
 
@@ -33,11 +33,13 @@ def main():
         physical_tail = D('1.00139')**120*(1+D('.00000025'))-1
         t = (1+physical_tail**2)**-2
         sharper = sequence(1-s, 1-t)
+        spectral = sequence(D(".07584"), D(".059062"))
     print(json.dumps({
         'status': 'Exploration only; not part of the exact certificate',
         'meaning': 'Observed decay rates of this chosen coupled recurrence, not a mathematical limit on the method or the physical gap',
         'rounded_printed_seeds': rounded,
         'sharper_seed_expressions': sharper,
+        'version_1_4_certified_seeds_diagnostic_sequence': spectral,
     }, indent=2))
 
 

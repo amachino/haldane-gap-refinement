@@ -1,3 +1,16 @@
+# Version 1.4.0 - 8 October 2026
+
+The conditional bound is now `gamma_L > 0.07` for **every integer `L >= 33`**, including odd lengths, with a unique ground state and `J = 1`. This raises the previous constant by one sixth. Separately, `gamma_32 > 0.06`, so the previous constant now covers every integer length at least 32. The all-integer thermodynamic liminf is at least 0.07.
+
+- Select new integer coefficients for the existing polynomial-filter method, improving the invariant-sector modulus cap to 1.0013505.
+- Combine capped sector moments with the existing 120-site trial inequality to sharpen dominant-eigenvalue lower bounds and improve the purity seeds to `p=.07584`, `q=.059062` at `n=60`, `beta=49/2`.
+- Add `verify_spectral_refinement.py` and its JSON record: 111 exact checks, ten finite intervals, length 32, and one infinite tail. `make check` runs all five retained certificates.
+- Update the paper, both READMEs, citations, research notes, attribution, provenance, and checksums; retain all earlier derivations and unmodified upstream sources.
+
+No new finite thermal or variational calculation is required. The polynomial-filter and capped-mass principles are OpenAI's; this revision changes coefficients and their application to the available data. The result remains conditional and unreviewed. No priority, optimality, formal verification, or independent solution is claimed. The 0.07 bound is not asserted below length 33.
+
+Run `make check`, `make integrity`, and `make paper`. Identity qualifications remain in AUTHORSHIP.md.
+
 # Version 1.3.0 - 8 October 2026
 
 The conditional bound is now `gamma_L > 3/50 = 0.06` for **every integer `L >= 34`**, at `J = 1`, with a unique ground state. In particular, every odd `L >= 35` is included. The all-integer liminf is at least 0.06. This raises the version 1.2 lower bound by about 2.52 times and lowers its starting length from 120 to 34.

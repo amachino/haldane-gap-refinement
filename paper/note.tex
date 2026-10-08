@@ -16,18 +16,18 @@ pdfkeywords={spin-one Heisenberg chain, Haldane gap, purity bootstrap, exact ari
 \title{Exact-arithmetic refinements\\[0.15em]
 of periodic spin-one Haldane-gap bounds}
 \author{GPT-6 Astra Max\\[0.25em]\normalsize OpenAI model acting as an autonomous research agent}
-\date{8 October 2026 \quad | \quad Version 1.3.0}
+\date{8 October 2026 \quad | \quad Version 1.4.0}
 \begin{document}
 \maketitle
 \begin{abstract}
 We prove, conditional on two published OpenAI manuscripts, that the
 periodic spin-one Heisenberg chain has a unique ground state and
-$\gap_L>3/50=0.06$ for every integer $L\ge34$, with exchange coupling
-$J=1$. This includes every odd $L\ge35$.
-The argument tracks two unequal purity defects, chooses the inverse
-temperature according to length, and bounds signed spatial moments.
-A certificate with 88 exact checks covers 12 finite intervals and an
-infinite tail controlled by the invariant $p^{3/2}\le w$, $q\le w$.
+$\gap_L>7/100=0.07$ for every integer $L\ge33$, with exchange coupling
+$J=1$. This includes every odd $L\ge33$; separately, $\gap_{32}>0.06$.
+A tighter polynomial filter and a capped-moment comparison sharpen
+the leading-eigenvalue bounds and the purity seeds. The length-dependent
+signed-moment interpolation then gives the result with 111 exact
+checks, ten finite intervals, and an asymmetric infinite tail.
 No additional thermal or variational computation is required.
 The dependencies are the spatial-transfer construction and periodic
 spectral estimates in \emph{The periodic spin-one Haldane gap} and
@@ -58,7 +58,213 @@ We use $S(n,b)$ as a spatial probability purity only when the reference
 length $n$ is even. Signed spatial traces, in contrast, are available
 at odd lengths too.
 
-\section{A length-adaptive bound}
+\newpage
+\section{Sharper spectral bounds from the same finite data}
+\begin{theorem}\label{thm:spectral}
+Assume the spatial-transfer representation and sector decomposition of
+\cite[Section 3]{upstream}, the thermal and trial inputs used in
+\cite[Section 5]{upstream}, and the periodic spectral conclusions of
+\cite[Proposition 3.4]{boundary}, at the pinned revision. Then
+\[
+ \boxed{\gap_L>\frac7{100}=0.07
+ \quad\text{for every integer }L\ge33,\qquad J=1,}
+\]
+and the ground state is unique on this range. Also $\gap_{32}>3/50$,
+with a unique ground state. Consequently $\gap_L>0.06$ for every integer
+$L\ge32$, and $\liminf_{L\to\infty}\gap_L\ge0.07$ over all integer
+lengths. For positive $J$, multiply these lower bounds by $J$.
+\end{theorem}
+
+This improves the version 1.3 constant by $1/6$, and includes the
+additional odd length $33$. All finite thermal and variational data
+are unchanged. The polynomial-filter and capped-mass principles below
+are already in \cite[Section 5]{upstream}; the new work is the filter
+coefficient selection, the sharper spectral estimates and reseeding,
+and their connection to the all-integer interpolation certificate.
+
+\subsection{A tighter filter and partition-function upper bounds}
+Put $b_*=49/4$. The spatial spectrum consists of a $J$ sector and three
+identical $N$ sectors. Let $j_k$ be the published center for $J_k$,
+$4\le k\le12$, with absolute error at most
+$\epsilon=30\times10^{-6}$. These centers are
+$(Z_k+3Z_k(P))/4$ from the thermal table in
+\cite[Lemma 5.1]{upstream}, and are recorded in the checker.
+Choose
+\begin{align*}
+ P(x)&=12328+32348x-499897x^2-339164x^3+1787190x^4,\\
+ F(x)&=x^4P(x)^2=\sum_{k=4}^{12}f_kx^k,\qquad
+ B_F=\sum_{k=4}^{12}(f_kj_k+\epsilon|f_k|),\\
+ U&=1.0013505,\qquad V=.872.
+\end{align*}
+Exact rational comparisons give $F(U),F(-U)>B_F$.
+Every coefficient of $P(U+y)$ and $P(-U-y)$ is positive, so both
+$F(U+y)$ and $F(-U-y)$ increase for $y\ge0$.
+Since $F\ge0$ on the real line and the summed filter is at most $B_F$,
+every $J$ eigenvalue has modulus less than $U$. The former cap was
+$1.00139$. We retain the published cap $V$ in the $N$ sectors and the
+published twelfth-moment bounds
+\[
+ m_J=1.0657205,\qquad m_N=.2783155.
+\]
+
+For a nonnegative list of mass at most $m$ with entries at most $h$,
+where $h<m<2h$, the capped-mass lemma gives
+$\sum_i t_i^r\le h^r+(m-h)^r$ for every real $r\ge1$.
+Applying this with $t_i=|\mu_i|^{12}$ separately in each sector yields,
+for every even integer $k\ge12$,
+\begin{equation}\label{eq:spectral-Z}
+ Z_k(b_*)\le U^k+(m_J-U^{12})^{k/12}
+       +3\bigl[V^k+(m_N-V^{12})^{k/12}\bigr].
+\end{equation}
+Using the cap consistently in both the leading term and the remaining
+mass avoids maximizing these two terms separately.
+The exact certificate proves
+\begin{equation}\label{eq:spectral-Zvalues}
+ Z_{32}(b_*)<B_{32}:=1.08612266,\qquad
+ Z_{120}(b_*)<B_{120}:=1.175802453.
+\end{equation}
+The two cubic roots needed at $k=32$ are enclosed by rational candidates
+whose directions are checked by integer powers. At $k=120$ all
+exponents are integers.
+
+\subsection{Dominant-eigenvalue lower bounds and new seeds}
+The original argument gives a positive dominant $J$ eigenvalue
+$\lambda(b_*)>.999$. Removing it and using the original twelfth-moment
+bounds gives the residual upper bound
+\[
+ A_{120}=(m_J-.999^{12})^{10}
+          +3\bigl[V^{120}+(m_N-V^{12})^{10}\bigr].
+\]
+The trial input implies $Z_{120}(b)>1$ at every $b>0$.
+With $\ell=.999999998$, the checker verifies
+$\ell^{120}+A_{120}<1$. Hence $\lambda(b_*)>\ell$.
+Removing this stronger leading contribution gives
+\begin{equation}\label{eq:spectral-short-tail}
+ R_{b_*}(32)<.04236466,\qquad \rho_{b_*}<.872001,
+\end{equation}
+where $R_b(k)$ is the residual absolute moment normalized by the
+positive dominant eigenvalue, and $\rho_b$ is the largest residual
+absolute eigenvalue ratio. For the ratio bound, use
+$m_J-\ell^{12}<V^{12}$ and $V/\ell<.872001$.
+
+At the doubled temperature, physical purity gives
+$Z_{32}(2b_*)\le Z_{32}(b_*)^2<M:=B_{32}^2$.
+Let $\ell_2=.9999865$ and $v=\ell_2^{32}$.
+The rational certificate proves
+\begin{equation}\label{eq:spectral-dominance-check}
+ M/2<v<M,\qquad (M-v)^{15}<(1-\ell_2^{120})^4.
+\end{equation}
+If every $|\mu_i(2b_*)|^{32}$ were at most $v$, the capped-mass lemma
+with exponent $120/32=15/4$ would imply
+\[
+ 1<Z_{120}(2b_*)\le v^{15/4}+(M-v)^{15/4}<1,
+\]
+a contradiction. Thus a unique eigenvalue has modulus exceeding
+$\ell_2$; uniqueness follows from $2v>M$.
+It is positive: a unique negative dominant eigenvalue would make the
+signed trace negative at sufficiently large odd lengths, contradicting
+the positivity of the physical partition function. Absolute convergence
+at order $32$ justifies domination of the residual at those lengths.
+This argument assumes no odd-chain spectral gap.
+
+The further rational comparison
+\[
+ M<\ell_2^{32}(1+.947852^{32})
+\]
+gives $R_{2b_*}(32)<.947852^{32}$, and therefore
+$R_{2b_*}(L)<.947852^L$ for every integer $L\ge32$.
+It does not give such a conclusion at smaller moment orders.
+In particular,
+\[
+ S(60,2b_*)\ge(1+.947852^{60})^{-2}>1-.07584.
+\]
+For the physical seed, the shifted ground-state Boltzmann weight on
+120 sites exceeds one. At $b_*$ the sum of all other weights is less
+than $B_{120}-1$; squaring them at $2b_*$ gives a normalized residual
+less than $(B_{120}-1)^2$. Consequently
+\begin{equation}\label{eq:spectral-seeds}
+ 1-S(60,49/2)\le .07584,\qquad
+ 1-T(120,49/2)\le .059062.
+\end{equation}
+Both inequalities have strict arithmetic margins.
+
+\subsection{All integer lengths and the certificate}
+The initial ratio satisfies
+\[
+ \frac{\lambda(2b_*)}{\lambda(b_*)^2}
+ >\frac{.9999865}{1.0013505^2}>c_*:=.997290.
+\]
+For an integer interval $32\le A\le L\le B$, the signed traces and
+\eqref{eq:spectral-short-tail} therefore give
+\begin{equation}\label{eq:spectral-short}
+ T(L,b_*)\ge
+ \frac{c_*^B(1-.947852^A)}
+ {(1+.04236466\,.872001^{A-32})^2}.
+\end{equation}
+At $A=B=32$, this proves the separate claim $\gap_{32}>.06$.
+
+For the longer scales, insert \eqref{eq:spectral-seeds} into the
+coupled update \eqref{eq:adaptive-update} and the signed interpolation
+\eqref{eq:adaptive-interval} below. As in version 1.3, every recurrence
+output is rounded upward to 12 significant decimal digits. At the
+seventh doubling the certified bounds are
+\[
+ n=7680,\quad b=3136,\quad
+ p=4.34388004302\times10^{-71},\quad
+ q=1.23795864491\times10^{-97}.
+\]
+Table~\ref{tab:spectral} covers every integer from 33 through 11519.
+For each row its purity lower bound $\mathcal K$ satisfies
+$\mathcal K>1/2$ and
+$E_m(7b/100)<\mathcal K/(1-\mathcal K)$, using the rational exponential
+upper bound \eqref{eq:expupper}. Thus the ground state is unique and
+$\gap_L>.07$ on every listed interval.
+
+\begin{table}[ht]
+\centering
+\caption{Version 1.4 finite certificate; both parities are included.}
+\label{tab:spectral}
+\begin{tabular}{rrr}
+\toprule
+First length & Last length & Inverse temperature $b$\\
+\midrule
+33 & 34 & $49/4$\\
+35 & 48 & $49/4$\\
+49 & 99 & $49/4$\\
+100 & 153 & $49/2$\\
+154 & 208 & $49/2$\\
+209 & 387 & 49\\
+388 & 885 & 98\\
+886 & 2295 & 196\\
+2296 & 5534 & 392\\
+5535 & 11519 & 784\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the infinite tail take $w_0=2\times10^{-97}$. The checker verifies
+$p^3\le w_0^2$, $q\le w_0$, and the domain of the invariant
+\eqref{eq:adaptive-invariant}. Its proof below applies unchanged:
+$w_{k+1}=6w_k^2$ and
+$T(L,3136\,2^k)\ge1-(15/2)w_k$ on
+$11520\,2^k\le L\le23040\,2^k$.
+With $E=E_m(3136\times7/100)$, the two certified inequalities
+\[
+ E\,6w_0<1,\qquad E\,\frac{(15/2)w_0}{1-(15/2)w_0}<1
+\]
+prove $\gap_L>.07$ on this entire infinite tail by the argument
+following \eqref{eq:adaptive-tail-purity}. The intervals meet without
+a missing integer, proving Theorem~\ref{thm:spectral}.
+
+The checker \path{verify_spectral_refinement.py} performs 111 exact
+checks, including the filter, seed estimates, ten finite intervals,
+the length-32 consequence, and the infinite tail.
+It imports the directed rational arithmetic helpers of the retained
+version 1.3 checker. Numerical optimization selected the candidate
+filter only; the certificate contains fixed integer coefficients and
+requires no optimizer or floating-point acceptance decision.
+
+\section{Retained version 1.3 length-adaptive bound}
 \begin{theorem}\label{thm:adaptive}
 Assume the signed spatial-transfer representation of
 \cite[Proposition 3.1]{upstream} and the periodic spectral estimates
@@ -684,7 +890,9 @@ Theorem~\ref{thm:all-lengths} further removes the parity restriction
 without changing the version 1.1 constant.
 Theorem~\ref{thm:adaptive} improves both the constant and the starting
 length using the same finite inputs.
-The accompanying repository contains all four exact certificates,
+Theorem~\ref{thm:spectral} then sharpens the spectral inputs and raises
+the bound again, without changing the finite computation data.
+The accompanying repository contains all five exact certificates,
 the upstream source and verification material at the fixed commit,
 fresh verification results, and \texttt{independent\_audit.py}.
 The latter reconstructs selected computations from the printed
@@ -706,11 +914,11 @@ it does not provide rigorous thermal enclosures.
 \end{itemize}
 The full upstream run took approximately 22 minutes with six requested
 workers, Python 3.12.14, NumPy 2.3.5, and SciPy 1.17.0.
-All four bound certificates need only Python's standard library.
-Run \texttt{make check} with assertions enabled to check all four.
-For the new length-adaptive certificate alone, run
+All five bound certificates need only Python's standard library.
+Run \texttt{make check} with assertions enabled to check all five.
+For the new spectral-refinement certificate alone, run
 \begin{center}
-\texttt{python3 verify\_adaptive\_bound.py}
+\texttt{python3 verify\_spectral\_refinement.py}
 \end{center}
 Rational comparisons determine all numerical pass/fail decisions;
 decimal logarithms and floating-point margins are display-only.
@@ -720,7 +928,7 @@ in \path{boundary_source_manifest.json}.
 
 Neither successful execution nor this note is a formal verification of
 the upstream analytic assumptions. No claim is made here for the same
-numerical bound at lengths below $34$, arbitrary open boundaries, or
+numerical bound at lengths below $33$, arbitrary open boundaries, or
 uniqueness of all infinite-volume ground states. The constants are conditional lower
 bounds, not estimates of the actual physical gap.
 
@@ -734,7 +942,10 @@ about odd lengths, the agent derived the signed-moment extension,
 implemented its certificate, and wrote version 1.2. During the requested
 continued investigation, the agent developed the length-dependent
 temperature choice and asymmetric tail invariant, checked the new
-certificate, and wrote version 1.3. The human user initiated the open-ended
+certificate, and wrote version 1.3. Continuing the investigation, the
+agent selected a tighter filter, derived the refined spectral estimates
+and seeds, implemented the 0.07 certificate, and wrote version 1.4.
+The human user initiated the open-ended
 investigation, authorized computation and publication, and requested
 attribution and layout revisions; the mathematical extension and its
 verification code were produced by the agent. The human also requested

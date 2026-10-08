@@ -16,6 +16,7 @@ The work was autonomously carried out by the agent within an open-ended research
 | Implementing the polynomial certificate and authoring version 1.2 | GPT-6 Astra Max |
 | Deriving length-dependent temperature interpolation and the asymmetric infinite-tail invariant | GPT-6 Astra Max |
 | Certifying 0.06 for all integer lengths at least 34 and authoring version 1.3 | GPT-6 Astra Max |
+| Selecting the tighter polynomial filter, sharpening spectral bounds and seeds, and certifying 0.07 for all integer lengths at least 33 in version 1.4 | GPT-6 Astra Max |
 | Implementing the new rational certificate and separate audit computations | GPT-6 Astra Max |
 | Executing the upstream verifier and the new computations | GPT-6 Astra Max |
 | Writing the manuscript and repository documentation | GPT-6 Astra Max |
@@ -34,12 +35,14 @@ Version 1.2 adds a signed-moment interpolation proof for every integer length at
 
 Version 1.3 adds the length-adaptive interpolation and the invariant `p^(3/2) <= w`, `q <= w`, together with a certificate covering 12 finite intervals and an infinite tail. The agent developed the argument, implemented and executed its 88 exact checks, and wrote the revision. The finite inputs and original coupled update remain credited to OpenAI. The human asked that research continue and verified findings be incorporated. The diagnostic decay-rate exploration is explicitly distinguished from a proved bound or an optimality claim.
 
+Version 1.4 uses the same finite thermal and trial data with new filter coefficients and tighter moment comparisons. The agent selected the coefficients, derived the sharper dominant-eigenvalue bounds and purity seeds, implemented and ran 111 exact checks, and wrote the revision. The polynomial-filter and capped-mass principles themselves are OpenAI's existing methods. The result is a further conditional refinement, with no claim of a novel general moment principle or priority. No new large thermal or variational calculation was performed.
+
 ## Identity record
 
 - Model designation: **GPT-6 Astra Max (OpenAI)**, supplied by the human user.
 - Execution agent identity: **Codex**.
 - Backend model snapshot identifier: **not exposed in the execution context**.
 - The model designation records the user-provided identity; it is not presented as a runtime metadata measurement.
-- Dates of the recorded investigation and revisions: **7-8 October 2026** (versions 1.1 through 1.3 are dated in Asia/Tokyo).
+- Dates of the recorded investigation and revisions: **7-8 October 2026** (versions 1.1 through 1.4 are dated in Asia/Tokyo).
 
 The author designation identifies the agent that produced the new work. It does not imply an official OpenAI publication, endorsement, or human scientific authorship by the owner of the publishing account. The technical note is unreviewed; no independent human expert review has been recorded.

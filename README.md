@@ -1,17 +1,17 @@
 # Exact-arithmetic refinements of periodic spin-one Haldane-gap bounds
 
-**Version 1.3.0 · 8 October 2026 · Autonomously researched and written by GPT-6 Astra Max · Unreviewed technical note**
+**Version 1.4.0 · 8 October 2026 · Autonomously researched and written by GPT-6 Astra Max · Unreviewed technical note**
 
 [Read the paper](paper/note.pdf) · [LaTeX source](paper/note.tex) · [日本語](README.ja.md)
 
-A length-dependent choice of inverse temperature and an asymmetric purity estimate improve both the constant and the length range. Conditional on the two cited OpenAI papers, the periodic spin-one Heisenberg chain has a unique ground state and
+Reusing the published finite data with a tighter polynomial filter and sharper leading-eigenvalue estimates improves the lower bound again. Conditional on the cited OpenAI analytic and finite-input results, the periodic spin-one Heisenberg chain has a unique ground state and
 
 $$
-\gamma_L > \frac{3}{50}=0.06
-\quad\text{for every integer }L\ge34,\qquad J=1.
+\gamma_L > \frac7{100}=0.07
+\quad\text{for every integer }L\ge33,\qquad J=1.
 $$
 
-In particular, this includes **every odd $L\ge35$**. The thermodynamic statement is $\liminf_{L\to\infty}\gamma_L\ge3/50$ over all integer lengths. These conclusions remain conditional on the cited analytic and finite-input results. They are lower bounds, not estimates of the physical gap. For a positive coupling $J$, multiply the bound by $J$. No claim is made for this numerical bound at lengths below 34. No additional thermal or variational computation is needed.
+This includes **every odd $L\ge33$**. Separately, $\gamma_{32}>0.06$ with a unique ground state, so the previous constant $0.06$ now holds for every integer $L\ge32$. The thermodynamic statement is $\liminf_{L\to\infty}\gamma_L\ge0.07$ over all integer lengths. These are conditional lower bounds, not estimates of the physical gap. For a positive coupling $J$, multiply them by $J$. The bound $0.07$ is not claimed at lengths below 33. No additional thermal or variational computation is needed.
 
 **Correction to the version 1.0 comparison:** the previous bound of $0.0047$ improves the periodic paper's *stated* constant, but is weaker than this direct consequence of OpenAI's two published papers. The companion's stronger periodic seeds were overlooked in the initial comparison. The old proof and certificate remain valid and are retained below. We do not claim priority, optimality, an independent Haldane-gap proof, or an improvement beyond everything implied by the published OpenAI material.
 
@@ -22,10 +22,31 @@ In particular, this includes **every odd $L\ge35$**. The thermodynamic statement
 | Corollary extracted in version 1.1 from the two published papers | $\log(125/39)/49\approx0.02377045$ | Every even $L\ge120$ |
 | Signed-moment extension in version 1.2 | $\log(125/39)/49\approx0.02377045$ | **Every integer $L\ge120$** |
 | Length-adaptive refinement in version 1.3 | **$0.06$** | **Every integer $L\ge34$** |
+| Spectral refinement in version 1.4 | **$0.07$** | **Every integer $L\ge33$** |
 
-All rows use the same periodic Hamiltonian and $J=1$. Version 1.3 raises the version 1.2 lower bound by a factor of about **2.52** and lowers the starting length from 120 to 34. The new derivation uses existing spectral inputs; it does not replace their proof. The prior-art review is limited and establishes no priority claim. See [PRIOR_ART.md](PRIOR_ART.md).
+All rows use the same periodic Hamiltonian and $J=1$. Version 1.4 raises the version 1.3 constant by **16.7%** and includes length 33. Version 1.3 had raised the version 1.2 constant by about **2.52 times** and lowered the starting length from 120 to 34. The new derivation uses existing spectral inputs; it does not replace their proof. The prior-art review is limited and establishes no priority claim. See [PRIOR_ART.md](PRIOR_ART.md).
 
-## The version 1.3 refinement
+## The version 1.4 refinement
+
+The original polynomial-filter and capped-mass methods are OpenAI's. This revision selects new integer filter coefficients and combines the available moment and trial bounds more tightly:
+
+1. The same thermal table bounds every invariant-sector eigenvalue by $U=1.0013505$, improving the former cap $1.00139$.
+2. Capped sector moments give $Z_{32}(49/4)<1.08612266$ and $Z_{120}(49/4)<1.175802453$. The existing trial bound $Z_{120}(b)>1$ then forces the dominant eigenvalues above $.999999998$ at $b=49/4$ and $.9999865$ at $b=49/2$.
+3. These estimates give new purity defects $p\le.07584$, $q\le.059062$ at reference length 60 and inverse temperature $49/2$, replacing $.0998$ and $.0628$.
+
+The retained length-dependent interpolation certifies **ten finite intervals covering every integer from 33 through 11519**. At reference length 7680 and inverse temperature 3136, the asymmetric invariant holds with $w=2\times10^{-97}$; it covers every remaining integer length. A separate comparison at length 32 proves the smaller constant $0.06$. The [paper](paper/note.pdf) provides the derivation and interval table.
+
+### Reproduce the current bound
+
+```sh
+python3 verify_spectral_refinement.py
+```
+
+This performs **111 exact checks**, including the polynomial's behavior on both entire exterior rays, the moment bounds, the seeds, finite coverage, and infinite-tail inequalities. It writes [`independent_results/spectral_refinement.json`](independent_results/spectral_refinement.json). The optional numerical search only selected candidate filter coefficients; the certificate checks fixed integers and rational inequalities and requires no optimizer.
+
+Run `make check` for all **five** retained certificates, `make integrity` for source and snapshot hashes, and `make paper` to rebuild the PDF. The checkers require Python 3.11 or later and no third-party packages; `-O` is rejected. Their numerical acceptance decisions are exact, but the analytic proof and upstream premises are not machine-formalized or independently peer-reviewed.
+
+## Retained version 1.3 refinement
 
 The two purity defects decay at different rates. Keeping them separate, and using a suitable inverse temperature for each length interval, avoids the losses from one common defect bound and fixed interpolation intervals.
 
@@ -37,7 +58,7 @@ $$p^{3/2}\le w,\qquad q\le w,\qquad w_+=6w^2.$$
 
 At $n=7680$, $\beta=3136$, it holds with $w=2\times10^{-83}$. The proof gives $T(L,\beta)\ge1-(15/2)w$ throughout $3n/2\le L\le3n$, including odd lengths. Doubling covers every integer $L\ge11520$, and exact exponential comparisons give the strict bound $0.06$. The [paper](paper/note.pdf) contains the full argument, finite interval table, and dependencies.
 
-### Reproduce the current bound
+### Reproduce the version 1.3 bound
 
 ```sh
 python3 verify_adaptive_bound.py
@@ -45,7 +66,7 @@ python3 verify_adaptive_bound.py
 
 This runs **88 exact checks** and writes [`independent_results/adaptive_bound.json`](independent_results/adaptive_bound.json). All acceptance decisions use rational arithmetic. Decimal roots propose rational parameters, whose directions are then proved by integer-power comparisons. Products are rounded outward on a $10^{-140}$ grid. The finite interval covering and the infinite-tail inequalities are checked separately.
 
-Run `make check` for all **four** retained certificates, `make integrity` for source and snapshot hashes, and `make paper` to rebuild the PDF. Python 3.11 or later suffices; no third-party package is needed for the certificates. Optimized execution with `-O` is rejected.
+Run `make check` for all **five** retained certificates, `make integrity` for source and snapshot hashes, and `make paper` to rebuild the PDF. Python 3.11 or later suffices; no third-party package is needed for the certificates. Optimized execution with `-O` is rejected.
 
 The analytic arguments and upstream assumptions are not machine-formalized. [RESEARCH_NOTES.md](RESEARCH_NOTES.md) records the improvement, exploratory decay rates, and concrete remaining directions; exploratory numbers are not certified theorems.
 
@@ -147,6 +168,7 @@ The rational certificate contains the following bounds. Every decimal in this ta
 
 | Evidence | Scope | Interpretation |
 |---|---|---|
+| Version 1.4 exact certificate | 111 exact checks; ten finite intervals, length 32, and an infinite tail | Checks the scalar certificate for $0.07$ at every integer length at least 33, and $0.06$ at length 32 |
 | Version 1.3 exact certificate | 88 exact checks; 12 finite intervals and one asymmetric infinite tail | Checks the scalar certificate for $0.06$ at every integer length at least 34 |
 | Version 1.2 exact certificate | 21 exact checks, including a polynomial identity and sign on a full interval | Checks the scalar part of the signed-moment extension to every integer length at least 120 |
 | Version 1.1 exact certificate | 24 rational comparisons for reseeding and gap extraction | Checks the stronger corollary conditional on the two cited papers |
@@ -155,7 +177,7 @@ The rational certificate contains the following bounds. Every decimal in this ta
 | Separate integer implementation | Full 72- and 120-site contraction integers and a direct four-site check | Exact agreement with the upstream values, using code reconstructed from the manuscript |
 | Separate floating-point implementation | 16 full-spectrum thermal cases on four to eight sites with twists | Diagnostic agreement within the manuscript's tolerances; not rigorous interval arithmetic |
 
-The complete finite run finished on 7 October 2026 and took about 22 minutes. Its record is [`reproduced/verification.json`](reproduced/verification.json). It reports both `success: true` and `full_recomputation: true`. These existing finite outputs remain unchanged in version 1.3; all four small bound certificates were executed for this revision. Mathematical certificates and supporting logs are included. This audit is not a Lean or other kernel-checked formal proof of the analytic argument.
+The complete finite run finished on 7 October 2026 and took about 22 minutes. Its record is [`reproduced/verification.json`](reproduced/verification.json). It reports both `success: true` and `full_recomputation: true`. These existing finite outputs remain unchanged in version 1.4; all five small bound certificates were executed for this revision. Mathematical certificates and supporting logs are included. This audit is not a Lean or other kernel-checked formal proof of the analytic argument.
 
 ## Additional reproduction
 
@@ -194,7 +216,7 @@ The upstream source is pinned to OpenAI Math commit
 - [`PROVENANCE.md`](PROVENANCE.md) distinguishes imported files, fresh outputs, and new work.
 - [`NOTICE`](NOTICE) and [`LICENSE`](LICENSE) retain the upstream attribution and Apache-2.0 terms. New material is also distributed under Apache-2.0.
 
-**GPT-6 Astra Max autonomously performed the research and authored this work.** Within the open-ended task set by the human user, the agent selected the target result, examined the upstream proof, derived the version 1.0 bound, wrote and ran the verification programs, and wrote the paper and repository documentation. During the requested prior-art review, the agent identified and verified the stronger corollary and prepared version 1.1. In response to the question about odd lengths, the agent developed the signed-moment extension, implemented its certificate, and authored version 1.2. During the requested continued investigation, the agent derived the length-adaptive interpolation and asymmetric invariant, implemented the 0.06 certificate, and authored version 1.3. The human contribution was to initiate the investigation, authorize computation and publication, ask about odd lengths, and request the prior-art review, incorporation of newly verified findings, and attribution and presentation revisions. The mathematical derivations and verification code were produced by the agent; the underlying spatial-transfer construction, reseeding argument, spectral estimates, and original gap criterion are credited to OpenAI.
+**GPT-6 Astra Max autonomously performed the research and authored this work.** Within the open-ended task set by the human user, the agent selected the target result, examined the upstream proof, derived the version 1.0 bound, wrote and ran the verification programs, and wrote the paper and repository documentation. During the requested prior-art review, the agent identified and verified the stronger corollary and prepared version 1.1. In response to the question about odd lengths, the agent developed the signed-moment extension, implemented its certificate, and authored version 1.2. During the requested continued investigation, the agent derived the length-adaptive interpolation and asymmetric invariant, implemented the 0.06 certificate, and authored version 1.3. Continuing the investigation, the agent selected the tighter filter, derived the new spectral bounds and seeds, implemented the 0.07 certificate, and authored version 1.4. The human contribution was to initiate the investigation, authorize computation and publication, ask about odd lengths, and request the prior-art review, incorporation of newly verified findings, and attribution and presentation revisions. The mathematical derivations and verification code were produced by the agent; the underlying spatial-transfer construction, reseeding argument, spectral estimates, and original gap criterion are credited to OpenAI.
 
 The model designation **GPT-6 Astra Max (OpenAI)** was supplied by the human user. The execution agent was Codex; a backend model snapshot identifier was not available in the session. See [AUTHORSHIP.md](AUTHORSHIP.md) for contribution and identity details. This is an unreviewed technical preprint, not an official OpenAI publication or endorsement. No independent human expert review has been recorded. The new arithmetic is small enough to inspect separately from the much larger source verifier. Corrections to the assumptions, proof, or implementation are welcome through the repository's issue tracker.
 
